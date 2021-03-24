@@ -138,6 +138,61 @@ def print_map(board, player):
         print()
 
 
+def get_player_move():
+    print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
+    valid_user_input = ["0", "1", "2", "3", "q", "Q"]
+    while True:
+        player_direction = input("Which direction will you go? ")
+        if player_direction in valid_user_input:
+            return player_direction
+        else:
+            print("\nInvalid Input\nPlease Try Again\n")
+
+
+def player_destination(direction, player):
+    new_location = list(player["location"])
+    if direction == "0":
+        new_location[0] -= 1
+    elif direction == "1":
+        new_location[0] += 1
+    elif direction == "2":
+        new_location[1] -= 1
+    elif direction == "3":
+        new_location[1] += 1
+    return tuple(new_location)
+
+
+def validate_move(new_location, board):
+    if new_location in board:
+        return True
+    else:
+        return False
+
+
+def move_player(direction, character):
+    if direction == "0":
+        character["location"][0] -= 1
+    elif direction == "1":
+        character["location"][0] += 1
+    elif direction == "2":
+        character["location"][1] -= 1
+    elif direction == "3":
+        character["location"][1] += 1
+
+
+def flee(player):
+    if random.randint(1, 100) <= 20:
+        flee_damage = random.randint(0, 15)
+        player["HP"] -= flee_damage
+        print(f"You fled but took a stab to the back {flee_damage}")
+    else:
+        print("You fled successfully!")
+
+
+def heal(player):
+    pass
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
