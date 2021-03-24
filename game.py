@@ -148,7 +148,10 @@ def print_map(board, player):
 
 
 def get_player_move():
-    """
+    """Get players direction
+    
+    :postcondition: ask user input until it is valid
+    :return: a string representing players direction
     """
     print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
     valid_user_input = ["0", "1", "2", "3", "q", "Q"]
@@ -161,6 +164,8 @@ def get_player_move():
 
 
 def player_destination(direction, player):
+    """
+    """
     new_location = list(player["location"])
     if direction == "0":
         new_location[0] -= 1
