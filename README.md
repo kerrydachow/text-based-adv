@@ -1,6 +1,6 @@
 # 1510-A4-Text-based-adventure-game
 
-### Your names:
+### Your names: Kerry Chow[A01245034], Tomo Kaneko[A01250261]
 
 ### Your student numbers:
 
