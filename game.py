@@ -285,6 +285,11 @@ def class_choice(player_class):
 
 
 def make_player():
+    """Create player
+    
+    :postcondition: create a dictionary representing game player
+    :return: a dictionary representing player
+    """
     name = input("What's your name, explorer?: ")
     class_description()
     player_class = input("What class will you choose? Enter number for class: ")
@@ -302,6 +307,8 @@ def make_player():
 
 
 def game():
+    """Play game
+    """
     player = make_player()
     board = make_map()
     achieve_goal = False
@@ -309,6 +316,8 @@ def game():
 
 
 def main():
+    """Execute game
+    """
     game()
 
 
