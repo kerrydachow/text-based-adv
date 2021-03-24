@@ -104,3 +104,7 @@ def INITIAL_LOCATION():
 
 def BOSS_LOCATION():
     return [24, 24]
+
+
+def make_map():
+    return [(y, x) for y in range(25) for x in range(25)]
