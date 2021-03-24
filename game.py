@@ -213,6 +213,14 @@ def move_player(direction, character):
 
 
 def flee(player):
+    """Flee from foe.
+    
+    :param player: a dictionary
+    :precondition: player must be a dictionary representing game player
+    :postcondition: take damage with 20% chance and print message
+                    else print message
+    :return: None
+    """
     if random.randint(1, 100) <= 20:
         flee_damage = random.randint(0, 15)
         player["HP"] -= flee_damage
