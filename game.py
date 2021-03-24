@@ -127,6 +127,12 @@ def print_map(board, player):
 def get_player_move():
     print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
     valid_user_input = ["0", "1", "2", "3", "q", "Q"]
+    while True:
+        player_direction = input("Which direction will you go? ")
+        if player_direction in valid_user_input:
+            return player_direction
+        else:
+            print("\nInvalid Input\nPlease Try Again\n")
 
 
 def class_description():
