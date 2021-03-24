@@ -124,6 +124,34 @@ def class_description():
                   RED(), END(), UNDERLINE(), END()))
 
 
+def class_stats(player):  # amazon no stat changes
+    if player["class"] == "sorcerer":
+        player["max_damage"] += 10  # low chance of hit high damage
+        player["min_damage"] += 5
+        player["hit_rate"] -= 15
+    elif player["class"] == "thief":
+        player["max_damage"] -= 5  # high hit rate low damage
+        player["min_damage"] += 2
+        player["hit_rate"] += 10
+    elif player["class"] == "fighter":
+        player["max_damage"] += 10  # high damage low chance of deadly hit
+        player["min_damage"] -= 2
+    elif player["class"] == "hidden lord":
+        player["max_damage"] += 80
+        player["HP"] += 50
+        player["max_HP"] += 50
+        player["hit_rate"] += 25
+
+
+def class_choice(player_class):
+    class_list = enumerate(["sorcerer", "thief", "amazon", "fighter"])
+    for jobs in class_list:
+        if player_class == str(jobs[0]):  # int must be converted to str to prevent TypeError
+            return jobs[1]
+    else:
+        return "hidden lord"
+
+
 def make_player():
     name = input("What's your name, explorer?: ")
     class_description()
@@ -133,11 +161,11 @@ def make_player():
               "HP": PLAYER_START_HP(),
               "max_HP": PLAYER_START_HP(),
               "hit_rate": INITIAL_HIT_RATE(),
-              "XP": 16,
+              "XP": 0,
               "min_damage": PLAYER_MIN_DAMAGE(),
               "max_damage": PLAYER_START_DAMAGE(),
-              "location": [23, 24]}
-    class_specs(player)
+              "location": INITIAL_LOCATION()}
+    class_stats(player)
     return player
 
 
