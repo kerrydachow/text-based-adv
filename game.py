@@ -148,6 +148,13 @@ def player_destination(direction, player):
     return tuple(new_location)
 
 
+def validate_move(new_location, board):
+    if new_location in board:
+        return True
+    else:
+        return False
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
