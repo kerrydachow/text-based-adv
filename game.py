@@ -6,6 +6,8 @@ Date:
 import itertools
 import random
 import time
+import sys
+from time import sleep
 
 
 def RED():
@@ -60,3 +62,10 @@ def BLINK():
     """Return ANSI escape for text blink.
     """
     return "\033[05m"
+
+
+def typing_effect(words):
+    for char in words:
+        sleep(0.05)
+        sys.stdout.write(char)
+        sys.stdout.flush()
