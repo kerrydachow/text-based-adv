@@ -164,7 +164,14 @@ def get_player_move():
 
 
 def player_destination(direction, player):
-    """
+    """Create players expected destination
+    
+    :param direction: a string
+    :param player: a dictionary
+    :precondition: direction must be a string number of 0, 1, 2, or 3
+    :precondition: player must be a dictionary representing player
+    :postcondition: create a tuple of the player destination on game board
+    :return: a tuple representing location on game board
     """
     new_location = list(player["location"])
     if direction == "0":
@@ -179,6 +186,15 @@ def player_destination(direction, player):
 
 
 def validate_move(new_location, board):
+    """Validate the destination the player wants to move.
+    
+    :param new_location: a tuple
+    :param board: a list of tuples
+    :precondition: new_location must be a tuple of coordinates
+    :precondition: board must be a list of tuples representing game board
+    :postcondition: check if new_location is within board
+    :return: True if new_location is in board else False
+    """
     if new_location in board:
         return True
     else:
