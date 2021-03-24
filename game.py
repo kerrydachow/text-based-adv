@@ -142,9 +142,10 @@ def player_destination(direction, player):
     elif direction == "1":
         new_location[0] += 1
     elif direction == "2":
-        new_location -= 1
+        new_location[1] -= 1
     elif direction == "3":
         new_location[1] += 1
+    return tuple(new_location)
 
 
 def class_description():
