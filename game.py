@@ -202,6 +202,15 @@ def validate_move(new_location, board):
 
 
 def move_player(direction, character):
+    """Move the player on game board
+    
+    :param direction: a string
+    :param character: a dictionary
+    :precondition: direction must be a string number of 0, 1, 2, 3
+    :precondition: character must be a dictionary representing player
+    :postcondition: modify character['location'] value according to direction
+    :return: None
+    """
     if direction == "0":
         character["location"][0] -= 1
     elif direction == "1":
