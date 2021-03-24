@@ -135,6 +135,18 @@ def get_player_move():
             print("\nInvalid Input\nPlease Try Again\n")
 
 
+def player_destination(direction, player):
+    new_location = list(player["location"])
+    if direction == "0":
+        new_location[0] -= 1
+    elif direction == "1":
+        new_location[0] += 1
+    elif direction == "2":
+        new_location -= 1
+    elif direction == "3":
+        new_location[1] += 1
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
