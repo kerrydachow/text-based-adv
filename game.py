@@ -108,3 +108,36 @@ def BOSS_LOCATION():
 
 def make_map():
     return [(y, x) for y in range(25) for x in range(25)]
+
+
+def class_description():
+    print("\nClasses\n\n"
+          "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
+          "\nTheir damage is amplified, but not the most accurate!\n\n"
+          "{}1{} {}Thief{}:\nThieves lurk through the shadows with striking with deadly accuracy."
+          "\nTheir accuracy is near-perfect, but lack the strength to damage!\n\n"
+          "{}2{} {}Amazon{}:\nAmazons specialize in archery, swordplay, and a bit of magic."
+          "\nAmazon's are the most well-balanced class!\n\n"
+          "{}3{} {}Fighter{}:\nFighters have incredible yet, uncontrollable strength. "
+          "\nTheir uncontrollable strength can easily dissipate weak monsters!\n"
+          .format(RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(),
+                  RED(), END(), UNDERLINE(), END()))
+
+
+def make_player():
+    name = input("What's your name, explorer?: ")
+    class_description()
+    player_class = input("What class will you choose? Enter number for class: ")
+    player = {"name": name,
+              "class": class_choice(player_class),
+              "HP": PLAYER_START_HP(),
+              "max_HP": PLAYER_START_HP(),
+              "hit_rate": INITIAL_HIT_RATE(),
+              "XP": 16,
+              "min_damage": PLAYER_MIN_DAMAGE(),
+              "max_damage": PLAYER_START_DAMAGE(),
+              "location": [23, 24]}
+    class_specs(player)
+    return player
+
+
