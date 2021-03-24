@@ -124,6 +124,11 @@ def print_map(board, player):
         print()
 
 
+def get_player_move():
+    print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
+    valid_user_input = ["0", "1", "2", "3", "q", "Q"]
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
