@@ -65,6 +65,13 @@ def BLINK():
 
 
 def typing_effect(words):
+    """Print stdout pretty
+
+    :param words: a string
+    :precondition: words must be type string
+    :postcondition: print stdout with latency
+    :return: None
+    """
     for char in words:
         sleep(0.05)
         sys.stdout.write(char)
@@ -107,6 +114,13 @@ def BOSS_LOCATION():
 
 
 def make_map():
+    """Make board for game
+
+    :param:
+    :precondition:
+    :postcondition:
+    :return:
+    """
     return [(y, x) for y in range(25) for x in range(25)]
 
 
