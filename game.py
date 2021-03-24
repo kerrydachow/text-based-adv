@@ -110,6 +110,20 @@ def make_map():
     return [(y, x) for y in range(25) for x in range(25)]
 
 
+def print_map(board, player):
+    key_counter = 0
+    for x_axis in range(25):
+        for y_axis in range(25):
+            if board[key_counter] == tuple(player["location"]):
+                print(BLINK() + "[X]" + END() + " ", end="")
+            elif board[key_counter] == tuple(BOSS_LOCATION()):
+                print("[*]", end="")
+            else:
+                print("[ ]", end="")
+            key_counter += 1
+        print()
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
