@@ -155,6 +155,17 @@ def validate_move(new_location, board):
         return False
 
 
+def move_player(direction, character):
+    if direction == "0":
+        character["location"][0] -= 1
+    elif direction == "1":
+        character["location"][0] += 1
+    elif direction == "2":
+        character["location"][1] -= 1
+    elif direction == "3":
+        character["location"][1] += 1
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
