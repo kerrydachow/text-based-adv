@@ -166,6 +166,19 @@ def move_player(direction, character):
         character["location"][1] += 1
 
 
+def flee(player):
+    if random.randint(1, 100) <= 20:
+        flee_damage = random.randint(0, 15)
+        player["HP"] -= flee_damage
+        print(f"You fled but took a stab to the back {flee_damage}")
+    else:
+        print("You fled successfully!")
+
+
+def heal(player):
+    pass
+
+
 def class_description():
     print("\nClasses\n\n"
           "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
