@@ -115,9 +115,9 @@ def print_map(board, player):
     for x_axis in range(25):
         for y_axis in range(25):
             if board[key_counter] == tuple(player["location"]):
-                print(BLINK() + "[X]" + END() + " ", end="")
+                print(BLINK() + "🧙" + END() + " ", end="")
             elif board[key_counter] == tuple(BOSS_LOCATION()):
-                print("[*]", end="")
+                print("👹", end="")
             else:
                 print("[ ]", end="")
             key_counter += 1
@@ -183,3 +183,16 @@ def make_player():
     return player
 
 
+def game():
+    player = make_player()
+    board = make_map()
+    achieve_goal = False
+    print_map(board, player)
+
+
+def main():
+    game()
+
+
+if __name__ == "__main__":
+    main()
