@@ -69,3 +69,38 @@ def typing_effect(words):
         sleep(0.05)
         sys.stdout.write(char)
         sys.stdout.flush()
+
+def PLAYER_MIN_DAMAGE():
+    return 5
+
+
+def PLAYER_START_DAMAGE():
+    return 20
+
+
+def FOE_MAX_DAMAGE():
+    return 10
+
+
+def PLAYER_START_HP():
+    return 20
+
+
+def FOE_MAX_HP():
+    return 10
+
+
+def INITIAL_HIT_RATE():
+    return 75  # this means 75% chance of hitting opponent
+
+
+def FOE_HIT_RATE():
+    return 60
+
+
+def INITIAL_LOCATION():
+    return [0, 0]
+
+
+def BOSS_LOCATION():
+    return [24, 24]
