@@ -118,13 +118,22 @@ def make_map():
 
     :param:
     :precondition:
-    :postcondition:
-    :return:
+    :postcondition: create list of tuple to represent board
+    :return: a dictionary to represetn game board
     """
     return [(y, x) for y in range(25) for x in range(25)]
 
 
 def print_map(board, player):
+    """Print game board to user
+    
+    :param board: a dictionary
+    :param player: a dictionary
+    :precondition: board must be a dictionary representing game board
+    :precondition: player must be a dictionary representing player
+    :postcondition: print game board to the user
+    :return: None
+    """
     key_counter = 0
     for x_axis in range(25):
         for y_axis in range(25):
@@ -139,6 +148,8 @@ def print_map(board, player):
 
 
 def get_player_move():
+    """
+    """
     print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
     valid_user_input = ["0", "1", "2", "3", "q", "Q"]
     while True:
