@@ -69,7 +69,7 @@ def typing_effect(words):
 
     :param words: a string
     :precondition: words must be type string
-    :postcondition: print stdout with latency
+    :postcondition: print stdout with style 
     :return: None
     """
     for char in words:
@@ -140,6 +140,8 @@ def print_map(board, player):
     :precondition: board must be a dictionary representing game board
     :precondition: player must be a dictionary representing player
     :postcondition: print game board to the user
+    :postcondition: print player icon on board corresponding to player location
+    :postcondition: print boss icon on board corresponding to boss location
     :return: None
     """
     key_counter = 0
@@ -158,8 +160,8 @@ def print_map(board, player):
 def get_player_move():
     """Get players direction
     
-    :postcondition: ask user input until it is valid
-    :return: a string representing players direction
+    :postcondition: return player_direction if valid else print Invalid message
+    :return: a string representing players moving direction
     """
     print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
     valid_user_input = ["0", "1", "2", "3", "q", "Q"]
