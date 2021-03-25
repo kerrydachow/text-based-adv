@@ -174,13 +174,13 @@ def get_player_move():
 
 
 def player_destination(direction, player):
-    """Create players expected destination
+    """Create players next destination
     
     :param direction: a string
     :param player: a dictionary
     :precondition: direction must be a string number of 0, 1, 2, or 3
     :precondition: player must be a dictionary representing player
-    :postcondition: create a tuple of the player destination on game board
+    :postcondition: create a tuple of players next destination on game board
     :return: a tuple representing location on game board
     """
     new_location = list(player["location"])
@@ -196,7 +196,7 @@ def player_destination(direction, player):
 
 
 def validate_move(new_location, board):
-    """Validate the destination the player wants to move.
+    """Validate the destination the player wants to go
     
     :param new_location: a tuple
     :param board: a list of tuples
@@ -232,7 +232,7 @@ def move_player(direction, character):
 
 
 def flee(player):
-    """Flee from foe.
+    """Flee from foe
     
     :param player: a dictionary
     :precondition: player must be a dictionary representing game player
