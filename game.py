@@ -113,6 +113,14 @@ def BOSS_LOCATION():
     return [24, 24]
 
 
+def BOARD_WIDTH():
+    return 25
+
+
+def BOARD_HEIGHT():
+    return 25
+
+
 def make_map():
     """Make board for game
 
@@ -121,7 +129,7 @@ def make_map():
     :postcondition: create list of tuple to represent board
     :return: a dictionary to represetn game board
     """
-    return [(y, x) for y in range(25) for x in range(25)]
+    return [(y, x) for y in range(BOARD_HEIGHT()) for x in range(BOARD_WIDTH())]
 
 
 def print_map(board, player):
