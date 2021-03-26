@@ -246,6 +246,71 @@ def print_map(board, player):
         print()
 
 
+def class_description():
+    print("\nClasses\n\n"
+          "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
+          "\nTheir damage is amplified, but not the most accurate!\n\n"
+          "{}1{} {}Thief{}:\nThieves lurk through the shadows with striking with deadly accuracy."
+          "\nTheir accuracy is near-perfect, but lack the strength to damage!\n\n"
+          "{}2{} {}Amazon{}:\nAmazons specialize in archery, swordplay, and a bit of magic."
+          "\nAmazon's are the most well-balanced class!\n\n"
+          "{}3{} {}Fighter{}:\nFighters have incredible yet, uncontrollable strength. "
+          "\nTheir uncontrollable strength can easily dissipate weak monsters!\n"
+          .format(RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(),
+                  RED(), END(), UNDERLINE(), END()))
+
+
+def class_stats(player):  # amazon no stat changes
+    if player["master_class"] == "sorcerer":
+        player["max_damage"] += 10  # low chance of hit high damage
+        player["min_damage"] += 5
+        player["hit_rate"] -= 15
+    elif player["master_class"] == "thief":
+        player["max_damage"] -= 5  # high hit rate low damage
+        player["min_damage"] += 2
+        player["hit_rate"] += 10
+    elif player["master_class"] == "fighter":
+        player["max_damage"] += 10  # high damage low chance of deadly hit
+        player["min_damage"] -= 2
+    elif player["master_class"] == "hidden lord":
+        player["max_damage"] += 80
+        player["HP"] += 50
+        player["max_HP"] += 50
+        player["hit_rate"] += 25
+
+
+def class_choice(player_class):
+    class_list = enumerate(["sorcerer", "thief", "amazon", "fighter"])
+    for jobs in class_list:
+        if player_class == str(jobs[0]):  # int must be converted to str to prevent TypeError
+            return jobs[1]
+    else:
+        return "hidden lord"
+
+
+def make_player():
+    """Create player
+
+    :postcondition: create a dictionary representing game player
+    :return: a dictionary representing player
+    """
+    name = input("What's your name, explorer?: ")
+    class_description()
+    player_class = input("What class will you choose? Enter number for class: ")
+    player = {"name": name,
+              "master_class": class_choice(player_class),
+              "level": PLAYER_LEVEL(),
+              "HP": PLAYER_START_HP(),
+              "max_HP": PLAYER_START_HP(),
+              "hit_rate": PLAYER_START_HIT_RATE(),
+              "XP": PLAYER_START_EXPERIENCE(),
+              "min_damage": PLAYER_START_MIN_DAMAGE(),
+              "max_damage": PLAYER_START_DAMAGE(),
+              "location": PLAYER_START_LOCATION()}
+    class_stats(player)
+    return player
+
+
 def get_player_move():
     """Get players direction
 
@@ -329,6 +394,21 @@ def check_for_monster(player):
             return False
 
 
+def generate_monster():
+    monster_name = random.choice(["Dragon", "Kobold", "Fenrir", "Loki", "Surtr"])
+    monster_activity = random.choice(["staring at you", "snarling at you", "stalking you", "ready to pounce at you"])
+    monster_description = ["Humongous", "Murderous", "Rabid", "Psycho", "Hostile"]
+    monster_state = list(itertools.permutations(monster_description, 2))
+    monster = {"name": monster_name,
+               "description": random.choice(monster_state),
+               "HP": random.randint(MONSTER_MIN_HP(), MONSTER_MAX_HP()),
+               "min_damage": MONSTER_MIN_DAMAGE(),
+               "max_damage": random.randint(MONSTER_MIN_DAMAGE(), MONSTER_MAX_DAMAGE()),
+               "hit_rate": random.randint(MONSTER_MIN_HIT_RATE(), MONSTER_MAX_HIT_RATE())}
+    print(f"\nA {monster['description'][0]} and {monster['description'][1]} {monster['name']} is {monster_activity}")
+    return monster
+
+
 def player_flee(player):
     """Flee from foe
 
@@ -352,69 +432,6 @@ def player_heal(player):
         print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
 
 
-def class_description():
-    print("\nClasses\n\n"
-          "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
-          "\nTheir damage is amplified, but not the most accurate!\n\n"
-          "{}1{} {}Thief{}:\nThieves lurk through the shadows with striking with deadly accuracy."
-          "\nTheir accuracy is near-perfect, but lack the strength to damage!\n\n"
-          "{}2{} {}Amazon{}:\nAmazons specialize in archery, swordplay, and a bit of magic."
-          "\nAmazon's are the most well-balanced class!\n\n"
-          "{}3{} {}Fighter{}:\nFighters have incredible yet, uncontrollable strength. "
-          "\nTheir uncontrollable strength can easily dissipate weak monsters!\n"
-          .format(RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(),
-                  RED(), END(), UNDERLINE(), END()))
-
-
-def class_stats(player):  # amazon no stat changes
-    if player["master_class"] == "sorcerer":
-        player["max_damage"] += 10  # low chance of hit high damage
-        player["min_damage"] += 5
-        player["hit_rate"] -= 15
-    elif player["master_class"] == "thief":
-        player["max_damage"] -= 5  # high hit rate low damage
-        player["min_damage"] += 2
-        player["hit_rate"] += 10
-    elif player["master_class"] == "fighter":
-        player["max_damage"] += 10  # high damage low chance of deadly hit
-        player["min_damage"] -= 2
-    elif player["master_class"] == "hidden lord":
-        player["max_damage"] += 80
-        player["HP"] += 50
-        player["max_HP"] += 50
-        player["hit_rate"] += 25
-
-
-def class_choice(player_class):
-    class_list = enumerate(["sorcerer", "thief", "amazon", "fighter"])
-    for jobs in class_list:
-        if player_class == str(jobs[0]):  # int must be converted to str to prevent TypeError
-            return jobs[1]
-    else:
-        return "hidden lord"
-
-
-def make_player():
-    """Create player
-
-    :postcondition: create a dictionary representing game player
-    :return: a dictionary representing player
-    """
-    name = input("What's your name, explorer?: ")
-    class_description()
-    player_class = input("What class will you choose? Enter number for class: ")
-    player = {"name": name,
-              "master_class": class_choice(player_class),
-              "level": PLAYER_LEVEL(),
-              "HP": PLAYER_START_HP(),
-              "max_HP": PLAYER_START_HP(),
-              "hit_rate": PLAYER_START_HIT_RATE(),
-              "XP": PLAYER_START_EXPERIENCE(),
-              "min_damage": PLAYER_START_MIN_DAMAGE(),
-              "max_damage": PLAYER_START_DAMAGE(),
-              "location": PLAYER_START_LOCATION()}
-    class_stats(player)
-    return player
 
 
 def game():
