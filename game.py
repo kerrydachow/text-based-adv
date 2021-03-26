@@ -291,6 +291,8 @@ def class_stats(player):  # amazon no stat changes
 
 
 def class_choice(player_class):
+    """
+    """
     class_list = enumerate(["sorcerer", "thief", "amazon", "fighter"])
     for jobs in class_list:
         if player_class == str(jobs[0]):  # int must be converted to str to prevent TypeError
@@ -395,6 +397,13 @@ def move_player(direction, character):
 
 
 def check_for_monster(player):
+    """Check if there is monster
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary representing game player
+    :postcondition: return True with a chance of MONSTER_SPAWN_RATE else False
+    :return: True if random choice is smaller than MONSTER_SPWAN_RATE
+    """
     if player["location"] != BOSS_LOCATION():
         if random.randint(1, 100) <= MONSTER_SPAWN_RATE():
             print("\nA monster has appeared!")
@@ -404,6 +413,11 @@ def check_for_monster(player):
 
 
 def generate_monster():
+    """Create monster
+
+    :postcondition: create a monster dictionary for combat
+    :return: a dictionary representing a monster
+    """
     monster_name = random.choice(["Dragon", "Kobold", "Fenrir", "Loki", "Surtr"])
     monster_activity = random.choice(["staring at you", "snarling at you", "stalking you", "ready to pounce at you"])
     monster_description = ["Humongous", "Murderous", "Rabid", "Psycho", "Hostile"]
@@ -445,11 +459,25 @@ def player_flee(player):
 
 
 def monster_flee(monster):
+    """Flee for monster
+
+    :param:
+    :precondition:
+    :postcondition:
+    :return:
+    """
     if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE():
         print(f"{monster['name']} has fled the scene!")
 
 
 def player_heal(player):
+    """Heal player HP
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary representing game player
+    :postcondition: increase player["HP"] to not exceed player["max_HP"]
+    :return: None
+    """
     if player["HP"] < player["max_HP"]:
         player["HP"] = min(player["HP"] + PLAYER_HP_HEAL(), player["max_HP"])
         print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
