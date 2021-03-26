@@ -392,15 +392,16 @@ def make_player():
     class_description()
     player_class = input("What class will you choose? Enter number for class: ")
     player = {"name": name,
-              "class": class_choice(player_class),
+              "master_class": class_choice(player_class),
+              "level": PLAYER_LEVEL(),
               "HP": PLAYER_START_HP(),
               "max_HP": PLAYER_START_HP(),
-              "hit_rate": INITIAL_HIT_RATE(),
-              "XP": 0,
-              "min_damage": PLAYER_MIN_DAMAGE(),
+              "hit_rate": PLAYER_START_HIT_RATE(),
+              "XP": PLAYER_START_EXPERIENCE(),
+              "min_damage": PLAYER_START_MIN_DAMAGE(),
               "max_damage": PLAYER_START_DAMAGE(),
-              "location": INITIAL_LOCATION()}
-    class_stats(player)
+              "location": PLAYER_START_LOCATION()}
+    class_specs(player)
     return player
 
 
