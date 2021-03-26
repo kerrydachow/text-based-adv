@@ -320,6 +320,15 @@ def move_player(direction, character):
         character["location"][1] += 1
 
 
+def check_for_monster(player):
+    if player["location"] != BOSS_LOCATION():
+        if random.randint(1, 100) <= MONSTER_SPAWN_RATE():
+            print("\nA monster has appeared!")
+            return True
+        else:
+            return False
+
+
 def player_flee(player):
     """Flee from foe
 
