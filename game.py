@@ -436,8 +436,8 @@ def player_flee(player):
                     else print message
     :return: None
     """
-    if random.randint(1, MAX_FLEE_RATE()) <= 20:
-        flee_damage = random.randint(1, 15)
+    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE():
+        flee_damage = random.randint(1, MAX_FLEE_DAMAGE())
         player["HP"] -= flee_damage
         print(f"You fled but took a stab to the back {flee_damage}")
     else:
