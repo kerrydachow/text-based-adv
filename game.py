@@ -433,6 +433,13 @@ def generate_monster():
 
 
 def evaluate_monster_difficulty(monster):
+    """Display monster difficulty
+
+    :param monster: a dictionary
+    :precondition: monster must be a dictionary representing game monster
+    :postcondition: display monster difficulty to user
+    :return: None
+    """
     if monster["HP"] > 15 and monster["max_damage"] > 10 and monster["hit_rate"] > 50:
         print("Difficulty : {}HARD{}".format(RED(), END()))
     elif monster["HP"] > 15 or monster["max_damage"] > 8 or monster["hit_rate"] > 50:
