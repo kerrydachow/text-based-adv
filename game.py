@@ -401,7 +401,7 @@ def make_player():
               "min_damage": PLAYER_START_MIN_DAMAGE(),
               "max_damage": PLAYER_START_DAMAGE(),
               "location": PLAYER_START_LOCATION()}
-    class_specs(player)
+    class_stats(player)
     return player
 
 
