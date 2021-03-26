@@ -180,6 +180,18 @@ def MAX_HIT_RATE():
     return 100
 
 
+def MAX_FLEE_RATE():
+    return 100
+
+
+def MAX_FLEE_DAMAGE():
+    return 15
+
+
+def FLEE_RATE():
+    return 20
+
+
 def PLAYER_ICON():
     return "🧙"  # for now
 
@@ -424,12 +436,17 @@ def player_flee(player):
                     else print message
     :return: None
     """
-    if random.randint(1, 100) <= 20:
-        flee_damage = random.randint(0, 15)
+    if random.randint(1, MAX_FLEE_RATE()) <= 20:
+        flee_damage = random.randint(1, 15)
         player["HP"] -= flee_damage
         print(f"You fled but took a stab to the back {flee_damage}")
     else:
         print("You fled successfully!")
+
+
+def monster_flee(monster):
+    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE():
+        print(f"{monster['name']} has fled the scene!")
 
 
 def player_heal(player):
