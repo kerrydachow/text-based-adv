@@ -319,7 +319,7 @@ def move_player(direction, character):
         character["location"][1] += 1
 
 
-def flee(player):
+def player_flee(player):
     """Flee from foe
 
     :param player: a dictionary
