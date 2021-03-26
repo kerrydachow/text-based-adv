@@ -180,7 +180,7 @@ def MAX_HIT_RATE():
     return 100
 
 
-def ICON():
+def PLAYER_ICON():
     return "🧙"  # for now
 
 
@@ -233,12 +233,12 @@ def print_map(board, player):
     :return: None
     """
     key_counter = 0
-    for x_axis in range(25):
-        for y_axis in range(25):
+    for x_axis in range(BOARD_WIDTH()):
+        for y_axis in range(BOARD_HEIGHT()):
             if board[key_counter] == tuple(player["location"]):
-                print(BLINK() + "🧙" + END() + " ", end="")
+                print(BLINK() + PLAYER_ICON() + END() + " ", end="")
             elif board[key_counter] == tuple(BOSS_LOCATION()):
-                print("👹", end="")
+                print(BOSS_ICON(), end="")
             else:
                 print("[ ]", end="")
             key_counter += 1
