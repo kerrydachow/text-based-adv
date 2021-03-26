@@ -322,8 +322,6 @@ def get_player_move():
         player_direction = input("Which direction will you go? ")
         if player_direction in valid_user_input:
             return player_direction
-        else:
-            print("\nInvalid Input\nPlease Try Again\n")
 
 
 def player_destination(direction, player):
@@ -448,6 +446,8 @@ def game():
             print_map(board, player)
             if check_for_monster(player):
                 foe = generate_monster()
+        else:
+            print("You can't move in that direction.")
 
 
 def main():
