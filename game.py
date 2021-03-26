@@ -64,13 +64,7 @@ def BLINK():
     return "\033[05m"
 
 
-def typing_effect(words):
-    for char in words:
-        sleep(0.05)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-
-def PLAYER_MIN_DAMAGE():
+def PLAYER_START_MIN_DAMAGE():
     return 5
 
 
@@ -78,32 +72,127 @@ def PLAYER_START_DAMAGE():
     return 20
 
 
-def FOE_MAX_DAMAGE():
-    return 10
-
-
 def PLAYER_START_HP():
     return 20
 
 
-def FOE_MAX_HP():
+def PLAYER_START_EXPERIENCE():
+    return 0
+
+
+def PLAYER_LEVEL():
+    return 1
+
+
+def PLAYER_START_HIT_RATE():
+    return 75  # this means 75% chance of hit
+
+
+def PLAYER_HIT_RATE_INCREASE():
+    return 5
+
+
+def PLAYER_MIN_DAMAGE_INCREASE():
+    return 2
+
+
+def PLAYER_MAX_DAMAGE_INCREASE():
+    return 5
+
+
+def PLAYER_HP_INCREASE():
     return 10
 
 
-def INITIAL_HIT_RATE():
-    return 75  # this means 75% chance of hitting opponent
-
-
-def FOE_HIT_RATE():
-    return 60
-
-
-def INITIAL_LOCATION():
+def PLAYER_START_LOCATION():
     return [0, 0]
+
+
+def PLAYER_EXPERIENCE_GAIN():
+    return 5
+
+
+def PLAYER_EXPERIENCE_LEVEL2():
+    return 20
+
+
+def PLAYER_EXPERIENCE_LEVEL3():
+    return 40
+
+
+def PLAYER_HP_HEAL():
+    return 4
+
+
+def PLAYER_UNSUCESSFUL_FLEE_RATE():
+    return 20
+
+
+def MONSTER_MIN_DAMAGE():
+    return 1
+
+
+def MONSTER_MAX_DAMAGE():
+    return 15
+
+
+def MONSTER_MIN_HP():
+    return 5
+
+
+def MONSTER_MAX_HP():
+    return 20
+
+
+def MONSTER_MIN_HIT_RATE():
+    return 30
+
+
+def MONSTER_MAX_HIT_RATE():
+    return 70
+
+
+def MONSTER_SPAWN_RATE():
+    return 20
 
 
 def BOSS_LOCATION():
     return [24, 24]
+
+
+def BOSS_HP():
+    return 100
+
+
+def BOSS_MIN_DAMAGE():
+    return 5
+
+
+def BOSS_MAX_DAMAGE():
+    return 15
+
+
+def BOSS_HIT_RATE():
+    return 80
+
+
+def MAX_HIT_RATE():
+    return 100
+
+
+def ICON():
+    return "🧙"  # for now
+
+
+def BOSS_ICON():
+    return "👹"
+
+
+def typing_effect(words):
+    for char in words:
+        sleep(0.05)
+        sys.stdout.write(char)
+        sys.stdout.flush()
 
 
 def make_map():
