@@ -69,7 +69,7 @@ def typing_effect(words):
 
     :param words: a string
     :precondition: words must be type string
-    :postcondition: print stdout with style 
+    :postcondition: print stdout with style
     :return: None
     """
     for char in words:
@@ -77,7 +77,7 @@ def typing_effect(words):
         sys.stdout.write(char)
         sys.stdout.flush()
 
-def PLAYER_MIN_DAMAGE():
+def PLAYER_START_MIN_DAMAGE():
     return 5
 
 
@@ -85,32 +85,120 @@ def PLAYER_START_DAMAGE():
     return 20
 
 
-def FOE_MAX_DAMAGE():
-    return 10
-
-
 def PLAYER_START_HP():
     return 20
 
 
-def FOE_MAX_HP():
+def PLAYER_START_EXPERIENCE():
+    return 0
+
+
+def PLAYER_LEVEL():
+    return 1
+
+
+def PLAYER_START_HIT_RATE():
+    return 75  # this means 75% chance of hit
+
+
+def PLAYER_HIT_RATE_INCREASE():
+    return 5
+
+
+def PLAYER_MIN_DAMAGE_INCREASE():
+    return 2
+
+
+def PLAYER_MAX_DAMAGE_INCREASE():
+    return 5
+
+
+def PLAYER_HP_INCREASE():
     return 10
 
 
-def INITIAL_HIT_RATE():
-    return 75  # this means 75% chance of hitting opponent
-
-
-def FOE_HIT_RATE():
-    return 60
-
-
-def INITIAL_LOCATION():
+def PLAYER_START_LOCATION():
     return [0, 0]
+
+
+def PLAYER_EXPERIENCE_GAIN():
+    return 5
+
+
+def PLAYER_EXPERIENCE_LEVEL2():
+    return 20
+
+
+def PLAYER_EXPERIENCE_LEVEL3():
+    return 40
+
+
+def PLAYER_HP_HEAL():
+    return 4
+
+
+def PLAYER_UNSUCESSFUL_FLEE_RATE():
+    return 20
+
+
+def MONSTER_MIN_DAMAGE():
+    return 1
+
+
+def MONSTER_MAX_DAMAGE():
+    return 15
+
+
+def MONSTER_MIN_HP():
+    return 5
+
+
+def MONSTER_MAX_HP():
+    return 20
+
+
+def MONSTER_MIN_HIT_RATE():
+    return 30
+
+
+def MONSTER_MAX_HIT_RATE():
+    return 70
+
+
+def MONSTER_SPAWN_RATE():
+    return 20
 
 
 def BOSS_LOCATION():
     return [24, 24]
+
+
+def BOSS_HP():
+    return 100
+
+
+def BOSS_MIN_DAMAGE():
+    return 5
+
+
+def BOSS_MAX_DAMAGE():
+    return 15
+
+
+def BOSS_HIT_RATE():
+    return 80
+
+
+def MAX_HIT_RATE():
+    return 100
+
+
+def ICON():
+    return "🧙"  # for now
+
+
+def BOSS_ICON():
+    return "👹"
 
 
 def BOARD_WIDTH():
@@ -134,7 +222,7 @@ def make_map():
 
 def print_map(board, player):
     """Print game board to user
-    
+
     :param board: a dictionary
     :param player: a dictionary
     :precondition: board must be a dictionary representing game board
@@ -159,7 +247,7 @@ def print_map(board, player):
 
 def get_player_move():
     """Get players direction
-    
+
     :postcondition: return player_direction if valid else print Invalid message
     :return: a string representing players moving direction
     """
@@ -175,7 +263,7 @@ def get_player_move():
 
 def player_destination(direction, player):
     """Create players next destination
-    
+
     :param direction: a string
     :param player: a dictionary
     :precondition: direction must be a string number of 0, 1, 2, or 3
@@ -197,7 +285,7 @@ def player_destination(direction, player):
 
 def validate_move(new_location, board):
     """Validate the destination the player wants to go
-    
+
     :param new_location: a tuple
     :param board: a list of tuples
     :precondition: new_location must be a tuple of coordinates
@@ -213,7 +301,7 @@ def validate_move(new_location, board):
 
 def move_player(direction, character):
     """Move the player on game board
-    
+
     :param direction: a string
     :param character: a dictionary
     :precondition: direction must be a string number of 0, 1, 2, 3
@@ -233,7 +321,7 @@ def move_player(direction, character):
 
 def flee(player):
     """Flee from foe
-    
+
     :param player: a dictionary
     :precondition: player must be a dictionary representing game player
     :postcondition: take damage with 20% chance and print message
@@ -296,7 +384,7 @@ def class_choice(player_class):
 
 def make_player():
     """Create player
-    
+
     :postcondition: create a dictionary representing game player
     :return: a dictionary representing player
     """
