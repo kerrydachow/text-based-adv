@@ -64,20 +64,6 @@ def BLINK():
     return "\033[05m"
 
 
-def typing_effect(words):
-    """Print stdout pretty
-
-    :param words: a string
-    :precondition: words must be type string
-    :postcondition: print stdout with style
-    :return: None
-    """
-    for char in words:
-        sleep(0.05)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-
-
 def PLAYER_START_MIN_DAMAGE():
     return 5
 
@@ -208,6 +194,19 @@ def BOARD_WIDTH():
 
 def BOARD_HEIGHT():
     return 25
+
+def typing_effect(words):
+    """Print stdout pretty
+
+    :param words: a string
+    :precondition: words must be type string
+    :postcondition: print stdout with style
+    :return: None
+    """
+    for char in words:
+        sleep(0.05)
+        sys.stdout.write(char)
+        sys.stdout.flush()
 
 
 def make_map():
@@ -432,8 +431,6 @@ def player_heal(player):
         print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
 
 
-
-
 def game():
     """Play game
     """
@@ -441,6 +438,16 @@ def game():
     board = make_map()
     achieve_goal = False
     print_map(board, player)
+    while not achieve_goal:
+        direction = get_player_move()
+        if direction.lower() == "q":
+            break
+        destination = player_destination(direction, player)
+        if validate_move(destination, board):
+            move_player(direction, player)
+            print_map(board, player)
+            if check_for_monster(player):
+                foe = generate_monster()
 
 
 def main():
