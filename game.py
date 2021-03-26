@@ -406,6 +406,15 @@ def generate_monster():
     return monster
 
 
+def evaluate_monster_difficulty(monster):
+    if monster["HP"] > 15 and monster["max_damage"] > 10 and monster["hit_rate"] > 50:
+        print("Difficulty : {}HARD{}".format(RED(), END()))
+    elif monster["HP"] > 15 or monster["max_damage"] > 8 or monster["hit_rate"] > 50:
+        print("Difficulty : {}MEDIUM{}".format(YELLOW(), END()))
+    else:
+        print("Difficulty : {}EASY{}".format(GREEN(), END()))
+
+
 def player_flee(player):
     """Flee from foe
 
