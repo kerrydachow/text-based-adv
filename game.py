@@ -336,8 +336,10 @@ def player_flee(player):
         print("You fled successfully!")
 
 
-def heal(player):
-    pass
+def player_heal(player):
+    if player["HP"] < player["max_HP"]:
+        player["HP"] = min(player["HP"] + PLAYER_HP_HEAL(), player["max_HP"])
+        print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
 
 
 def class_description():
