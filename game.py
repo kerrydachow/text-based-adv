@@ -77,6 +77,7 @@ def typing_effect(words):
         sys.stdout.write(char)
         sys.stdout.flush()
 
+
 def PLAYER_START_MIN_DAMAGE():
     return 5
 
@@ -357,18 +358,18 @@ def class_description():
 
 
 def class_stats(player):  # amazon no stat changes
-    if player["class"] == "sorcerer":
+    if player["master_class"] == "sorcerer":
         player["max_damage"] += 10  # low chance of hit high damage
         player["min_damage"] += 5
         player["hit_rate"] -= 15
-    elif player["class"] == "thief":
+    elif player["master_class"] == "thief":
         player["max_damage"] -= 5  # high hit rate low damage
         player["min_damage"] += 2
         player["hit_rate"] += 10
-    elif player["class"] == "fighter":
+    elif player["master_class"] == "fighter":
         player["max_damage"] += 10  # high damage low chance of deadly hit
         player["min_damage"] -= 2
-    elif player["class"] == "hidden lord":
+    elif player["master_class"] == "hidden lord":
         player["max_damage"] += 80
         player["HP"] += 50
         player["max_HP"] += 50
