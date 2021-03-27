@@ -742,6 +742,14 @@ def game():
     board = make_map()
     achieve_goal = False
     print_map(board, player)
+    print(f"Name:{player['name']} | "
+          f"HP: {player['HP']} | "
+          f"Class: {player['sub_class']} | "
+          f"Location: {player['location']} | "
+          f"Level: {player['level']} "
+          f"\n\nMaster Class: {player['master_class']}"
+          f"\nDamage Range: {player['min_damage']} - {player['max_damage']}"
+          f"\nAccuracy: {player['hit_rate']}%")
     while not achieve_goal:
         direction = get_player_move()
         if direction.lower() == "q":
@@ -750,8 +758,19 @@ def game():
         if validate_move(destination, board):
             move_player(direction, player)
             print_map(board, player)
+            print(f"Name: {player['name']} | "
+                  f"HP: {player['HP']} | "
+                  f"Level: {player['level']} | "
+                  f"Class: {player['sub_class']} | "
+                  f"XP: {player['XP']} | "
+                  f"Location: {player['location']}")
             if check_for_monster(player):
-                foe = generate_monster()
+                foe = generate_monster(player)
+                evaluate_monster_difficulty(foe)
+                player_attack_first = roll_for_first_hit(player, foe)
+                combat(player, foe, player_attack_first)
+            else:
+                player_heal(player)
         else:
             print("You can't move in that direction.")
 
