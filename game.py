@@ -575,6 +575,18 @@ def player_heal(player: dict):
         print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
 
 
+def player_restart():
+    restart = input("\nWould you like to restart?\nPlease input:\n>> y for Yes \n>> n for No:\n")
+    if restart.lower() == "y":
+        main()
+    if restart.lower() == "n":
+        print("Good bye. Good luck on your adventure next time!")
+        exit()
+    else:
+        print("Invalid input, please input y or n")
+    player_restart()
+
+
 def roll_for_first_hit(player: dict, foe: dict) -> bool:
     roll_dice = False
     while not roll_dice:
@@ -608,6 +620,8 @@ def attack(attacker, receiver):
         sleep(1)
         print(f"{receiver['name']} has died.")
     print()
+
+
 
 
 def game():
