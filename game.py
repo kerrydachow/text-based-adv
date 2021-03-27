@@ -513,8 +513,10 @@ def monster_flee(player: dict) -> bool:
     :postcondition:
     :return:
     """
-    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE():
-        print(f"{monster['name']} has fled the scene!")
+    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE() and player["location"] != [24, 24]:
+        return True
+    else:
+        return False
 
 
 def player_heal(player: dict):
