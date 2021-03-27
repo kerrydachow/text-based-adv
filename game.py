@@ -129,7 +129,7 @@ def PLAYER_HP_HEAL():
     return 4
 
 
-def PLAYER_UNSUCESSFUL_FLEE_RATE():
+def PLAYER_UNSUCCESSFUL_FLEE_RATE():
     return 20
 
 
@@ -248,7 +248,15 @@ def typing_effect(words):
 
 
 def ENDING_MESSAGE():
-    return "    ^                 🔥           🔥🔥🔥🔥🔥🔥🔥       🔥🔥🔥🔥🔥        🔥🔥🔥\n   /|\        ii_     🔥🔥          ____________         ____   __         _____\n  / | \_      /  *-i🔥🔥🔥         |            |       |    \ |  |       |     ＼\n //\|/\ \    /  ---_🔥🔥🔥         |   _________|       |     \|  |       |   ___ ＼ \n// ||| \ \__/   \_//               |  |_________        |         |       |  |   |  |\n|   |   \__    /ー-                |   _________|       |  |\     |       |  |   |  |\nv---v---\ /    i-|                 |  |_________        |  | \    |       |  |___|  |    \n         |     i-|                 |            |       |  |  \   |       |        ／ \n         |     i-|                 |____________|       |__|   \__|       |______／\n"
+    return "    ^                 🔥           🔥🔥🔥🔥🔥🔥🔥       🔥🔥🔥🔥🔥        🔥🔥🔥\n" \
+           "   /|\        ii_     🔥🔥          ____________         ____   __         _____\n" \
+           "  / | \_      /  *-i🔥🔥🔥         |            |       |    \ |  |       |     ＼\n" \
+           " //\|/\ \    /  ---_🔥🔥🔥         |   _________|       |     \|  |       |   ___ ＼ \n" \
+           "// ||| \ \__/   \_//               |  |_________        |         |       |  |   |  |\n" \
+           "|   |   \__    /ー-                |   _________|       |  |\     |       |  |   |  |\n" \
+           "v---v---\ /    i-|                 |  |_________        |  | \    |       |  |___|  |    \n" \
+           "         |     i-|                 |            |       |  |  \   |       |        ／ \n" \
+           "         |     i-|                 |____________|       |__|   \__|       |______／\n"
 
 
 def make_map():
@@ -492,7 +500,7 @@ def generate_monster(player):
         else:
             return False
 
-    def generate_foe_moves_based_on_player_level(player):
+    def generate_foe_moves_based_on_player_level():
         monster_attacks = ["Bite", "Chomp", "Slam", "Scratch", "Hyper Beam", "Dark Crunch", "Cosmic Flare"]
         if player["level"] > 1:
             return random.choice(monster_attacks)
@@ -506,7 +514,7 @@ def generate_monster(player):
                "min_damage": MONSTER_MIN_DAMAGE(),
                "max_damage": random.randint(MONSTER_MIN_DAMAGE(), MONSTER_MAX_DAMAGE()),
                "hit_rate": random.randint(MONSTER_MIN_HIT_RATE(), MONSTER_MAX_HIT_RATE()),
-               "attack_move": generate_foe_moves_based_on_player_level(player)}
+               "attack_move": generate_foe_moves_based_on_player_level()}
     print(f"\nA {monster['description'][0]} and {monster['description'][1]} {monster['name']} is {monster_activity}")
     return monster
 
@@ -540,7 +548,7 @@ def player_flee(player: dict):
                     else print message
     :return: None
     """
-    if random.randint(1, MAX_FLEE_RATE()) <= PLAYER_UNSUCESSFUL_FLEE_RATE():
+    if random.randint(1, MAX_FLEE_RATE()) <= PLAYER_UNSUCCESSFUL_FLEE_RATE():
         flee_damage = random.randint(1, MAX_FLEE_DAMAGE())
         player["HP"] -= flee_damage
         print(f"You fled but took a stab to the back {flee_damage}")
