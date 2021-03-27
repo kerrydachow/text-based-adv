@@ -628,6 +628,11 @@ def attack(attacker, receiver):
     print()
 
 
+def combat(player, foe, who_strike_first):
+    move = combat_options(player)
+    validate_combat_option(player, foe, move, who_strike_first)
+
+
 def combat_round(player, foe, player_attack_first):
     (first_hit, second_hit) = (player, foe) if player_attack_first else (foe, player)
     while first_hit["HP"] > 0 and second_hit["HP"] > 0:
