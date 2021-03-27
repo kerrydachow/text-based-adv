@@ -474,7 +474,7 @@ def check_for_monster(player: dict):
             return False
 
 
-def generate_monster():
+def generate_monster(player):
     """Create monster
 
     :postcondition: create a monster dictionary for combat
@@ -679,7 +679,7 @@ def combat_options(player):
 
 def validate_combat_option(player, foe, move, who_strike_first):
     if move == "Flee":
-        flee(player)
+        player_flee(player)
     else:
         player["attack_move"] = move
         combat_round(player, foe, who_strike_first)
