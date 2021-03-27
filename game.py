@@ -438,24 +438,24 @@ def validate_move(new_location: tuple, board: list) -> bool:
         return False
 
 
-def move_player(direction: str, character: dict):
+def move_player(direction: str, player: dict):
     """Move the player on game board
 
     :param direction: a string
-    :param character: a dictionary
+    :param player: a dictionary
     :precondition: direction must be a string number of 0, 1, 2, 3
     :precondition: character must be a dictionary representing player
     :postcondition: modify character['location'] value according to direction
     :return: None
     """
     if direction == "0":
-        character["location"][0] -= 1
+        player["location"][0] -= 1
     elif direction == "1":
-        character["location"][0] += 1
+        player["location"][0] += 1
     elif direction == "2":
-        character["location"][1] -= 1
+        player["location"][1] -= 1
     elif direction == "3":
-        character["location"][1] += 1
+        player["location"][1] += 1
 
 
 def check_for_monster(player: dict):
