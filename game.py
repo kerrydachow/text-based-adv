@@ -376,6 +376,8 @@ def get_player_move():
         player_direction = input("Which direction will you go? ")
         if player_direction in valid_user_input:
             return player_direction
+        else:
+            print("\nInvalid Input\nPlease Try Again\n")
 
 
 def player_destination(direction: str, player: dict) -> tuple:
@@ -497,7 +499,7 @@ def player_flee(player: dict):
                     else print message
     :return: None
     """
-    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE():
+    if random.randint(1, MAX_FLEE_RATE()) <= PLAYER_UNSUCESSFUL_FLEE_RATE():
         flee_damage = random.randint(1, MAX_FLEE_DAMAGE())
         player["HP"] -= flee_damage
         print(f"You fled but took a stab to the back {flee_damage}")
