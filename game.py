@@ -161,6 +161,22 @@ def MONSTER_SPAWN_RATE():
     return 20
 
 
+def EVALUATE_MONSTER_HARD_HP():
+    return 15
+
+
+def EVALUATE_MONSTER_HARD_DAMAGE():
+    return 10
+
+
+def EVALUATE_MONSTER_MEDIUM_DAMAGE():
+    return 8
+
+
+def EVALUATE_MONSTER_HARD_HIT_RATE():
+    return 50
+
+
 def BOSS_LOCATION():
     return [24, 24]
 
@@ -482,12 +498,16 @@ def evaluate_monster_difficulty(monster: dict):
     :postcondition: display monster difficulty to user
     :return: None
     """
-    if monster["HP"] > 15 and monster["max_damage"] > 10 and monster["hit_rate"] > 50:
-        print("Difficulty : {}HARD{}".format(RED(), END()))
-    elif monster["HP"] > 15 or monster["max_damage"] > 8 or monster["hit_rate"] > 50:
-        print("Difficulty : {}MEDIUM{}".format(YELLOW(), END()))
+    if monster["HP"] > EVALUATE_MONSTER_HARD_HP() and \
+            monster["max_damage"] > EVALUATE_MONSTER_HARD_DAMAGE() and \
+            monster["hit_rate"] > EVALUATE_MONSTER_HARD_HIT_RATE():
+        print(f"Difficulty : %sHARD%s | HP: {monster['HP']}" % (RED(), END()))
+    elif monster["HP"] > EVALUATE_MONSTER_HARD_HP() or \
+            monster["max_damage"] > EVALUATE_MONSTER_MEDIUM_DAMAGE() or \
+            monster["hit_rate"] > EVALUATE_MONSTER_HARD_HIT_RATE():
+        print(f"Difficulty : %sMEDIUM%s | HP: {monster['HP']}" % (YELLOW(), END()))
     else:
-        print("Difficulty : {}EASY{}".format(GREEN(), END()))
+        print(f"Difficulty : %sEASY%s | HP: {monster['HP']}" % (GREEN(), END()))
 
 
 def player_flee(player: dict):
