@@ -629,6 +629,22 @@ def combat_moves_list(player):
         return list(enumerate(["Lightning Punch", "Fire Storm", "Darkness Beam", "Flee"], 1))
 
 
+def combat_options(player):
+    attack_moves = combat_moves_list(player)
+    if player["location"] == BOSS_LOCATION():
+        attack_moves.pop()
+    for move in attack_moves:
+        print(RED() + f"{move[0]}" + END() + " : " + move[1] + "\n", end="")
+    while True:
+        player_move = input(
+            "\nWhat will you do? (Enter corresponding number to pick your action.) ")
+        for move in attack_moves:
+            if player_move == str(move[0]):
+                return move[1]
+        else:
+            print("\nInvalid Input")
+
+
 def attack(attacker, receiver):
     typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
     if hit_or_miss(attacker):
