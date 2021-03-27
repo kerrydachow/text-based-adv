@@ -629,6 +629,38 @@ def combat_moves_list(player):
         return list(enumerate(["Lightning Punch", "Fire Storm", "Darkness Beam", "Flee"], 1))
 
 
+def attack(attacker, receiver):
+    typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
+    if hit_or_miss(attacker):
+        attacker_damage = random.randint(attacker["min_damage"], attacker["max_damage"])
+        receiver["HP"] = max(receiver["HP"] - attacker_damage, 0)
+        typing_effect(f"{attacker['name']} dealt {attacker_damage} damage! | {receiver['name']} HP:{receiver['HP']}\n")
+    else:
+        typing_effect(f"{attacker['name']} missed! | {receiver['name']} HP:{receiver['HP']}\n")
+    if receiver["HP"] <= 0:
+        sleep(1)
+        print(f"{receiver['name']} has died.")
+    print()
+
+
+def combat_round(player, foe, player_attack_first):
+    (first_hit, second_hit) = (player, foe) if player_attack_first else (foe, player)
+    while first_hit["HP"] > 0 and second_hit["HP"] > 0:
+        attack(first_hit, second_hit)
+        if second_hit["HP"] > 0:
+            attack(second_hit, first_hit)
+            break
+    if first_hit["HP"] > 0 and second_hit["HP"] > 0:
+        if monster_flee(player):
+            typing_effect("Monster got scared of you and fled!\n")
+            sleep(1)
+        else:
+            combat(player, foe, player_attack_first)
+    else:
+        is_player_dead(player)
+        after_combat(player)
+
+
 def combat_options(player):
     attack_moves = combat_moves_list(player)
     if player["location"] == BOSS_LOCATION():
@@ -653,42 +685,10 @@ def validate_combat_option(player, foe, move, who_strike_first):
         combat_round(player, foe, who_strike_first)
 
 
-def attack(attacker, receiver):
-    typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
-    if hit_or_miss(attacker):
-        attacker_damage = random.randint(attacker["min_damage"], attacker["max_damage"])
-        receiver["HP"] = max(receiver["HP"] - attacker_damage, 0)
-        typing_effect(f"{attacker['name']} dealt {attacker_damage} damage! | {receiver['name']} HP:{receiver['HP']}\n")
-    else:
-        typing_effect(f"{attacker['name']} missed! | {receiver['name']} HP:{receiver['HP']}\n")
-    if receiver["HP"] <= 0:
-        sleep(1)
-        print(f"{receiver['name']} has died.")
-    print()
-
-
 def is_player_dead(player):
     if player["HP"] <= 0:
         print("\nYou have failed your mission.\n")
         player_restart()
-
-
-def combat_round(player, foe, player_attack_first):
-    (first_hit, second_hit) = (player, foe) if player_attack_first else (foe, player)
-    while first_hit["HP"] > 0 and second_hit["HP"] > 0:
-        attack(first_hit, second_hit)
-        if second_hit["HP"] > 0:
-            attack(second_hit, first_hit)
-            break
-    if first_hit["HP"] > 0 and second_hit["HP"] > 0:
-        if monster_flee(player):
-            typing_effect("Monster got scared of you and fled!\n")
-            sleep(1)
-        else:
-            combat(player, foe, player_attack_first)
-    else:
-        is_player_dead(player)
-        after_combat(player)
 
 
 def check_experience(player):
