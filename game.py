@@ -585,7 +585,9 @@ def player_heal(player: dict):
 
 
 def player_restart():
-    restart = input("\nWould you like to restart?\nPlease input:\n>> y for Yes \n>> n for No:\n")
+    restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
+                    "What will you do? (Enter corresponding number to pick your action.) "
+                    % (RED(), END(), RED(), END()))
     if restart.lower() == "y":
         main()
     if restart.lower() == "n":
