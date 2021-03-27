@@ -698,6 +698,29 @@ def check_experience(player):
         return False
 
 
+def character_levelup(player):
+    player["level"] += PLAYER_LEVEL()
+    player_sub_class(player)
+    if player["hit_rate"] < MAX_HIT_RATE():
+        player["hit_rate"] += PLAYER_HIT_RATE_INCREASE()
+    player["min_damage"] += PLAYER_MIN_DAMAGE_INCREASE()
+    player["max_damage"] += PLAYER_MAX_DAMAGE_INCREASE()
+    player["max_HP"] += PLAYER_HP_INCREASE()
+    player["HP"] = player["max_HP"]  # When player levels up, HP will be fully restored
+    typing_effect(f"\nYou have leveled up!\n"
+                  f"\nYou are now Level {player['level']}\n"
+                  f"\nYou have job advanced to %s{player['sub_class']}!%s\n" % (RED(), END()))
+    sleep(1)
+    typing_effect(f"\n Your HP increased by {PLAYER_HIT_RATE_INCREASE()}"
+                  f"\n Your accuracy increased by {PLAYER_HIT_RATE_INCREASE()}"
+                  f"\n Your minimum damage increased by {PLAYER_MIN_DAMAGE_INCREASE()}"
+                  f"\n Your maximum damage increased by {PLAYER_MAX_DAMAGE_INCREASE()}"
+                  f"\n And you have fully recovered your HP!\n")
+    print(f"\nMaster Class: {player['master_class']}"
+          f"\nDamage Range: {player['min_damage']} - {player['max_damage']}"
+          f"\nAccuracy: {player['hit_rate']}%")
+
+
 def after_combat(player):
     if not player["location"] == BOSS_LOCATION():
         player["XP"] += PLAYER_EXPERIENCE_GAIN()
