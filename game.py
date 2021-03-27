@@ -628,6 +628,15 @@ def attack(attacker, receiver):
     print()
 
 
+def combat_round(player, foe):
+    (first_hit, second_hit) = (player, foe) if roll_for_first_hit() else (foe, player)
+    while player["HP"] > 0 and foe["HP"] > 0:
+        attack(first_hit, second_hit)
+        if player["HP"] <= 0 or foe["HP"] <= 0:
+            break
+        else:
+            attack(second_hit, first_hit)
+    is_player_dead(player)
 
 
 def game():
