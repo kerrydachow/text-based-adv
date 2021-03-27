@@ -696,6 +696,13 @@ def combat_round(player, foe, player_attack_first):
         after_combat(player)
 
 
+def check_experience(player):
+    if player["XP"] == PLAYER_EXPERIENCE_LEVEL2() or player["XP"] == PLAYER_EXPERIENCE_LEVEL3():
+        return True
+    else:
+        return False
+
+
 def game():
     """Play game
     """
