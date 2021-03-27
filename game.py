@@ -324,7 +324,7 @@ def class_stats(player: dict):  # amazon no stat changes
         player["hit_rate"] += 10
     elif player["master_class"] == "Fighter":
         player["max_damage"] += 10  # high damage low chance of deadly hit
-        player["min_damage"] -= 2
+        player["min_damage"] -= 4
     elif player["master_class"] == "Hidden Lord":
         player["max_damage"] += 80
         player["HP"] += 50  # test
@@ -489,7 +489,7 @@ def generate_monster(player):
     monster_name = random.choice(["Dragon", "Kobold", "Fenrir", "Loki", "Surtr"])
     monster_activity = random.choice(["staring at you", "snarling at you", "stalking you", "ready to pounce at you"])
     monster_description = ["Humongous", "Murderous", "Rabid", "Psycho", "Hostile"]
-    monster_state = list(itertools.permutations(monster_description, 2))
+    monster_state = list(itertools.permutations(monster_description, 2))  # 2 for 2 monster descriptions.
 
     def filter_moves(moves):
         monster_moves_level_1 = ["Bite", "Chomp", "Body Slam", "Scratch"]
@@ -582,18 +582,18 @@ def player_heal(player: dict):
 
 
 def player_restart():
-    restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
-                    "What will you do? (Enter corresponding number to pick your action.) "
+    while True:
+        restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
+                        "What will you do? (Enter corresponding letter to pick your action.) "
                     % (RED(), END(), RED(), END()))
-    if restart.lower() == "y":
-        main()
-    if restart.lower() == "n":
-        print("Good bye. Good luck on your adventure next time!")
-        exit()
-    else:
-        print("Invalid input, please input y or n")
-    player_restart()
-
+        if restart.lower() == "y":
+            game()
+            exit()
+        elif restart.lower() == "n":
+            print("Good bye. Good luck on your adventure next time!")
+            exit()
+        else:
+            print("Invalid input, please input y or n")
 
 def is_player_dead(player: dict):
     if player["HP"] <= 0:
@@ -765,7 +765,7 @@ def game():
     board = make_map(BOARD_DIMENSION())
     achieve_goal = False
     print_map(BOARD_DIMENSION(), board, character)
-    print(f"Name:{character['name']} | "
+    print(f"Name: {character['name']} | "
           f"HP: {character['HP']} | "
           f"Class: {character['sub_class']} | "
           f"Location: {character['location']} | "
