@@ -280,33 +280,52 @@ def class_description():
              RED(), END(), UNDERLINE(), END()))
 
 
-def class_stats(player):  # amazon no stat changes
+def class_stats(player: dict):  # amazon no stat changes
     """Add unique status for each class
 
-    :param player: a dictionary 
+    :param player: a dictionary
     :precondition: player must be a dictionary with key "master_class", "min_damage", "max_damage", "hit_rate"
     :postcondition: increment key values for each unique class
     :return: None
     """
-    if player["master_class"] == "sorcerer":
+    if player["master_class"] == "Sorcerer":
         player["max_damage"] += 10  # low chance of hit high damage
         player["min_damage"] += 5
         player["hit_rate"] -= 15
-    elif player["master_class"] == "thief":
+    elif player["master_class"] == "Thief":
         player["max_damage"] -= 5  # high hit rate low damage
         player["min_damage"] += 2
         player["hit_rate"] += 10
-    elif player["master_class"] == "fighter":
+    elif player["master_class"] == "Fighter":
         player["max_damage"] += 10  # high damage low chance of deadly hit
         player["min_damage"] -= 2
-    elif player["master_class"] == "hidden lord":
+    elif player["master_class"] == "Hidden Lord":
         player["max_damage"] += 80
-        player["HP"] += 50
+        player["HP"] += 50  # test
         player["max_HP"] += 50
 
 
-def class_choice(player_class):
-    class_list = enumerate(("sorcerer", "thief", "amazon", "fighter"))
+def class_level(player: dict) -> list:
+    if player['master_class'] == "Sorcerer":
+        return ["Magician", "Wizard", "High Wizard"]
+    elif player['master_class'] == "Thief":
+        return ["Thief", "Bandit", "Night Lord"]
+    elif player['master_class'] == "Amazon":
+        return ["Novice", "Amazon", "Pathfinder"]
+    elif player['master_class'] == "Fighter":
+        return ["Brawler", "Buccaneer", "Sensei"]
+    else:
+        return ["Master", "Lord", "God"]
+
+
+def player_sub_class(player: dict) -> str:
+    list_increment = player["level"]
+    player["sub_class"] = class_level(player)[-1 + list_increment]
+    return player["sub_class"]
+
+
+def class_choice():
+    class_list = enumerate(("Sorcerer", "Thief", "Amazon", "Fighter"))
     valid_class_num = ["0", "1", "2", "3", "1337"]
     while True:
         player_class = input("What class will you choose? Enter number for class: ")
@@ -328,9 +347,9 @@ def make_player():
     """
     name = input("What's your name, explorer?: ")
     class_description()
-    player_class = input("What class will you choose? Enter number for class: ")
-    player = {"name": name,
-              "master_class": class_choice(player_class),
+    player_class = class_choice()
+    player = {"name": BLUE() + name + END(),
+              "master_class": player_class,
               "level": PLAYER_LEVEL(),
               "HP": PLAYER_START_HP(),
               "max_HP": PLAYER_START_HP(),
@@ -338,8 +357,9 @@ def make_player():
               "XP": PLAYER_START_EXPERIENCE(),
               "min_damage": PLAYER_START_MIN_DAMAGE(),
               "max_damage": PLAYER_START_DAMAGE(),
-              "location": PLAYER_START_LOCATION()}
+              "location": [23, 24]}  # PLAYER_START_LOCATION()
     class_stats(player)
+    player_sub_class(player)
     return player
 
 
