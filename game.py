@@ -589,6 +589,13 @@ def roll_for_first_hit(player: dict, foe: dict) -> bool:
             return False
 
 
+def hit_or_miss(game_chara: dict):  # True if hits false if miss
+    if random.randint(1, MAX_HIT_RATE()) <= game_chara["hit_rate"]:
+        return True
+    else:
+        return False
+
+
 def game():
     """Play game
     """
