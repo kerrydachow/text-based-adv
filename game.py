@@ -265,7 +265,7 @@ def make_map():
 def print_map(board, player):
     """Print game board to user
 
-    :param board: a dictionary
+    :param board: a list with tuple item 
     :param player: a dictionary
     :precondition: board must be a dictionary representing game board
     :precondition: player must be a dictionary representing player
@@ -484,12 +484,29 @@ def generate_monster():
     monster_activity = random.choice(["staring at you", "snarling at you", "stalking you", "ready to pounce at you"])
     monster_description = ["Humongous", "Murderous", "Rabid", "Psycho", "Hostile"]
     monster_state = list(itertools.permutations(monster_description, 2))
-    monster = {"name": monster_name,
+
+    def filter_moves(moves):
+        monster_moves_level_1 = ["Bite", "Chomp", "Body Slam", "Scratch"]
+        if moves in monster_moves_level_1:
+            return True
+        else:
+            return False
+
+    def generate_foe_moves_based_on_player_level(player):
+        monster_attacks = ["Bite", "Chomp", "Slam", "Scratch", "Hyper Beam", "Dark Crunch", "Cosmic Flare"]
+        if player["level"] > 1:
+            return random.choice(monster_attacks)
+        else:
+            monster_moves_for_level_1 = list(filter(filter_moves, monster_attacks))
+            return random.choice(monster_moves_for_level_1)
+
+    monster = {"name": YELLOW() + monster_name + END(),
                "description": random.choice(monster_state),
                "HP": random.randint(MONSTER_MIN_HP(), MONSTER_MAX_HP()),
                "min_damage": MONSTER_MIN_DAMAGE(),
                "max_damage": random.randint(MONSTER_MIN_DAMAGE(), MONSTER_MAX_DAMAGE()),
-               "hit_rate": random.randint(MONSTER_MIN_HIT_RATE(), MONSTER_MAX_HIT_RATE())}
+               "hit_rate": random.randint(MONSTER_MIN_HIT_RATE(), MONSTER_MAX_HIT_RATE()),
+               "attack_move": generate_foe_moves_based_on_player_level(player)}
     print(f"\nA {monster['description'][0]} and {monster['description'][1]} {monster['name']} is {monster_activity}")
     return monster
 
