@@ -737,44 +737,67 @@ def combat(player, foe, who_strike_first):
     validate_combat_option(player, foe, move, who_strike_first)
 
 
+def player_reach_boss(player):
+    if player["location"] == BOSS_LOCATION():
+        boss_attack_moves = ["Dragon's Breath", "Zeus's Lightning", "Dragon Claw", "Dragon Tail"]
+        random_boss_attack = random.choice(boss_attack_moves)
+        boss = {"name": "%sKindred%s" % (PURPLE(), END()),
+                "HP": BOSS_HP(),
+                "max_HP": BOSS_HP(),
+                "min_damage": BOSS_MIN_DAMAGE(),
+                "max_damage": BOSS_MAX_DAMAGE(),
+                "hit_rate": BOSS_HIT_RATE(),
+                "attack_move": random_boss_attack
+                }
+        typing_effect(f"\nYou have reached Kindred(HP: {boss['HP']}), the mighty Dragon who blocks the gates to Heaven\n")
+        who_strike_first = roll_for_first_hit(player, boss)
+        combat(player, boss, who_strike_first)
+        if boss["HP"] <= 0:
+            typing_effect("Congratulations! You have defeated Kindred!\n")
+            print(ENDING_MESSAGE())
+            player_restart()
+
+
 def game():
     """Play game
     """
-    player = make_player()
+    character = make_player()
     board = make_map()
     achieve_goal = False
-    print_map(board, player)
-    print(f"Name:{player['name']} | "
-          f"HP: {player['HP']} | "
-          f"Class: {player['sub_class']} | "
-          f"Location: {player['location']} | "
-          f"Level: {player['level']} "
-          f"\n\nMaster Class: {player['master_class']}"
-          f"\nDamage Range: {player['min_damage']} - {player['max_damage']}"
-          f"\nAccuracy: {player['hit_rate']}%")
+    print_map(board, character)
+    print(f"Name:{character['name']} | "
+          f"HP: {character['HP']} | "
+          f"Class: {character['sub_class']} | "
+          f"Location: {character['location']} | "
+          f"Level: {character['level']} "
+          f"\n\nMaster Class: {character['master_class']}"
+          f"\nDamage Range: {character['min_damage']} - {character['max_damage']}"
+          f"\nAccuracy: {character['hit_rate']}%")
     while not achieve_goal:
         direction = get_player_move()
         if direction.lower() == "q":
             break
-        destination = player_destination(direction, player)
+        destination = player_destination(direction, character)
         if validate_move(destination, board):
-            move_player(direction, player)
-            print_map(board, player)
-            print(f"Name: {player['name']} | "
-                  f"HP: {player['HP']} | "
-                  f"Level: {player['level']} | "
-                  f"Class: {player['sub_class']} | "
-                  f"XP: {player['XP']} | "
-                  f"Location: {player['location']}")
-            if check_for_monster(player):
-                foe = generate_monster(player)
+            move_player(direction, character)
+            print_map(board, character)
+            print(f"Name: {character['name']} | "
+                  f"HP: {character['HP']} | "
+                  f"Level: {character['level']} | "
+                  f"Class: {character['sub_class']} | "
+                  f"XP: {character['XP']} | "
+                  f"Location: {character['location']}")
+            if check_for_monster(character):
+                foe = generate_monster(character)
                 evaluate_monster_difficulty(foe)
-                player_attack_first = roll_for_first_hit(player, foe)
-                combat(player, foe, player_attack_first)
+                player_attack_first = roll_for_first_hit(character, foe)
+                combat(character, foe, player_attack_first)
             else:
-                player_heal(player)
+                player_heal(character)
+                player_reach_boss(character)
         else:
             print("You can't move in that direction.")
+            sleep(2)
 
 
 def main():
