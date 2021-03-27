@@ -5,7 +5,6 @@ Date:
 """
 import itertools
 import random
-import time
 import sys
 from time import sleep
 
@@ -38,6 +37,12 @@ def CYAN():
     """Return ANSI escape for text color cyan
     """
     return "\033[36m"
+
+
+def PURPLE():
+    """Return ANSI escape for text color purple.
+    """
+    return "\033[35m"
 
 
 def END():
@@ -186,6 +191,10 @@ def MAX_FLEE_RATE():
 
 def MAX_FLEE_DAMAGE():
     return 15
+
+
+def MAX_ROLL_NUMBER():
+    return 100
 
 
 def FLEE_RATE():
