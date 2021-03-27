@@ -216,6 +216,7 @@ def BOARD_WIDTH():
 def BOARD_HEIGHT():
     return 25
 
+
 def typing_effect(words):
     """Print stdout pretty
 
@@ -377,7 +378,7 @@ def get_player_move():
             return player_direction
 
 
-def player_destination(direction, player):
+def player_destination(direction: str, player: dict) -> tuple:
     """Create players next destination
 
     :param direction: a string
@@ -399,7 +400,7 @@ def player_destination(direction, player):
     return tuple(new_location)
 
 
-def validate_move(new_location, board):
+def validate_move(new_location: tuple, board: list) -> bool:
     """Validate the destination the player wants to go
 
     :param new_location: a tuple
@@ -415,7 +416,7 @@ def validate_move(new_location, board):
         return False
 
 
-def move_player(direction, character):
+def move_player(direction: str, character: dict):
     """Move the player on game board
 
     :param direction: a string
@@ -435,13 +436,13 @@ def move_player(direction, character):
         character["location"][1] += 1
 
 
-def check_for_monster(player):
+def check_for_monster(player: dict):
     """Check if there is monster
 
     :param player: a dictionary
     :precondition: player must be a dictionary representing game player
     :postcondition: return True with a chance of MONSTER_SPAWN_RATE else False
-    :return: True if random choice is smaller than MONSTER_SPWAN_RATE
+    :return: True if random choice is smaller than MONSTER_SPAWN_RATE
     """
     if player["location"] != BOSS_LOCATION():
         if random.randint(1, 100) <= MONSTER_SPAWN_RATE():
@@ -471,7 +472,7 @@ def generate_monster():
     return monster
 
 
-def evaluate_monster_difficulty(monster):
+def evaluate_monster_difficulty(monster: dict):
     """Display monster difficulty
 
     :param monster: a dictionary
@@ -487,7 +488,7 @@ def evaluate_monster_difficulty(monster):
         print("Difficulty : {}EASY{}".format(GREEN(), END()))
 
 
-def player_flee(player):
+def player_flee(player: dict):
     """Flee from foe
 
     :param player: a dictionary
@@ -504,7 +505,7 @@ def player_flee(player):
         print("You fled successfully!")
 
 
-def monster_flee(monster):
+def monster_flee(player: dict) -> bool:
     """Flee for monster
 
     :param:
@@ -516,7 +517,7 @@ def monster_flee(monster):
         print(f"{monster['name']} has fled the scene!")
 
 
-def player_heal(player):
+def player_heal(player: dict):
     """Heal player HP
 
     :param player: a dictionary
