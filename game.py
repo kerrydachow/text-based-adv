@@ -685,12 +685,6 @@ def validate_combat_option(player, foe, move, who_strike_first):
         combat_round(player, foe, who_strike_first)
 
 
-def is_player_dead(player):
-    if player["HP"] <= 0:
-        print("\nYou have failed your mission.\n")
-        player_restart()
-
-
 def check_experience(player):
     if player["XP"] == PLAYER_EXPERIENCE_LEVEL2() or player["XP"] == PLAYER_EXPERIENCE_LEVEL3():
         return True
