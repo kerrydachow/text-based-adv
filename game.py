@@ -268,16 +268,16 @@ def print_map(board, player):
 
 def class_description():
     print("\nClasses\n\n"
-          "{}0{} {}Sorcerer{}:\nSorcerers uses magic to attack."
+          "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
           "\nTheir damage is amplified, but not the most accurate!\n\n"
-          "{}1{} {}Thief{}:\nThieves lurk through the shadows with striking with deadly accuracy."
+          "%s1%s %sThief%s:\nThieves lurk through the shadows with striking with deadly accuracy."
           "\nTheir accuracy is near-perfect, but lack the strength to damage!\n\n"
-          "{}2{} {}Amazon{}:\nAmazons specialize in archery, swordplay, and a bit of magic."
+          "%s2%s %sAmazon%s:\nAmazons specialize in archery, swordplay, and a bit of magic."
           "\nAmazon's are the most well-balanced class!\n\n"
-          "{}3{} {}Fighter{}:\nFighters have incredible yet, uncontrollable strength. "
+          "%s3%s %sFighter%s:\nFighters have incredible yet, uncontrollable strength. "
           "\nTheir uncontrollable strength can easily dissipate weak monsters!\n"
-          .format(RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(),
-                  RED(), END(), UNDERLINE(), END()))
+          % (RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(),
+             RED(), END(), UNDERLINE(), END()))
 
 
 def class_stats(player):  # amazon no stat changes
