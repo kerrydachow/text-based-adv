@@ -645,6 +645,14 @@ def combat_options(player):
             print("\nInvalid Input")
 
 
+def validate_combat_option(player, foe, move, who_strike_first):
+    if move == "Flee":
+        flee(player)
+    else:
+        player["attack_move"] = move
+        combat_round(player, foe, who_strike_first)
+
+
 def attack(attacker, receiver):
     typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
     if hit_or_miss(attacker):
