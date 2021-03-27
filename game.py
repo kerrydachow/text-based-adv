@@ -596,6 +596,20 @@ def hit_or_miss(game_chara: dict):  # True if hits false if miss
         return False
 
 
+def attack(attacker, receiver):
+    typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
+    if hit_or_miss(attacker):
+        attacker_damage = random.randint(attacker["min_damage"], attacker["max_damage"])
+        receiver["HP"] = max(receiver["HP"] - attacker_damage, 0)
+        typing_effect(f"{attacker['name']} dealt {attacker_damage} damage! | {receiver['name']} HP:{receiver['HP']}\n")
+    else:
+        typing_effect(f"{attacker['name']} missed! | {receiver['name']} HP:{receiver['HP']}\n")
+    if receiver["HP"] <= 0:
+        sleep(1)
+        print(f"{receiver['name']} has died.")
+    print()
+
+
 def game():
     """Play game
     """
