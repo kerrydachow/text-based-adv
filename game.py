@@ -587,6 +587,12 @@ def player_restart():
     player_restart()
 
 
+def is_player_dead(player):
+    if player["HP"] <= 0:
+        print("You have failed your mission.")
+        player_restart()
+
+
 def roll_for_first_hit(player: dict, foe: dict) -> bool:
     roll_dice = False
     while not roll_dice:
