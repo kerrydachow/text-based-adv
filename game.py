@@ -297,12 +297,18 @@ def class_stats(player):  # amazon no stat changes
 
 
 def class_choice(player_class):
-    class_list = enumerate(["sorcerer", "thief", "amazon", "fighter"])
-    for jobs in class_list:
-        if player_class == str(jobs[0]):  # int must be converted to str to prevent TypeError
-            return jobs[1]
-    else:
-        return "hidden lord"
+    class_list = enumerate(("sorcerer", "thief", "amazon", "fighter"))
+    valid_class_num = ["0", "1", "2", "3", "1337"]
+    while True:
+        player_class = input("What class will you choose? Enter number for class: ")
+        if player_class in valid_class_num:
+            for jobs in class_list:
+                if player_class == str(jobs[0]):
+                    return jobs[1]
+                elif player_class == "1337":
+                    return "Hidden Lord"
+        else:
+            print("\nPlease input valid input\n")
 
 
 def make_player():
