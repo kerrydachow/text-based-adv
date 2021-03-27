@@ -225,11 +225,7 @@ def BOSS_ICON():
     return "👹"
 
 
-def BOARD_WIDTH():
-    return 25
-
-
-def BOARD_HEIGHT():
+def BOARD_DIMENSION():
     return 25
 
 
@@ -259,22 +255,23 @@ def ENDING_MESSAGE():
            "         |     i-|                 |____________|       |__|   \__|       |______／\n"
 
 
-def make_map():
+def make_map(dimension):
     """Make board for game
 
     :param:
     :precondition:
     :postcondition: create list of tuple to represent board
-    :return: a dictionary to represetn game board
+    :return: a dictionary to represent game board
     """
-    return [(y, x) for y in range(BOARD_HEIGHT()) for x in range(BOARD_WIDTH())]
+    return [(y, x) for y in range(dimension) for x in range(dimension)]
 
 
-def print_map(board, player):
+def print_map(dimension, board, player):
     """Print game board to user
 
-    :param board: a list with tuple item 
+    :param board: a list with tuple item
     :param player: a dictionary
+    :param dimension: a integer
     :precondition: board must be a dictionary representing game board
     :precondition: player must be a dictionary representing player
     :postcondition: print game board to the user
@@ -283,8 +280,8 @@ def print_map(board, player):
     :return: None
     """
     key_counter = 0
-    for x_axis in range(BOARD_WIDTH()):
-        for y_axis in range(BOARD_HEIGHT()):
+    for x_axis in range(dimension):
+        for y_axis in range(dimension):
             if board[key_counter] == tuple(player["location"]):
                 print(BLINK() + PLAYER_ICON() + END() + " ", end="")
             elif board[key_counter] == tuple(BOSS_LOCATION()):
@@ -386,7 +383,7 @@ def make_player():
               "XP": PLAYER_START_EXPERIENCE(),
               "min_damage": PLAYER_START_MIN_DAMAGE(),
               "max_damage": PLAYER_START_DAMAGE(),
-              "location": [23, 24]}  # PLAYER_START_LOCATION()
+              "location": PLAYER_START_LOCATION()}
     class_stats(player)
     player_sub_class(player)
     return player
@@ -765,9 +762,9 @@ def game():
     """Play game
     """
     character = make_player()
-    board = make_map()
+    board = make_map(BOARD_DIMENSION())
     achieve_goal = False
-    print_map(board, character)
+    print_map(BOARD_DIMENSION(), board, character)
     print(f"Name:{character['name']} | "
           f"HP: {character['HP']} | "
           f"Class: {character['sub_class']} | "
@@ -783,7 +780,7 @@ def game():
         destination = player_destination(direction, character)
         if validate_move(destination, board):
             move_player(direction, character)
-            print_map(board, character)
+            print_map(BOARD_DIMENSION(), board, character)
             print(f"Name: {character['name']} | "
                   f"HP: {character['HP']} | "
                   f"Level: {character['level']} | "
