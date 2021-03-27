@@ -398,8 +398,9 @@ def get_player_move():
     :postcondition: return player_direction if valid else print Invalid message
     :return: a string representing players moving direction
     """
-    print("\nInstructions: \n 0: Up \n 1: Down \n 2: Left\n 3: Right\n")
-    valid_user_input = ["0", "1", "2", "3", "q", "Q"]
+    print("\nInstructions:\n %s0%s : Up \n %s1%s : Down \n %s2%s : Left\n %s3%s : Right\n %sQ%s : Quit\n"
+          % (RED(), END(), RED(), END(), RED(), END(), RED(), END(), YELLOW(), END()))
+    valid_user_input = ["0", "1", "2", "3", "q", "Q", "h", "H"]
     while True:
         player_direction = input("Which direction will you go? ")
         if player_direction in valid_user_input:
