@@ -628,6 +628,12 @@ def attack(attacker, receiver):
     print()
 
 
+def is_player_dead(player):
+    if player["HP"] <= 0:
+        print("\nYou have failed your mission.\n")
+        player_restart()
+
+
 def combat(player, foe, who_strike_first):
     move = combat_options(player)
     validate_combat_option(player, foe, move, who_strike_first)
