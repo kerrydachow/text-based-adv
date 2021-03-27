@@ -673,11 +673,6 @@ def is_player_dead(player):
         player_restart()
 
 
-def combat(player, foe, who_strike_first):
-    move = combat_options(player)
-    validate_combat_option(player, foe, move, who_strike_first)
-
-
 def combat_round(player, foe, player_attack_first):
     (first_hit, second_hit) = (player, foe) if player_attack_first else (foe, player)
     while first_hit["HP"] > 0 and second_hit["HP"] > 0:
@@ -701,6 +696,20 @@ def check_experience(player):
         return True
     else:
         return False
+
+
+def after_combat(player):
+    if not player["location"] == BOSS_LOCATION():
+        player["XP"] += PLAYER_EXPERIENCE_GAIN()
+        typing_effect(f"You have gained {PLAYER_EXPERIENCE_GAIN()} XP!\nYour current XP is {player['XP']}\n")
+        sleep(1)
+        if check_experience(player):
+            character_levelup(player)
+
+
+def combat(player, foe, who_strike_first):
+    move = combat_options(player)
+    validate_combat_option(player, foe, move, who_strike_first)
 
 
 def game():
