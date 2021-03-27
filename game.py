@@ -589,7 +589,7 @@ def player_restart():
 
 def is_player_dead(player):
     if player["HP"] <= 0:
-        print("You have failed your mission.")
+        print("\nYou have failed your mission.\n")
         player_restart()
 
 
