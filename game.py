@@ -614,6 +614,21 @@ def hit_or_miss(game_chara: dict):  # True if hits false if miss
         return False
 
 
+def combat_moves_list(player):
+    if player["master_class"] == "Sorcerer":
+        return list(enumerate(
+            ["Fire Ball", "Icicle Attack", "Magic Missile", "Flee"],
+            1))  # I used list in order to use it in combat options.
+    elif player["master_class"] == "Thief":
+        return list(enumerate(["Throw Ninja Star", "Dagger Stab", "Punch", "Flee"], 1))
+    elif player["master_class"] == "Amazon":
+        return list(enumerate(["Arrow Shot", "Sword Slash", "Fire Ball", "Flee"], 1))
+    elif player["master_class"] == "Fighter":
+        return list(enumerate(["Power Punch", "Side Pick", "Body Slam", "Flee"], 1))
+    elif player["master_class"] == "Hidden Lord":
+        return list(enumerate(["Lightning Punch", "Fire Storm", "Darkness Beam", "Flee"], 1))
+
+
 def attack(attacker, receiver):
     typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
     if hit_or_miss(attacker):
