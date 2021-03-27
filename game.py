@@ -272,6 +272,13 @@ def class_description():
 
 
 def class_stats(player):  # amazon no stat changes
+    """Add unique status for each class
+
+    :param player: a dictionary 
+    :precondition: player must be a dictionary with key "master_class", "min_damage", "max_damage", "hit_rate"
+    :postcondition: increment key values for each unique class
+    :return: None
+    """
     if player["master_class"] == "sorcerer":
         player["max_damage"] += 10  # low chance of hit high damage
         player["min_damage"] += 5
@@ -290,8 +297,6 @@ def class_stats(player):  # amazon no stat changes
 
 
 def class_choice(player_class):
-    """
-    """
     class_list = enumerate(["sorcerer", "thief", "amazon", "fighter"])
     for jobs in class_list:
         if player_class == str(jobs[0]):  # int must be converted to str to prevent TypeError
