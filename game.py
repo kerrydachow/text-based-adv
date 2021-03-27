@@ -287,7 +287,6 @@ def class_stats(player):  # amazon no stat changes
         player["max_damage"] += 80
         player["HP"] += 50
         player["max_HP"] += 50
-        player["hit_rate"] += 25
 
 
 def class_choice(player_class):
