@@ -575,6 +575,20 @@ def player_heal(player: dict):
         print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
 
 
+def roll_for_first_hit(player: dict, foe: dict) -> bool:
+    roll_dice = False
+    while not roll_dice:
+        player_roll = random.randint(1, MAX_ROLL_NUMBER())
+        foe_roll = random.randint(1, MAX_ROLL_NUMBER())
+        typing_effect(f"\n{player['name']} has rolled a {player_roll}\n{foe['name']} has rolled a {foe_roll}\n\n")
+        if player_roll > foe_roll:
+            typing_effect(f"{player['name']} has the first move!\n\n")
+            return True
+        elif player_roll < foe_roll:
+            typing_effect(f"{foe['name']} has the first move!\n\n")
+            return False
+
+
 def game():
     """Play game
     """
