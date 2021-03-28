@@ -490,20 +490,6 @@ def BOARD_DIMENSION():
     return 25
 
 
-def typing_effect(words):
-    """Print a string character by character with a delay.
-
-    :param words: any string
-    :precondition: words must be a string
-    :postcondition: print a string character by character with a delay between every character
-    :return: none
-    """
-    for char in words:
-        sleep(0.05)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-
-
 def ENDING_MESSAGE():
     """Return ASCII art.
 
@@ -518,6 +504,20 @@ def ENDING_MESSAGE():
            "v---v---\ /    i-|                 |  |_________        |  | \    |       |  |___|  |    \n" \
            "         |     i-|                 |            |       |  |  \   |       |        ／ \n" \
            "         |     i-|                 |____________|       |__|   \__|       |______／\n"
+
+
+def typing_effect(words):
+    """Print a string character by character with a delay.
+
+    :param words: any string
+    :precondition: words must be a string
+    :postcondition: print a string character by character with a delay between every character
+    :return: none
+    """
+    for char in words:
+        sleep(0.05)
+        sys.stdout.write(char)
+        sys.stdout.flush()
 
 
 def make_map(dimension):
