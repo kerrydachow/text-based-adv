@@ -825,6 +825,19 @@ def player_destination(direction: str, player: dict) -> tuple:
     :precondition: player must be a dictionary representing player
     :postcondition: create a tuple of players next destination on game board
     :return: a tuple representing location on game board
+
+    >>> test_player = {'location': [0, 0]}
+    >>> player_destination("0", test_player)
+    (0, 1)
+    >>> test_player = {'location': [0, 0]}
+    >>> player_destination("1", test_player)
+    (0, -1)
+    >>> test_player = {'location': [0, 0]}
+    >>> player_destination("2", test_player)
+    (-1, 0)
+    >>> test_player = {'location': [0, 0]}
+    >>> player_destination("3", test_player)
+    (1, 0)
     """
     new_location = list(player["location"])
     if direction == "0":
