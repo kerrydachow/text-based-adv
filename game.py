@@ -882,6 +882,20 @@ def move_player(direction: str, player: dict):
     :precondition: character must be a dictionary representing player
     :postcondition: modify character['location'] value according to direction
     :return: None
+
+    >>> player = {'location': [0, 0]}
+    >>> move_player("0", player)
+    >>> player
+    {'location': [0, 1]}
+    >>> move_player("1", player)
+    >>> player
+    {'location': [0, 0]}
+    >>> move_player("3", player)
+    >>> player
+    {'location': [1, 0]}
+    >>> move_player("2", player)
+    >>> player
+    {'location': [0, 0]}
     """
     if direction == "0":
         player["location"][1] += 1  # up
