@@ -937,8 +937,7 @@ def player_heal(player: dict):
 
 
 def player_restart():
-
-    """ Prompt user to restart or quit.
+    """Prompt user to restart or quit.
 
     :precondition: player has reached goal, or player_hp is 0
     :precondition: user input must be "y" or "n"
@@ -961,12 +960,28 @@ def player_restart():
 
 
 def is_player_dead(player: dict):
+    """Check if player is dead.
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary with key value 'HP' and integer 
+    :postcondition: print message to user is player HP is smaller or equal to 0
+    :postcondition: invoke player_restart if player HP is smaller or equal to 0 
+    :return: None
+    """
     if player["HP"] <= 0:
         print("\nYou have failed your mission.\n")
         player_restart()
 
 
 def roll_for_first_hit(player: dict, foe: dict) -> bool:
+    """Roll dice for first hit.
+
+    :param player: a dictionary
+    :param foe: a dictionary
+    :precondition: player and foe must be a dictionary with key value pair 'name' and string
+    :postcondition: return True is player rolled greater number than foe else False
+    :return: boolean
+    """
     roll_dice = False
     while not roll_dice:
         player_roll = random.randint(1, MAX_ROLL_NUMBER())
@@ -981,6 +996,14 @@ def roll_for_first_hit(player: dict, foe: dict) -> bool:
 
 
 def hit_or_miss(game_chara: dict):  # True if hits false if miss
+    """Determine if character hit or miss.
+
+    :param game_chara: a dictionary
+    :precondition: game_chara must be a dictionary with key value pair of 'hit_rate' and integer
+    :postcondition: return True if random.randint is smaller than or equal
+                    to game_chara["hit_rate"] else False
+    :return: boolean
+    """
     if random.randint(1, MAX_HIT_RATE()) <= game_chara["hit_rate"]:
         return True
     else:
@@ -988,6 +1011,13 @@ def hit_or_miss(game_chara: dict):  # True if hits false if miss
 
 
 def combat_moves_list(player):
+    """Create list with combat moves.
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary with key value pair 'master_class' and string for class
+    :postcondition: return combat moves for each player class
+    :return: a list with combat moves items
+    """
     if player["master_class"] == "Sorcerer":
         return list(enumerate(
             ["Fire Ball", "Icicle Attack", "Lightning Strike", "Flee"],
@@ -1003,6 +1033,17 @@ def combat_moves_list(player):
 
 
 def attack(attacker, receiver):
+    """Attack receiver.
+
+    :param attacker: a dictionary
+    :param receiver: a dictionary
+    :precondition: player and receiver must be a dictionary with key value pair 'attack_move' with string
+    :precondition: player and receiver must be a dictionary with key value pair 'min_damage' and 'max_damage' with integer
+    :precondition: player and receiver must be a dictionary wiht key value pair 'HP' and integer
+    :postcondition: subtract receiver HP if hit_or_miss(attacker) is True else display that user missed
+    :postcondition: display message death message is receiver HP is smaller than or equal to 0
+    :return: None
+    """
     typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
     if hit_or_miss(attacker):
         attacker_damage = random.randint(attacker["min_damage"], attacker["max_damage"])
