@@ -601,15 +601,6 @@ def introduction_dialogue():
     """Print the dialogue explaining the game.
 
     :return: none
-    
-    >>> introduction_dialogue()
-    Welcome to the World of the Medium | \033[35mEpisode 1\033[0m
-    <BLANKLINE>
-    Your soul has drifted from your body and now you are here to prove your worthiness.
-    In order to proceed to heaven, you must defeat the mighty dragon, Kindred, who's guarding the Gates of Heaven.
-    Kindred has been sending adventurers like you into the depths of hell. You must defeat Kindred to prove your worthiness, and then push through the Gates of Heaven.
-    <BLANKLINE>
-    You will choose a class with certain stats and abilities to aid your task of defeating Kindred.
     """
     typing_effect("Welcome to the World of the Medium | %sEpisode 1%s\n\n"
                   "Your soul has drifted from your body and now you are here to prove your worthiness.\n"
@@ -625,31 +616,6 @@ def class_description():
     """Print the description of the classes.
 
     :return: none
-
-    >>> class_description()
-    <BLANKLINE>
-    Classes
-    <BLANKLINE>
-    \033[31m0\033[0m \033[04mSorcerer\033[0m:
-    Sorcerers uses magic to attack.
-    Their damage is amplified, but not the most accurate!
-    Sorcerers begin as a Magician, advance into a Wizard, and finally transcend into a High Wizard.
-    <BLANKLINE>
-    \033[31m1\033[0m \033[04mThief\033[0m:
-    Thieves lurk through the shadows with striking with deadly accuracy.
-    Their accuracy is near-perfect, but lack the strength to damage!
-    Thieves begin as a Thief, advance into a Bandit, and finally transcend into a Night Lord.
-    <BLANKLINE>
-    \033[31m2\033[0m \033[04mAmazon\033[0m:
-    Amazons specialize in archery, swordplay, and a bit of magic.
-    Amazon's are the most well-balanced class!
-    Amazons begin as a Novice, advance into an Amazon, and transcend into a Pathfinder.
-    <BLANKLINE>
-    \033[31m3\033[0m \033[04mFighter\033[0m:
-    Fighters have incredible yet, uncontrollable strength.
-    Their uncontrollable strength can easily dissipate weak monsters!
-    Fighters begin as a Brawler, advance into a Buccaneer, and transcend into a Sensei.
-    <BLANKLINE>
     """
     print("\nClasses\n\n"
           "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
