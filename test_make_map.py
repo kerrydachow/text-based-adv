@@ -18,6 +18,9 @@ class TestMakeMap(TestCase):
         for items in actual:
             self.assertTrue(type(items) is tuple)
 
-
+    def test_make_map_tuple_length(self):
+        actual = make_map(5)
+        for items in actual:
+            self.assertTrue(len(items) == 2)
 
 
