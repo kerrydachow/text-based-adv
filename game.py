@@ -861,7 +861,7 @@ def validate_move(new_location: tuple, board: list) -> bool:
     :postcondition: check if new_location is within board
     :return: true if new_location is in board else False
     
-    >>> board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+    >>> test_board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
     >>> validate_move((1, 1), board)
     True
     >>> validate_move((4, 4), board)
