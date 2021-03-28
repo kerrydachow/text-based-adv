@@ -551,6 +551,15 @@ def print_map(dimension, board, player):
     :postcondition: print player icon on board corresponding to player location
     :postcondition: print boss icon on board corresponding to boss location
     :return: none
+    
+    >>> board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+    >>> player = {"location": [0, 0]}
+    >>> print_map(5, board, player)
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    \033[05m😇\033[0m [ ][ ][ ][ ]
     """
     for y_coord in reversed(range(dimension)):  # reverse y_coord so that (0, 0) is at bottom left corner
         for x_coord in range(dimension):
