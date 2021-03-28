@@ -645,7 +645,7 @@ def class_description():
 
 
 def class_stats(player: dict):  # amazon no stat changes
-    """Determine player class and add stat according to class.
+    """Determine player class and increment or decrement stats according to class.
 
     :param player: a dictionary
     :precondition: player must be a dictionary with keys: "master_class", "min_damage", "max_damage", "hit_rate"
@@ -654,14 +654,18 @@ def class_stats(player: dict):  # amazon no stat changes
     :postcondition: increment key values for depending on player class
     :return: none
 
-    >>> player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
-    >>> class_stats(player)
-    >>> player
+    >>> test_player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
+    >>> class_stats(test_player)
+    >>> test_player
     {'master_class': 'Sorcerer', 'max_damage': 20, 'min_damage': 15, 'hit_rate': 45}
-    >>> player = {"master_class": "Thief", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
-    >>> class_stats(player)
-    >>> player
+    >>> test_player = {"master_class": "Thief", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
+    >>> class_stats(test_player)
+    >>> test_player
     {'master_class': 'Thief', 'max_damage': 5, 'min_damage': 10, 'hit_rate': 70}
+    >>> test_player = {"master_class": "Amazon", "max_damage": 20, "min_damage": 5, "hit_rate": 75}
+    >>> class_stats(test_player)
+    >>> test_player
+    {'master_class': 'Amazon', 'max_damage': 20, 'min_damage': 5, 'hit_rate': 75}
     """
     if player["master_class"] == "Sorcerer":
         player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
