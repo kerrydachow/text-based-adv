@@ -859,14 +859,14 @@ def instruction_dialogue(player):
     <BLANKLINE>
     Good choice Im crying! Sorcerer is what I would have picked too!
     Now you must travel up to the top right corner 🐲 | Location: [24, 24], and defeat Kindred!
-    There will be monsters a long the way, kill them to earn XP to level up and gain bonus stats!
+    There will be monsters along the way, kill them to earn XP to level up and gain bonus stats!
     I wish you the best of luck, adventurer.
     <BLANKLINE>
     """
     typing_effect(f"\nGood choice {player['name']}! {player['master_class']} is what I would have picked too!\n"
                   f"Now you must travel up to the top right corner {BOSS_ICON()} "
                   f"| Location: {BOSS_LOCATION()}, and defeat Kindred!\n"
-                  f"There will be monsters a long the way, kill them to earn XP to level up "
+                  f"There will be monsters along the way, kill them to earn XP to level up "
                   f"and gain bonus stats!\n"
                   f"I wish you the best of luck, adventurer.\n\n")
     sleep(2)
@@ -1579,4 +1579,5 @@ def main():
 
 
 if __name__ == "__main__":
-    testmod(verbose=True)
+    main()
+    # testmod(verbose=True)
