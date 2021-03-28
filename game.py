@@ -262,11 +262,11 @@ def FLEE_RATE():
 
 
 def PLAYER_ICON():
-    return "🧙"  # for now
+    return "😇"
 
 
 def BOSS_ICON():
-    return "👹"
+    return "🐲"
 
 
 def BOARD_DIMENSION():
