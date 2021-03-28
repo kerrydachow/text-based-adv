@@ -813,6 +813,9 @@ def check_for_monster(player: dict) -> bool:
 def generate_monster(player: dict):
     """Create a dictionary of a monster with random values and description.
 
+    :param: player must be a dictionary
+    :precondition: player must contain a key called "HP"
+    :precondition: player "HP" must be a positive integer greater than 0
     :postcondition: create a monster dictionary for combat
     :return: a dictionary representing a monster
     """
@@ -862,12 +865,15 @@ def generate_monster(player: dict):
 
 
 def evaluate_monster_difficulty(monster: dict):
-    """Display monster difficulty
+    """Display monster difficulty.
 
     :param monster: a dictionary
     :precondition: monster must be a dictionary representing game monster
-    :postcondition: display monster difficulty to user
-    :return: None
+    :precondition: monster must contain the keys : "max_damage", "hit_rate", "HP"
+    :precondition:: monster keys must have values that are integers
+    :postcondition: evaluate the values and print a message to user
+    :postcondition: message will display the difficulty of the monster
+    :return: none
     """
     if monster["HP"] > EVALUATE_MONSTER_HARD_HP() and \
             monster["max_damage"] > EVALUATE_MONSTER_HARD_DAMAGE() and \
@@ -882,13 +888,15 @@ def evaluate_monster_difficulty(monster: dict):
 
 
 def player_flee(player: dict):
-    """Flee from foe
+    """Flee from foe with a chance of losing HP.
 
     :param player: a dictionary
-    :precondition: player must be a dictionary representing game player
-    :postcondition: take damage with 20% chance and print message
-                    else print message
-    :return: None
+    :precondition: player must be a dictionary
+    :precondition: player must have a key called "HP"
+    :precondition: player "HP" must have a value that is an integer > 0
+    :postcondition: 20% chance of taking a random amount of damage upon fleeing
+    :postcondition: print a message displaying what happened
+    :return: none
     """
     if random.randint(1, MAX_FLEE_RATE()) <= PLAYER_UNSUCCESSFUL_FLEE_RATE():
         flee_damage = random.randint(1, MAX_FLEE_DAMAGE())
@@ -899,12 +907,13 @@ def player_flee(player: dict):
 
 
 def monster_flee(player: dict) -> bool:
-    """Flee for monster
+    """Evaluate if monster flee is True or False.
 
-    :param:
-    :precondition:
-    :postcondition:
-    :return:
+    :param: player must be a dictionary
+    :precondition: player must have a key called location
+    :precondition: player location must contain a list with 2 integers
+    :postcondition: randomly determine if monster has fled
+    :return: boolean value True or False
     """
     if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE() and player["location"] != BOSS_LOCATION():
         return True
