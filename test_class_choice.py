@@ -25,9 +25,12 @@ class TestClassChoice(TestCase):
             counter += 1
 
     @patch('sys.stdout', new_callable=io.StringIO)
-    @patch('builtins.input', invalid_input="7")
+    @patch('builtins.input', side_effect=["7", "0"])
     def test_class_choice_return_invalid_message(self, mock_input, mock_output):
-        pass
+        class_choice()
+        the_game_printed_this = mock_output.getvalue()
+        expected_output = "\nPlease input valid input\n\n"
+        self.assertEqual(expected_output, the_game_printed_this)
 
 
 if __name__ == "__main__":
