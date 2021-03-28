@@ -716,6 +716,13 @@ def player_sub_class(player: dict) -> str:
     :precondition: player key "master_class" must have a value of a string
     :postcondition: player key "sub_class" will have a value of the correct sub_class
     :return: append key "sub_class" with a value to player dictionary
+
+    >>> test_player = {'master_class': 'Sorcerer', 'level': 1}
+    >>> player_sub_class(test_player)
+    'Magician'
+    >>> test_player = {'master_class': 'Sorcerer', 'level': 2}
+    >>> player_sub_class(test_player)
+    'Wizard'
     """
     list_increment = player["level"]
     player["sub_class"] = determine_sub_class(player)[
