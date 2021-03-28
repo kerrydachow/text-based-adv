@@ -601,6 +601,31 @@ def class_description():
     """Print the description of the classes.
 
     :return: none
+
+    >>> class_description()
+    <BLANKLINE>
+    Classes
+    <BLANKLINE>
+    \033[31m0\033[0m \033[04mSorcerer\033[0m:
+    Sorcerers uses magic to attack.
+    Their damage is amplified, but not the most accurate!
+    Sorcerers begin as a Magician, advance into a Wizard, and finally transcend into a High Wizard.
+    <BLANKLINE>
+    \033[31m1\033[0m \033[04mThief\033[0m:
+    Thieves lurk through the shadows with striking with deadly accuracy.
+    Their accuracy is near-perfect, but lack the strength to damage!
+    Thieves begin as a Thief, advance into a Bandit, and finally transcend into a Night Lord.
+    <BLANKLINE>
+    \033[31m2\033[0m \033[04mAmazon\033[0m:
+    Amazons specialize in archery, swordplay, and a bit of magic.
+    Amazon's are the most well-balanced class!
+    Amazons begin as a Novice, advance into an Amazon, and transcend into a Pathfinder.
+    <BLANKLINE>
+    \033[31m3\033[0m \033[04mFighter\033[0m:
+    Fighters have incredible yet, uncontrollable strength.
+    Their uncontrollable strength can easily dissipate weak monsters!
+    Fighters begin as a Brawler, advance into a Buccaneer, and transcend into a Sensei.
+    <BLANKLINE>
     """
     print("\nClasses\n\n"
           "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
