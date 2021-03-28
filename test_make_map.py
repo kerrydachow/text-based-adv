@@ -28,3 +28,4 @@ class TestMakeMap(TestCase):
         for items in actual:
             for integers in items:
                 self.assertTrue(type(integers) is int)
+
