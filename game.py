@@ -161,6 +161,10 @@ def MONSTER_SPAWN_RATE():
     return 20
 
 
+def MONSTER_DESCRIPTION_AMOUNT():
+    return 2
+
+
 def EVALUATE_MONSTER_HARD_HP():
     return 15
 
@@ -489,7 +493,7 @@ def generate_monster(player):
     monster_name = random.choice(["Dragon", "Kobold", "Fenrir", "Loki", "Surtr"])
     monster_activity = random.choice(["staring at you", "snarling at you", "stalking you", "ready to pounce at you"])
     monster_description = ["Humongous", "Murderous", "Rabid", "Psycho", "Hostile"]
-    monster_state = list(itertools.permutations(monster_description, 2))  # 2 for 2 monster descriptions.
+    monster_state = list(itertools.permutations(monster_description, MONSTER_DESCRIPTION_AMOUNT()))  # 2 for 2 monster descriptions.
 
     def filter_moves(moves):
         monster_moves_level_1 = ["Bite", "Chomp", "Body Slam", "Scratch"]
@@ -562,7 +566,7 @@ def monster_flee(player: dict) -> bool:
     :postcondition:
     :return:
     """
-    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE() and player["location"] != [24, 24]:
+    if random.randint(1, MAX_FLEE_RATE()) <= FLEE_RATE() and player["location"] != BOSS_LOCATION():
         return True
     else:
         return False
