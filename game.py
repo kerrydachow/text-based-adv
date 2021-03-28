@@ -810,8 +810,8 @@ def check_for_monster(player: dict) -> bool:
             return False
 
 
-def generate_monster(player):
-    """Create monster with random values and description
+def generate_monster(player: dict):
+    """Create a dictionary of a monster with random values and description.
 
     :postcondition: create a monster dictionary for combat
     :return: a dictionary representing a monster
@@ -822,14 +822,27 @@ def generate_monster(player):
     monster_state = list(itertools.permutations
                          (monster_description, MONSTER_DESCRIPTION_AMOUNT()))  # 2 for 2 monster descriptions.
 
-    def filter_moves(moves):
+    def filter_moves(monster_moves_level_2):
+        """Compare list of monster moves.
+
+        :param monster_moves_level_2: a list
+        :precondition: monster_moves_level_2 must be a list containing items from monster_moves_level_1
+        :precondition: monster_moves_level_2 must also have additional items of monster moves
+        :postcondition: evaluate True or False
+        :return: True or False
+        """
         monster_moves_level_1 = ["Bite", "Chomp", "Body Slam", "Scratch"]
-        if moves in monster_moves_level_1:
+        if monster_moves_level_2 in monster_moves_level_1:
             return True
         else:
             return False
 
     def generate_foe_moves_based_on_player_level():
+        """Generate a random attack move for a monster.
+
+        :postcondition: randomly generate an attack move for monster
+        :return: an attack move as a string
+        """
         monster_attacks = ["Bite", "Chomp", "Slam", "Scratch", "Hyper Beam", "Dark Crunch", "Cosmic Flare"]
         if player["level"] > 1:
             return random.choice(monster_attacks)
