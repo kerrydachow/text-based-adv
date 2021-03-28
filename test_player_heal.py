@@ -15,6 +15,13 @@ class TestPlayerHeal(TestCase):
         expected = f"\nYou have recovered HP \nYour new HP is 9\n"
         self.assertEqual(game_print, expected)
 
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_player_heal_when_full_hp(self, mock_output):
+        test_player = {'HP': 20, 'max_HP': 20}
+        player_heal(test_player)
+        game_print = mock_output.getvalue()
+        expected = ''
+        self.assertEqual(game_print, expected)
 
 
 if __name__ == "__main__":
