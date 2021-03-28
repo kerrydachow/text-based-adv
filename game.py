@@ -1181,7 +1181,7 @@ def attack(attacker, receiver):
     :param receiver: a dictionary
     :precondition: player and receiver must be a dictionary with key value pair 'attack_move' with string
     :precondition: player and receiver must be a dictionary with key value pair 'min_damage' and 'max_damage' with integer
-    :precondition: player and receiver must be a dictionary wiht key value pair 'HP' and integer
+    :precondition: player and receiver must be a dictionary with key value pair 'HP' and integer
     :postcondition: subtract receiver HP if hit_or_miss(attacker) is True else display that user missed
     :postcondition: display message death message is receiver HP is smaller than or equal to 0
     :return: None
@@ -1207,7 +1207,7 @@ def combat_round(player, foe, player_attack_first):
     :param player_attack_first: boolean 
     :precondition: player must be a dictionary with key "name”, "master_class", "level", "HP",
                    "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
-    :precondition: foe mustbe a dictionary with "name”, "master_class", "level", "HP",
+    :precondition: foe must be a dictionary with "name”, "master_class", "level", "HP",
                    "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location" 
     :postcondition: invoke a round of combat between player and foe
     :postcondition: after a round of combat check if monster flee
