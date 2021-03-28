@@ -1291,6 +1291,15 @@ def check_experience(player):
     :postcondition: return True if player XP is equal to PLAYER_EXPERIENCE_LEVEL2() or
                     PLAYER_EXPERIENCE_LEVEL3() else False
     :return: a boolean
+
+    >>> check_experience({'XP': 10})
+    False
+    >>> check_experience({'XP': 20})
+    True
+    >>> check_experience({'XP': 40})
+    True
+    >>> check_experience({'XP': 60})
+    False
     """
     if player["XP"] == PLAYER_EXPERIENCE_LEVEL2() or player["XP"] == PLAYER_EXPERIENCE_LEVEL3():
         return True
@@ -1307,6 +1316,24 @@ def character_levelup(player):
     :postcondition: increase "level", "HP","max_HP","hit_rate", "min_damage","max_damage"
     :postcondition: display current status to user
     :return: None
+
+    >>> test_player = {'master_class': 'Hidden Lord', 'level': 1, 'hit_rate': 60, 'min_damage': 5, 'max_damage': 20, 'max_HP': 20, 'HP': 20}
+    >>> character_levelup(test_player)
+    <BLANKLINE>
+    You have leveled up!
+    You are now Level 2
+    <BLANKLINE>
+    You have job advanced to \033[31mLord!\033[0m
+    <BLANKLINE>
+    Your HP increased by 5
+    Your accuracy increased by 5
+    Your minimum damage increased by 2
+    Your maximum damage increased by 5
+    And you have fully recovered your HP!
+    <BLANKLINE>
+    Master Class: Hidden Lord
+    Damage Range: 7 - 25
+    Accuracy: 65%
     """
     player["level"] += PLAYER_LEVEL()
     player_sub_class(player)
