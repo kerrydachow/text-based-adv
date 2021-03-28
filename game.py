@@ -1308,16 +1308,20 @@ def check_experience(player):
 
 
 def character_levelup(player):
-    """Level up player.
+    """Increment values of player dictionary.
     
     :param player: a dictionary 
     :precondition: player must be a dictionary with key "name”, "master_class", "level",
                    "HP","max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
-    :postcondition: increase "level", "HP","max_HP","hit_rate", "min_damage","max_damage"
-    :postcondition: display current status to user
+    :postcondition: increase the values of "level", "HP","max_HP","hit_rate", "min_damage","max_damage"
+    :postcondition: check for "sub_class" value depending on "level"
+    :postcondition: print message displaying the incrementation of their stats
+    :postcondition: check if hit rate is > 100
+    :postcondition: increment hit rate only if it is less than 100
     :return: None
 
-    >>> test_player = {'master_class': 'Hidden Lord', 'level': 1, 'hit_rate': 60, 'min_damage': 5, 'max_damage': 20, 'max_HP': 20, 'HP': 20}
+    >>> test_player = {'master_class': 'Hidden Lord', 'level': 1, 'hit_rate': 60, 'min_damage': 5, \
+    'max_damage': 20, 'max_HP': 20, 'HP': 20}
     >>> character_levelup(test_player)
     <BLANKLINE>
     You have leveled up!
@@ -1334,6 +1338,24 @@ def character_levelup(player):
     Master Class: Hidden Lord
     Damage Range: 7 - 25
     Accuracy: 65%
+    >>> test_player = {'master_class': 'Hidden Lord', 'level': 2, 'hit_rate': 100, 'min_damage': 5, \
+    'max_damage': 20, 'max_HP': 20, 'HP': 20}
+    >>> character_levelup(test_player)
+    <BLANKLINE>
+    You have leveled up!
+    You are now Level 3
+    <BLANKLINE>
+    You have job advanced to \033[31mGod!\033[0m
+    <BLANKLINE>
+    Your HP increased by 5
+    Your accuracy increased by 5
+    Your minimum damage increased by 2
+    Your maximum damage increased by 5
+    And you have fully recovered your HP!
+    <BLANKLINE>
+    Master Class: Hidden Lord
+    Damage Range: 7 - 25
+    Accuracy: 100%
     """
     player["level"] += PLAYER_LEVEL()
     player_sub_class(player)
