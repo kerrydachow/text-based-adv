@@ -597,11 +597,13 @@ def class_description():
 
 
 def class_stats(player: dict):  # amazon no stat changes
-    """Add unique status for each class
+    """Determine player class and add stat according to class.
 
     :param player: a dictionary
-    :precondition: player must be a dictionary with key "master_class", "min_damage", "max_damage", "hit_rate"
-    :postcondition: increment key values for each unique class
+    :precondition: player must be a dictionary with keys: "master_class", "min_damage", "max_damage", "hit_rate"
+    :precondition: player dictionary keys: "min_damage", "max_damage", "hit_rate" must be integers
+    :precondition: player dictionary key master_class must be a string
+    :postcondition: increment key values for depending on player class
     :return: none
     """
     if player["master_class"] == "Sorcerer":
@@ -615,7 +617,7 @@ def class_stats(player: dict):  # amazon no stat changes
     elif player["master_class"] == "Fighter":
         player["max_damage"] += FIGHTER_MAX_DAMAGE_INCREASE()  # high damage low chance of deadly hit
         player["min_damage"] -= FIGHTER_MIN_DAMAGE_DECREASE()
-    elif player["master_class"] == "Hidden Lord":
+    else:
         player["max_damage"] += HIDDEN_LORD_MAX_DAMAGE_INCREASE()
         player["HP"] += HIDDEN_LORD_HP_INCREASE()
         player["max_HP"] += HIDDEN_LORD_HP_INCREASE()
