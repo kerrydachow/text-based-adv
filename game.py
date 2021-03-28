@@ -552,14 +552,33 @@ def print_map(dimension, board, player):
     :postcondition: print boss icon on board corresponding to boss location
     :return: none
     
-    >>> board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
-    >>> player = {"location": [0, 0]}
-    >>> print_map(5, board, player)
+    >>> test_board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), \
+    (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+    >>> test_player = {"location": [0, 0]}
+    >>> print_map(5, test_board, test_player)
     [ ][ ][ ][ ][ ]
     [ ][ ][ ][ ][ ]
     [ ][ ][ ][ ][ ]
     [ ][ ][ ][ ][ ]
     \033[05m😇\033[0m [ ][ ][ ][ ]
+    >>> test_board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), \
+    (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+    >>> test_player = {"location": [4, 4]}
+    >>> print_map(5, test_board, test_player)
+    [ ][ ][ ][ ]\033[05m😇\033[0m\x20
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    >>> test_board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), \
+    (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+    >>> test_player = {"location": [5, 5]}
+    >>> print_map(5, test_board, test_player)
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
+    [ ][ ][ ][ ][ ]
     """
     for y_coord in reversed(range(dimension)):  # reverse y_coord so that (0, 0) is at bottom left corner
         for x_coord in range(dimension):
@@ -645,7 +664,7 @@ def class_description():
 
 
 def class_stats(player: dict):  # amazon no stat changes
-    """Determine player class and add stat according to class.
+    """Determine player class and increment or decrement stats according to class.
 
     :param player: a dictionary
     :precondition: player must be a dictionary with keys: "master_class", "min_damage", "max_damage", "hit_rate"
@@ -654,14 +673,18 @@ def class_stats(player: dict):  # amazon no stat changes
     :postcondition: increment key values for depending on player class
     :return: none
 
-    >>> player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
-    >>> class_stats(player)
-    >>> player
+    >>> test_player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
+    >>> class_stats(test_player)
+    >>> test_player
     {'master_class': 'Sorcerer', 'max_damage': 20, 'min_damage': 15, 'hit_rate': 45}
-    >>> player = {"master_class": "Thief", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
-    >>> class_stats(player)
-    >>> player
+    >>> test_player = {"master_class": "Thief", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
+    >>> class_stats(test_player)
+    >>> test_player
     {'master_class': 'Thief', 'max_damage': 5, 'min_damage': 10, 'hit_rate': 70}
+    >>> test_player = {"master_class": "Amazon", "max_damage": 20, "min_damage": 5, "hit_rate": 75}
+    >>> class_stats(test_player)
+    >>> test_player
+    {'master_class': 'Amazon', 'max_damage': 20, 'min_damage': 5, 'hit_rate': 75}
     """
     if player["master_class"] == "Sorcerer":
         player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
@@ -689,12 +712,18 @@ def determine_sub_class(player: dict) -> list:
     :postcondition: return a list of sub classes of the master class
     :return: a list of sub classes
 
-    >>> player = {'master_class': "Sorcerer"}
-    >>> determine_sub_class(player)
+    >>> test_player = {'master_class': "Sorcerer"}
+    >>> determine_sub_class(test_player)
     ['Magician', 'Wizard', 'High Wizard']
-    >>> player = {'master_class': 'Hidden Lord'}
-    >>> determine_sub_class(player)
+    >>> test_player = {'master_class': 'Hidden Lord'}
+    >>> determine_sub_class(test_player)
     ['Master', 'Lord', 'God']
+    >>> test_player = {'master_class': "Fighter"}
+    >>> determine_sub_class(test_player)
+    ['Brawler', 'Buccaneer', 'Sensei']
+    >>> test_player = {'master_class': "Amazon"}
+    >>> determine_sub_class(test_player)
+    ['Novice', 'Amazon', 'Pathfinder']
     """
     if player['master_class'] == "Sorcerer":
         return ["Magician", "Wizard", "High Wizard"]
@@ -861,10 +890,10 @@ def validate_move(new_location: tuple, board: list) -> bool:
     :postcondition: check if new_location is within board
     :return: true if new_location is in board else False
     
-    >>> board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
-    >>> validate_move((1, 1), board)
+    >>> test_board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+    >>> validate_move((1, 1), test_board)
     True
-    >>> validate_move((4, 4), board)
+    >>> validate_move((4, 4), test_board)
     False
     """
     if new_location in board:
@@ -885,16 +914,16 @@ def move_player(direction: str, player: dict):
 
     >>> test_player = {'location': [0, 0]}
     >>> move_player("0", test_player)
-    >>> player
+    >>> test_player
     {'location': [0, 1]}
     >>> move_player("1", test_player)
-    >>> player
+    >>> test_player
     {'location': [0, 0]}
     >>> move_player("3", test_player)
-    >>> player
+    >>> test_player
     {'location': [1, 0]}
     >>> move_player("2", test_player)
-    >>> player
+    >>> test_player
     {'location': [0, 0]}
     """
     if direction == "0":
