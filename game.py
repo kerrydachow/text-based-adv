@@ -645,6 +645,14 @@ def determine_sub_class(player: dict) -> list:
 
 
 def player_sub_class(player: dict) -> str:
+    """Modify player dictionary to include sub_class of correct master_class based on level
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary containing a key-value pair of "master_class"
+    :precondition: player key "master_class" must have a value of a string
+    :postcondition: player key "sub_class" will have a value of the correct sub_class
+    :return: append key "sub_class" with a value to player dictionary
+    """
     list_increment = player["level"]
     player["sub_class"] = determine_sub_class(player)[-1 + list_increment]  # must start at -1 because player level starts at 1
     return player["sub_class"]
