@@ -1,5 +1,4 @@
 from unittest import TestCase
-from unittest import main
 from unittest.mock import patch
 import io
 
@@ -31,7 +30,3 @@ class TestClassChoice(TestCase):
         the_game_printed_this = mock_output.getvalue()
         expected_output = "\nPlease input valid input\n\n"
         self.assertEqual(expected_output, the_game_printed_this)
-
-
-if __name__ == "__main__":
-    main()
