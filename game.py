@@ -653,6 +653,15 @@ def class_stats(player: dict):  # amazon no stat changes
     :precondition: player dictionary key "master_class" must be a string
     :postcondition: increment key values for depending on player class
     :return: none
+
+    >>> player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
+    >>> class_stats(player)
+    >>> player
+    {'master_class': 'Sorcerer', 'max_damage': 20, 'min_damage': 15, 'hit_rate': 45}
+    >>> player = {"master_class": "Thief", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
+    >>> class_stats(player)
+    >>> player
+    {'master_class': 'Thief', 'max_damage': 5, 'min_damage': 10, 'hit_rate': 70}
     """
     if player["master_class"] == "Sorcerer":
         player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
