@@ -1058,6 +1058,22 @@ def attack(attacker, receiver):
 
 
 def combat_round(player, foe, player_attack_first):
+    """Fight the Foe.
+
+    :param player: a dictionary
+    :param foe: a dictionary 
+    :param player_attack_first: boolean 
+    :precondition: player must be a dictionary with key "name”, "master_class", "level", "HP",
+                   "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :precondition: foe mustbe a dictionary with "name”, "master_class", "level", "HP",
+                   "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location" 
+    :postcondition: invoke a round of combat between player and foe
+    :postcondition: after a round of combat check if monster flee
+    :postcondition: if both player and foe HP is not equal to 0 invoke combat()
+    :postcondition: if either player or foe HP is 0 invoke is_player_dead()
+    :postcondition: if either player or foe HP is 0 invoke after_combat()
+    :return: None
+    """
     (first_hit, second_hit) = (player, foe) if player_attack_first else (foe, player)
     while first_hit["HP"] > 0 and second_hit["HP"] > 0:
         attack(first_hit, second_hit)
@@ -1076,6 +1092,17 @@ def combat_round(player, foe, player_attack_first):
 
 
 def combat_options(player):
+    """Display combat options to player.
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary with key "name”, "master_class", "level",
+                   "HP", "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :postcondition: remove flee option if player location is at BOSS_LOCATION()
+    :postcondition: print combat_option for user class
+    :postcondition: return chosen combat move
+    :postcondition: print invalid message if input is not in attack_moves
+    :return: string if user input is valid
+    """
     attack_moves = combat_moves_list(player)
     if player["location"] == BOSS_LOCATION():
         attack_moves.pop()
@@ -1092,6 +1119,20 @@ def combat_options(player):
 
 
 def validate_combat_option(player, foe, move, who_strike_first):
+    """Validate player combat option
+
+    :param player: a dictionary
+    :param foe: a dictionary
+    :param move: a string
+    :parma who_strike_first: a boolean
+    :precondition: player must be a dictioanry with key "name”, "master_class", "level", "HP",
+                   "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :precondition: foe must be a dictionary with key "name”, "master_class", "level", "HP",
+                   "max_HP", "hit_rate", "XP", "min_damage", "max_damage"
+    :postcondition: invoke player_flee if move is Flee else pass to player["attack_move"]
+                    to invoke combat_round()
+    :return: None
+    """
     if move == "Flee":
         player_flee(player)
     else:
@@ -1100,6 +1141,15 @@ def validate_combat_option(player, foe, move, who_strike_first):
 
 
 def check_experience(player):
+    """Check is player can level up.
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary with key "name”, "master_class", "level",
+                   "HP", "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :postcondition: return True if player XP is equal to PLAYER_EXPERIENCE_LEVEL2() or
+                    PLAYER_EXPERIECNE_LEVEL3() else False
+    :return: a boolean
+    """
     if player["XP"] == PLAYER_EXPERIENCE_LEVEL2() or player["XP"] == PLAYER_EXPERIENCE_LEVEL3():
         return True
     else:
@@ -1107,6 +1157,15 @@ def check_experience(player):
 
 
 def character_levelup(player):
+    """Level up player.
+    
+    :param player: a dictionary 
+    :precondition: player must be a dictionary with key "name”, "master_class", "level",
+                   "HP","max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :postcondition: increase "level", "HP","max_HP","hit_rate", "min_damage","max_damage"
+    :postcondition: display current status to user
+    :return: None
+    """
     player["level"] += PLAYER_LEVEL()
     player_sub_class(player)
     if player["hit_rate"] < MAX_HIT_RATE():
@@ -1130,6 +1189,15 @@ def character_levelup(player):
 
 
 def after_combat(player):
+    """Increase player XP.
+
+    :param player: a dictionary
+    :precondition: palyer must be a dictionary with key "name”, "master_class", "level",
+                   "HP", "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :postcondition: increase player XP if player location is not BOSS_LOCATION() 
+    :postcondition: invoke character_levelup()
+    :return: None
+    """
     if not player["location"] == BOSS_LOCATION():
         player["XP"] += PLAYER_EXPERIENCE_GAIN()
         typing_effect(f"You have gained {PLAYER_EXPERIENCE_GAIN()} XP!\nYour current XP is {player['XP']}\n")
@@ -1139,11 +1207,34 @@ def after_combat(player):
 
 
 def combat(player, foe, who_strike_first):
+    """Execute combat
+
+    :param player: a dictionary
+    :param foe: a dictionary
+    :param who_strike_first: a boolean
+    :precondition: player must be a dictionary with key "name”, "master_class", "level", "HP",
+                   "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :precondition: foe must be a dictionary with key "name”, "HP","max_HP","hit_rate","min_damage","max_damage"
+    :precondition: who_strike_first must be a dictionary
+    :postcondition: invoke combat_options()
+    :postcondition: pass return value of combat_options to validate_combat_options()
+    :return: None
+    """
     move = combat_options(player)
     validate_combat_option(player, foe, move, who_strike_first)
 
 
 def player_reach_boss(player):
+    """Create boss for final battle.
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary with key "name”, "master_class", "level", "HP",
+                   "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
+    :postcondition: create boss dictionary if player location is BOSS_LOCATION()
+    :postcondition: initiate combat between player and boss
+    :postcondition: invoke player_restart()
+    :return: None
+    """
     if player["location"] == BOSS_LOCATION():
         boss_attack_moves = ["Dragon's Breath", "Zeus's Lightning", "Dragon Claw", "Dragon Tail"]
         random_boss_attack = random.choice(boss_attack_moves)
