@@ -42,3 +42,15 @@ class TestCombatOptions(TestCase):
                           "[31m3[0m : Body Slam\n\n" \
                           "Invalid Input\n"
         self.assertEqual(expected_output, the_game_printed_this)
+
+    @patch('builtins.input', side_effect=["1"])
+    def test_combat_options_return_is_string(self, mock_input):
+        test_player = {"min_damage": 5,
+                       "max_damage": 15,
+                       "hit_rate": 1,
+                       "HP": 15,
+                       "location": [0, 0],
+                       "name": "attacker",
+                       "master_class": "Amazon"}
+        actual = combat_options(test_player)
+        self.assertTrue(type(actual) == str)
