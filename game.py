@@ -452,12 +452,13 @@ def make_player():
 
 def instruction_dialogue(player):
     typing_effect(f"\nGood choice {player['name']}! {player['master_class']} is what I would have picked too!\n"
-                  f"Now you must travel up to the top right corner | Location: [0, 24], and defeat Kindred!\n"
+                  f"Now you must travel up to the top right corner {BOSS_ICON()} "
+                  f"| Location: {BOSS_LOCATION()}, and defeat Kindred!\n"
                   f"There will be monsters a long the way, kill them to earn XP to level up "
                   f"and gain bonus stats!\n"
                   f"I wish you the best of luck, adventurer.\n\n")
     sleep(2)
-    return
+
 
 def get_player_move():
     """Get players direction
