@@ -133,6 +133,46 @@ def PLAYER_UNSUCCESSFUL_FLEE_RATE():
     return 20
 
 
+def SORCERER_MAX_DAMAGE_INCREASE():
+    return 10
+
+
+def SORCERER_MIN_DAMAGE_INCREASE():
+    return 5
+
+
+def SORCERER_HIT_RATE_DECREASE():
+    return 15
+
+
+def THIEF_MAX_DAMAGE_DECREASE():
+    return 5
+
+
+def THIEF_MIN_DAMAGE_INCREASE():
+    return 5
+
+
+def THIEF_HIT_RATE_INCREASE():
+    return 10
+
+
+def FIGHTER_MAX_DAMAGE_INCREASE():
+    return 10
+
+
+def FIGHTER_MIN_DAMAGE_DECREASE():
+    return 4
+
+
+def HIDDEN_LORD_MAX_DAMAGE_INCREASE():
+    return 80
+
+
+def HIDDEN_LORD_HP_INCREASE():
+    return 50
+
+
 def MONSTER_MIN_DAMAGE():
     return 1
 
@@ -319,20 +359,20 @@ def class_stats(player: dict):  # amazon no stat changes
     :return: None
     """
     if player["master_class"] == "Sorcerer":
-        player["max_damage"] += 10  # low chance of hit high damage
-        player["min_damage"] += 5
-        player["hit_rate"] -= 15
+        player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
+        player["min_damage"] += SORCERER_MAX_DAMAGE_INCREASE()
+        player["hit_rate"] -= SORCERER_HIT_RATE_DECREASE()
     elif player["master_class"] == "Thief":
-        player["max_damage"] -= 5  # high hit rate low damage
-        player["min_damage"] += 2
-        player["hit_rate"] += 10
+        player["max_damage"] -= THIEF_MAX_DAMAGE_DECREASE()  # high hit rate low damage
+        player["min_damage"] += THIEF_MIN_DAMAGE_INCREASE()
+        player["hit_rate"] += THIEF_HIT_RATE_INCREASE()
     elif player["master_class"] == "Fighter":
-        player["max_damage"] += 10  # high damage low chance of deadly hit
-        player["min_damage"] -= 4
+        player["max_damage"] += FIGHTER_MAX_DAMAGE_INCREASE()  # high damage low chance of deadly hit
+        player["min_damage"] -= FIGHTER_MIN_DAMAGE_DECREASE()
     elif player["master_class"] == "Hidden Lord":
-        player["max_damage"] += 80
-        player["HP"] += 50  # test
-        player["max_HP"] += 50
+        player["max_damage"] += HIDDEN_LORD_MAX_DAMAGE_INCREASE()
+        player["HP"] += HIDDEN_LORD_HP_INCREASE()
+        player["max_HP"] += HIDDEN_LORD_HP_INCREASE()
 
 
 def class_level(player: dict) -> list:
