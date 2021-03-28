@@ -7,6 +7,7 @@ import itertools
 import random
 import sys
 from time import sleep
+from doctest import testmod
 
 
 def RED():
@@ -526,6 +527,10 @@ def make_map(dimension):
     :precondition: dimension must be a positive integer greater than 1
     :postcondition: a list with tuples corresponding coordinates
     :return: a list of coordinates
+    
+    >>> test_board = make_map(5)
+    >>> test_board
+    [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
     """
     return [(x_axis, y_axis) for x_axis in range(dimension) for y_axis in range(dimension)]
 
@@ -1302,4 +1307,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    testmod(verbose=True)
