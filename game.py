@@ -688,6 +688,13 @@ def determine_sub_class(player: dict) -> list:
     :precondition: player key "master_class" must have a value of a string
     :postcondition: return a list of sub classes of the master class
     :return: a list of sub classes
+
+    >>> player = {'master_class': "Sorcerer"}
+    >>> determine_sub_class(player)
+    ['Magician', 'Wizard', 'High Wizard']
+    >>> player = {'master_class': 'Hidden Lord'}
+    >>> determine_sub_class(player)
+    ['Master', 'Lord', 'God']
     """
     if player['master_class'] == "Sorcerer":
         return ["Magician", "Wizard", "High Wizard"]
