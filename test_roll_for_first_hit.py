@@ -29,6 +29,14 @@ class TestRollForFirstHit(TestCase):
                    "Tom has the first move!\n\n"
         self.assertEqual(game_print, expected)
 
+    @patch('random.randint', side_effect=[20, 50])
+    def test_roll_for_first_hit_return_bool(self, mock_random_number):
+        test_player = {'name': 'Kerry'}
+        test_foe = {'name': 'Tom'}
+        actual = type(roll_for_first_hit(test_player, test_foe))
+        expected = bool
+        self.assertEqual(actual, expected)
+
 
 if __name__ == "__main__":
     main()
