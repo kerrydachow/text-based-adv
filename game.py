@@ -490,12 +490,12 @@ def BOARD_DIMENSION():
 
 
 def typing_effect(words):
-    """Print stdout pretty
+    """Print a string character by character with a delay.
 
-    :param words: a string
-    :precondition: words must be type string
-    :postcondition: print stdout with style
-    :return: None
+    :param words: any string
+    :precondition: words must be a string
+    :postcondition: print a string character by character with a delay between every character
+    :return: a string with a typing effect
     """
     for char in words:
         sleep(0.05)
@@ -504,6 +504,10 @@ def typing_effect(words):
 
 
 def ENDING_MESSAGE():
+    """Return ASCII art.
+
+    :return: ASCII art as a string
+    """
     return "    ^                 🔥           🔥🔥🔥🔥🔥🔥🔥       🔥🔥🔥🔥🔥        🔥🔥🔥\n" \
            "   /|\        ii_     🔥🔥          ____________         ____   __         _____\n" \
            "  / | \_      /  *-i🔥🔥🔥         |            |       |    \ |  |       |     ＼\n" \
