@@ -788,9 +788,15 @@ def player_sub_class(player: dict) -> str:
     >>> test_player = {'master_class': 'Sorcerer', 'level': 1}
     >>> player_sub_class(test_player)
     'Magician'
-    >>> test_player = {'master_class': 'Sorcerer', 'level': 2}
+    >>> test_player = {'master_class': 'Fighter', 'level': 2}
     >>> player_sub_class(test_player)
-    'Wizard'
+    'Buccaneer'
+    >>> test_player = {'master_class': 'Amazon', 'level': 3}
+    >>> player_sub_class(test_player)
+    'Pathfinder'
+    >>> test_player = {'master_class': 'Thief', 'level': 3}
+    >>> player_sub_class(test_player)
+    'Night Lord'
     """
     list_increment = player["level"]
     player["sub_class"] = determine_sub_class(player)[
