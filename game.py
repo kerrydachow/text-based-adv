@@ -1376,15 +1376,15 @@ def after_combat(player):
 
 
 def combat(player, foe, who_strike_first):
-    """Execute combat
+    """Execute combat.
 
     :param player: a dictionary
     :param foe: a dictionary
-    :param who_strike_first: a boolean
+    :param who_strike_first: a boolean value
     :precondition: player must be a dictionary with key "name”, "master_class", "level", "HP",
                    "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
     :precondition: foe must be a dictionary with key "name”, "HP","max_HP","hit_rate","min_damage","max_damage"
-    :precondition: who_strike_first must be a dictionary
+    :precondition: who_strike_first must be True or False
     :postcondition: invoke combat_options()
     :postcondition: pass return value of combat_options to validate_combat_options()
     :return: None
