@@ -675,7 +675,7 @@ def class_stats(player: dict):  # amazon no stat changes
     :precondition: player must be a dictionary with keys: "master_class", "min_damage", "max_damage", "hit_rate"
     :precondition: player dictionary keys: "min_damage", "max_damage", "hit_rate" must be integers
     :precondition: player dictionary key "master_class" must be a string
-    :postcondition: increment key values for depending on player class
+    :postcondition: increment or decrement key values for depending on player class
     :return: none
 
     >>> test_player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
