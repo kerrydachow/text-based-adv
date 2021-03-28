@@ -29,3 +29,7 @@ class TestMakeMap(TestCase):
             for integers in items:
                 self.assertTrue(type(integers) is int)
 
+    def test_make_map_tuple_integer_smaller_dimensions(self):
+        actual = make_map(5)
+        self.assertTrue(actual[-1][0] < 5)
+        self.assertTrue(actual[-1][1] < 5)
