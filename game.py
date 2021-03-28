@@ -654,7 +654,8 @@ def player_sub_class(player: dict) -> str:
     :return: append key "sub_class" with a value to player dictionary
     """
     list_increment = player["level"]
-    player["sub_class"] = determine_sub_class(player)[-1 + list_increment]  # must start at -1 because player level starts at 1
+    player["sub_class"] = determine_sub_class(player)[
+        -1 + list_increment]  # must start at -1 because player level starts at 1
     return player["sub_class"]
 
 
@@ -704,6 +705,10 @@ def make_player():
 
 
 def instruction_dialogue(player):
+    """Print the dialogue explaining the game.
+
+    :return: none
+    """
     typing_effect(f"\nGood choice {player['name']}! {player['master_class']} is what I would have picked too!\n"
                   f"Now you must travel up to the top right corner {BOSS_ICON()} "
                   f"| Location: {BOSS_LOCATION()}, and defeat Kindred!\n"
@@ -714,7 +719,7 @@ def instruction_dialogue(player):
 
 
 def get_player_move():
-    """Get players direction
+    """Prompt user for direction change.
 
     :postcondition: return player_direction if valid else print Invalid message
     :return: a string representing players moving direction
@@ -732,7 +737,7 @@ def get_player_move():
 
 
 def player_destination(direction: str, player: dict) -> tuple:
-    """Create players next destination
+    """Create players next destination.
 
     :param direction: a string
     :param player: a dictionary
@@ -754,14 +759,14 @@ def player_destination(direction: str, player: dict) -> tuple:
 
 
 def validate_move(new_location: tuple, board: list) -> bool:
-    """Validate the destination the player wants to go
+    """Validate the destination the player wants to go.
 
     :param new_location: a tuple
     :param board: a list of tuples
     :precondition: new_location must be a tuple of coordinates
     :precondition: board must be a list of tuples representing game board
     :postcondition: check if new_location is within board
-    :return: True if new_location is in board else False
+    :return: true if new_location is in board else False
     """
     if new_location in board:
         return True
@@ -770,7 +775,7 @@ def validate_move(new_location: tuple, board: list) -> bool:
 
 
 def move_player(direction: str, player: dict):
-    """Move the player on game board
+    """Modify location of player.
 
     :param direction: a string
     :param player: a dictionary
@@ -789,8 +794,8 @@ def move_player(direction: str, player: dict):
         player["location"][0] += 1  # right
 
 
-def check_for_monster(player: dict):
-    """Check if there is monster
+def check_for_monster(player: dict) -> bool:
+    """Check if there is a monster.
 
     :param player: a dictionary
     :precondition: player must be a dictionary representing game player
@@ -806,7 +811,7 @@ def check_for_monster(player: dict):
 
 
 def generate_monster(player):
-    """Create monster
+    """Create monster with random values and description
 
     :postcondition: create a monster dictionary for combat
     :return: a dictionary representing a monster
