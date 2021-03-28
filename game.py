@@ -110,7 +110,7 @@ def LEVEL_UP_HP_INCREASE():
 
 
 def PLAYER_START_LOCATION():
-    return [0, 0]
+    return [24, 0]
 
 
 def PLAYER_EXPERIENCE_GAIN():
@@ -222,7 +222,7 @@ def EVALUATE_MONSTER_HARD_HIT_RATE():
 
 
 def BOSS_LOCATION():
-    return [24, 24]
+    return [0, 24]
 
 
 def BOSS_HP():
@@ -336,16 +336,31 @@ def print_map(dimension, board, player):
         print()
 
 
+def introduction_dialogue():
+    typing_effect("Welcome to the World of the Medium | %sEpisode 1%s\n\n"
+                  "Your soul has drifted from your body and now you are here to prove your worthiness.\n"
+                  "In order to proceed to heaven, you must defeat the mighty dragon, Kindred, who's "
+                  "guarding the Gates of Heaven.\n"
+                  "Kindred has been sending adventurers like you into the depths of hell. You must "
+                  "defeat Kindred to prove your worthiness, and then push through the Gates of Heaven.\n\n"
+                  "You will choose a class with certain stats and abilities to aid your task of defeating "
+                  "Kindred.\n" % (PURPLE(), END()))
+
+
 def class_description():
     print("\nClasses\n\n"
           "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
-          "\nTheir damage is amplified, but not the most accurate!\n\n"
+          "\nTheir damage is amplified, but not the most accurate!\n"
+          "Sorcerers begin as a Magician, advance into a Wizard, and finally transcend into a High Wizard.\n\n"
           "%s1%s %sThief%s:\nThieves lurk through the shadows with striking with deadly accuracy."
-          "\nTheir accuracy is near-perfect, but lack the strength to damage!\n\n"
+          "\nTheir accuracy is near-perfect, but lack the strength to damage!\n"
+          "Thieves begin as a Thief, advance into a Bandit, and finally transcend into a Night Lord.\n\n"
           "%s2%s %sAmazon%s:\nAmazons specialize in archery, swordplay, and a bit of magic."
-          "\nAmazon's are the most well-balanced class!\n\n"
-          "%s3%s %sFighter%s:\nFighters have incredible yet, uncontrollable strength. "
+          "\nAmazon's are the most well-balanced class!\n"
+          "Amazons begin as a Novice, advance into an Amazon, and transcend into a Pathfinder.\n\n"
+          "%s3%s %sFighter%s:\nFighters have incredible yet, uncontrollable strength."
           "\nTheir uncontrollable strength can easily dissipate weak monsters!\n"
+          "Fighters begin as a Brawler, advance into a Buccaneer, and transcend into a Sensei.\n"
           % (RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(), RED(), END(), UNDERLINE(), END(),
              RED(), END(), UNDERLINE(), END()))
 
@@ -398,7 +413,7 @@ def class_choice():
     class_list = enumerate(("Sorcerer", "Thief", "Amazon", "Fighter"))
     valid_class_num = ["0", "1", "2", "3", "1337"]
     while True:
-        player_class = input("What class will you choose? Enter number for class: ")
+        player_class = input("Which class will you choose? (Enter corresponding number to pick your class): ")
         if player_class in valid_class_num:
             for jobs in class_list:
                 if player_class == str(jobs[0]):
@@ -415,7 +430,9 @@ def make_player():
     :postcondition: create a dictionary representing game player
     :return: a dictionary representing player
     """
-    name = input("What's your name, explorer?: ")
+    name = input("But first, what is your name?: ")
+    typing_effect(f"\nHi {name}, you must now pick your class.\nHere is a list of all of the classes:\n")
+    sleep(1)
     class_description()
     player_class = class_choice()
     player = {"name": BLUE() + name + END(),
@@ -433,6 +450,15 @@ def make_player():
     return player
 
 
+def instruction_dialogue(player):
+    typing_effect(f"\nGood choice {player['name']}! {player['master_class']} is what I would have picked too!\n"
+                  f"Now you must travel up to the top right corner | Location: [0, 24], and defeat Kindred!\n"
+                  f"There will be monsters a long the way, kill them to earn XP to level up "
+                  f"and gain bonus stats!\n"
+                  f"I wish you the best of luck, adventurer.\n\n")
+    sleep(2)
+    return
+
 def get_player_move():
     """Get players direction
 
@@ -443,7 +469,8 @@ def get_player_move():
           % (RED(), END(), RED(), END(), RED(), END(), RED(), END(), YELLOW(), END()))
     valid_user_input = ["0", "1", "2", "3", "q", "Q", "h", "H"]
     while True:
-        player_direction = input("Which direction will you go? ")
+        player_direction = input("Which direction will you go? "
+                                 "(Enter corresponding number/letter to pick your action.): ")
         if player_direction in valid_user_input:
             return player_direction
         else:
@@ -533,7 +560,8 @@ def generate_monster(player):
     monster_name = random.choice(["Dragon", "Kobold", "Fenrir", "Loki", "Surtr"])
     monster_activity = random.choice(["staring at you", "snarling at you", "stalking you", "ready to pounce at you"])
     monster_description = ["Humongous", "Murderous", "Rabid", "Psycho", "Hostile"]
-    monster_state = list(itertools.permutations(monster_description, MONSTER_DESCRIPTION_AMOUNT()))  # 2 for 2 monster descriptions.
+    monster_state = list(itertools.permutations
+                         (monster_description, MONSTER_DESCRIPTION_AMOUNT()))  # 2 for 2 monster descriptions.
 
     def filter_moves(moves):
         monster_moves_level_1 = ["Bite", "Chomp", "Body Slam", "Scratch"]
@@ -622,14 +650,14 @@ def player_heal(player: dict):
     """
     if player["HP"] < player["max_HP"]:
         player["HP"] = min(player["HP"] + PLAYER_HP_HEAL(), player["max_HP"])
-        print(f"\nYou have recovered HP \nYour new HP is {player['HP']}\n")
+        print(f"\nYou have recovered HP \nYour new HP is {player['HP']}")
 
 
 def player_restart():
     while True:
         restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
-                        "What will you do? (Enter corresponding letter to pick your action.) "
-                    % (RED(), END(), RED(), END()))
+                        "What will you do? (Enter corresponding letter to pick your action.): "
+                        % (RED(), END(), RED(), END()))
         if restart.lower() == "y":
             game()
             exit()
@@ -638,6 +666,7 @@ def player_restart():
             exit()
         else:
             print("Invalid input, please input y or n")
+
 
 def is_player_dead(player: dict):
     if player["HP"] <= 0:
@@ -721,7 +750,7 @@ def combat_options(player):
         print(RED() + f"{move[0]}" + END() + " : " + move[1] + "\n", end="")
     while True:
         player_move = input(
-            "\nWhat will you do? (Enter corresponding number to pick your action.) ")
+            "\nWhat will you do? (Enter corresponding number to pick your action.): ")
         for move in attack_moves:
             if player_move == str(move[0]):
                 return move[1]
@@ -793,11 +822,12 @@ def player_reach_boss(player):
                 "hit_rate": BOSS_HIT_RATE(),
                 "attack_move": random_boss_attack
                 }
-        typing_effect(f"\nYou have reached Kindred(HP: {boss['HP']}), the mighty Dragon who blocks the gates to Heaven\n")
+        typing_effect(f"\nYou have reached Kindred(HP: {boss['HP']}), "
+                      f"the mighty Dragon who blocks the gates to Heaven\n")
         who_strike_first = roll_for_first_hit(player, boss)
         combat(player, boss, who_strike_first)
         if boss["HP"] <= 0:
-            typing_effect("Congratulations! You have defeated Kindred!\n")
+            typing_effect("Congratulations! You have defeated Kindred!\n Next episode coming soon!\n")
             print(ENDING_MESSAGE())
             player_restart()
 
@@ -805,18 +835,12 @@ def player_reach_boss(player):
 def game():
     """Play game
     """
+    introduction_dialogue()
     character = make_player()
     board = make_map(BOARD_DIMENSION())
     achieve_goal = False
     print_map(BOARD_DIMENSION(), board, character)
-    print(f"Name: {character['name']} | "
-          f"HP: {character['HP']} | "
-          f"Class: {character['sub_class']} | "
-          f"Location: {character['location']} | "
-          f"Level: {character['level']} "
-          f"\n\nMaster Class: {character['master_class']}"
-          f"\nDamage Range: {character['min_damage']} - {character['max_damage']}"
-          f"\nAccuracy: {character['hit_rate']}%")
+    instruction_dialogue(character)
     while not achieve_goal:
         direction = get_player_move()
         if direction.lower() == "q":
@@ -830,7 +854,9 @@ def game():
                   f"Level: {character['level']} | "
                   f"Class: {character['sub_class']} | "
                   f"XP: {character['XP']} | "
-                  f"Location: {character['location']}")
+                  f"Location: {character['location']}"
+                  f"\nDamage Range: {character['min_damage']} - {character['max_damage']}"
+                  f"\nAccuracy: {character['hit_rate']}%")
             if check_for_monster(character):
                 foe = generate_monster(character)
                 evaluate_monster_difficulty(foe)
@@ -840,8 +866,8 @@ def game():
                 player_heal(character)
                 player_reach_boss(character)
         else:
-            print("You can't move in that direction.")
-            sleep(2)
+            print("\nYou can't move in that direction.")
+            sleep(1)
 
 
 def main():
