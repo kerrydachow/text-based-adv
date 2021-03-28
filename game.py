@@ -1358,13 +1358,15 @@ def character_levelup(player):
 
 
 def after_combat(player):
-    """Increase player XP.
+    """Increase player experience points.
 
     :param player: a dictionary
     :precondition: player must be a dictionary with key "name”, "master_class", "level",
                    "HP", "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
     :postcondition: increase player XP if player location is not BOSS_LOCATION() 
-    :postcondition: invoke character_levelup()
+    :postcondition: print a message for user displaying their current experience points
+    :postcondition: checks if check_experience returns True or False
+    :postcondition: if check_experience is True, invoke character_levelup()
     :return: None
     """
     if not player["location"] == BOSS_LOCATION():
