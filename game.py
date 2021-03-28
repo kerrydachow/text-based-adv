@@ -957,8 +957,11 @@ def move_player(direction: str, player: dict):
     :param direction: a string
     :param player: a dictionary
     :precondition: direction must be a string number of 0, 1, 2, 3
-    :precondition: character must be a dictionary representing player
+    :precondition: player must be a dictionary representing player
+    :precondition: player must have a key called "location"
+    :precondition: player key "location" must be a list with two integers
     :postcondition: modify character['location'] value according to direction
+    :postconndition: increment or decrement value of list index 0 or 1
     :return: None
 
     >>> test_player = {'location': [0, 0]}
