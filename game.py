@@ -110,7 +110,7 @@ def LEVEL_UP_HP_INCREASE():
 
 
 def PLAYER_START_LOCATION():
-    return [24, 0]
+    return [0, 0]
 
 
 def PLAYER_EXPERIENCE_GAIN():
@@ -222,7 +222,7 @@ def EVALUATE_MONSTER_HARD_HIT_RATE():
 
 
 def BOSS_LOCATION():
-    return [0, 24]
+    return [24, 24]
 
 
 def BOSS_HP():
@@ -307,7 +307,7 @@ def make_map(dimension):
     :postcondition: create list of tuple to represent board
     :return: a dictionary to represent game board
     """
-    return [(y, x) for y in range(dimension) for x in range(dimension)]
+    return [(x_axis, y_axis) for x_axis in range(dimension) for y_axis in range(dimension)]
 
 
 def print_map(dimension, board, player):
@@ -323,16 +323,15 @@ def print_map(dimension, board, player):
     :postcondition: print boss icon on board corresponding to boss location
     :return: None
     """
-    key_counter = 0
-    for x_axis in range(dimension):
-        for y_axis in range(dimension):
-            if board[key_counter] == tuple(player["location"]):
-                print(BLINK() + PLAYER_ICON() + END() + " ", end="")
-            elif board[key_counter] == tuple(BOSS_LOCATION()):
-                print(BOSS_ICON(), end="")
-            else:
-                print("[ ]", end="")
-            key_counter += 1
+    for y_coord in reversed(range(dimension)):  # reverse y_coord so that (0, 0) is at bottom left corner
+        for x_coord in range(dimension):
+            if (x_coord, y_coord) in board:
+                if (x_coord, y_coord) == tuple(player["location"]):
+                    print(BLINK() + PLAYER_ICON() + END() + " ", end="")
+                elif (x_coord, y_coord) == tuple(BOSS_LOCATION()):
+                    print(BOSS_ICON(), end="")
+                else:
+                    print("[ ]", end="")
         print()
 
 
@@ -490,13 +489,13 @@ def player_destination(direction: str, player: dict) -> tuple:
     """
     new_location = list(player["location"])
     if direction == "0":
-        new_location[0] -= 1
+        new_location[1] += 1  # up
     elif direction == "1":
-        new_location[0] += 1
+        new_location[1] -= 1  # down
     elif direction == "2":
-        new_location[1] -= 1
+        new_location[0] -= 1  # left
     elif direction == "3":
-        new_location[1] += 1
+        new_location[0] += 1  # right
     return tuple(new_location)
 
 
@@ -527,13 +526,13 @@ def move_player(direction: str, player: dict):
     :return: None
     """
     if direction == "0":
-        player["location"][0] -= 1
+        player["location"][1] += 1  # up
     elif direction == "1":
-        player["location"][0] += 1
+        player["location"][1] -= 1  # down
     elif direction == "2":
-        player["location"][1] -= 1
+        player["location"][0] -= 1  # left
     elif direction == "3":
-        player["location"][1] += 1
+        player["location"][0] += 1  # right
 
 
 def check_for_monster(player: dict):
