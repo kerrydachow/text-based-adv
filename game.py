@@ -1260,10 +1260,9 @@ def attack(attacker, receiver):
 
     :param attacker: a dictionary
     :param receiver: a dictionary
-    :precondition: attacker and receiver must be a dictionary with key value pair 'attack_move' with a string
+    :precondition: attacker and receiver must be a dictionary with key value pair 'name' and 'attack_move' as a string
     :precondition: attacker and receiver must be a dictionary with key value pair
-                   'min_damage', 'HP', and 'max_damage' with an integer
-    :precondition: attacker and receiver must be a dictionary with key value pair 'HP' and integer
+                   'min_damage', 'HP', 'hit_rate' and 'max_damage' with an integer
     :postcondition: invoke hit_or_miss() to check for True or False
     :postcondition: randomly determine damage depending on 'min_damage' and 'max_damage'
     :postcondition: subtract receiver HP if hit_or_miss(attacker) if True, else display that user missed
