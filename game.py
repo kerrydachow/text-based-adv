@@ -909,8 +909,8 @@ def player_flee(player: dict):
 def monster_flee(player: dict) -> bool:
     """Evaluate if monster flee is True or False.
 
-    :param: player must be a dictionary
-    :precondition: player must have a key called location
+    :param player: a dictionary
+    :precondition: player must be a dictionary containing a key called location
     :precondition: player location must contain a list with 2 integers
     :postcondition: randomly determine if monster has fled
     :return: boolean value True or False
@@ -922,11 +922,13 @@ def monster_flee(player: dict) -> bool:
 
 
 def player_heal(player: dict):
-    """Heal player HP
+    """Increment player health points.
 
     :param player: a dictionary
-    :precondition: player must be a dictionary representing game player
-    :postcondition: increase player["HP"] to not exceed player["max_HP"]
+    :precondition: player must be a dictionary containing keys : "HP" and "max_HP"
+    :precondition: player "HP" and "max_HP" values must be integers > 0
+    :postcondition: increment the key-value pair "HP"
+    :postcondition: "HP" will not exceed "max_HP"
     :return: None
     """
     if player["HP"] < player["max_HP"]:
@@ -935,6 +937,15 @@ def player_heal(player: dict):
 
 
 def player_restart():
+
+    """ Prompt user to restart or quit.
+
+    :precondition: player has reached goal, or player_hp is 0
+    :precondition: user input must be "y" or "n"
+    :postcondition: "y" will restart game for user
+    :postcondition: "n" will exit out of program for user
+    :return: none
+    """
     while True:
         restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
                         "What will you do? (Enter corresponding letter to pick your action.): "
