@@ -814,8 +814,8 @@ def instruction_dialogue(player):
 
     :return: none
     
-    >>> player = {'name': 'Im crying', 'master_class': 'Sorcerer'}
-    >>> instruction_dialogue(player)
+    >>> test_player = {'name': 'Im crying', 'master_class': 'Sorcerer'}
+    >>> instruction_dialogue(test_player)
     <BLANKLINE>
     Good choice Im crying! Sorcerer is what I would have picked too!
     Now you must travel up to the top right corner 🐲 | Location: [24, 24], and defeat Kindred!
