@@ -579,6 +579,11 @@ def print_map(dimension, board, player):
     [ ][ ][ ][ ][ ]
     [ ][ ][ ][ ][ ]
     [ ][ ][ ][ ][ ]
+    >>> test_board = [(0, 0), (0, 1), (1, 0), (1, 1)]
+    >>> test_player = {"location": [0, 0]}
+    >>> print_map(2, test_board, test_player)
+    [ ][ ]
+    \033[05m😇\033[0m [ ]
     """
     for y_coord in reversed(range(dimension)):  # reverse y_coord so that (0, 0) is at bottom left corner
         for x_coord in range(dimension):
