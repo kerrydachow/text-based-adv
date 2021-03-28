@@ -866,9 +866,9 @@ def validate_move(new_location: tuple, board: list) -> bool:
     :return: true if new_location is in board else False
     
     >>> test_board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
-    >>> validate_move((1, 1), board)
+    >>> validate_move((1, 1), test_board)
     True
-    >>> validate_move((4, 4), board)
+    >>> validate_move((4, 4), test_board)
     False
     """
     if new_location in board:
@@ -889,16 +889,16 @@ def move_player(direction: str, player: dict):
 
     >>> test_player = {'location': [0, 0]}
     >>> move_player("0", test_player)
-    >>> player
+    >>> test_player
     {'location': [0, 1]}
     >>> move_player("1", test_player)
-    >>> player
+    >>> test_player
     {'location': [0, 0]}
     >>> move_player("3", test_player)
-    >>> player
+    >>> test_player
     {'location': [1, 0]}
     >>> move_player("2", test_player)
-    >>> player
+    >>> test_player
     {'location': [0, 0]}
     """
     if direction == "0":
