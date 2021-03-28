@@ -19,6 +19,12 @@ class TestValidateMove(TestCase):
         expected = True
         self.assertEqual(actual, expected)
 
+    def test_validate_move_not_in_board(self):
+        board = [(2, 2), (1, 2), (0, 2), (2, 1), (1, 1), (0, 1), (2, 0), (1, 0), (0, 0)]
+        test_location = (100, 100)
+        actual = validate_move(test_location, board)
+        self.assertFalse(actual)
+
 
 if __name__ == "__main__":
     main()
