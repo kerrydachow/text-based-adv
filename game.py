@@ -577,6 +577,15 @@ def introduction_dialogue():
     """Print the dialogue explaining the game.
 
     :return: none
+    
+    >>> introduction_dialogue()
+    Welcome to the World of the Medium | \033[35mEpisode 1\033[0m
+    <BLANKLINE>
+    Your soul has drifted from your body and now you are here to prove your worthiness.
+    In order to proceed to heaven, you must defeat the mighty dragon, Kindred, who's guarding the Gates of Heaven.
+    Kindred has been sending adventurers like you into the depths of hell. You must defeat Kindred to prove your worthiness, and then push through the Gates of Heaven.
+    <BLANKLINE>
+    You will choose a class with certain stats and abilities to aid your task of defeating Kindred.
     """
     typing_effect("Welcome to the World of the Medium | %sEpisode 1%s\n\n"
                   "Your soul has drifted from your body and now you are here to prove your worthiness.\n"
@@ -722,6 +731,15 @@ def instruction_dialogue(player):
     """Print the dialogue explaining the game.
 
     :return: none
+    
+    >>> player = {'name': 'Im crying', 'master_class': 'Sorcerer'}
+    >>> instruction_dialogue(player)
+    <BLANKLINE>
+    Good choice Im crying! Sorcerer is what I would have picked too!
+    Now you must travel up to the top right corner 🐲 | Location: [24, 24], and defeat Kindred!
+    There will be monsters a long the way, kill them to earn XP to level up and gain bonus stats!
+    I wish you the best of luck, adventurer.
+    <BLANKLINE>
     """
     typing_effect(f"\nGood choice {player['name']}! {player['master_class']} is what I would have picked too!\n"
                   f"Now you must travel up to the top right corner {BOSS_ICON()} "
@@ -781,6 +799,12 @@ def validate_move(new_location: tuple, board: list) -> bool:
     :precondition: board must be a list of tuples representing game board
     :postcondition: check if new_location is within board
     :return: true if new_location is in board else False
+    
+    >>> board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+    >>> validate_move((1, 1), board)
+    True
+    >>> validate_move((4, 4), board)
+    False
     """
     if new_location in board:
         return True
@@ -888,6 +912,8 @@ def evaluate_monster_difficulty(monster: dict):
     :postcondition: evaluate the values and print a message to user
     :postcondition: message will display the difficulty of the monster
     :return: none
+
+    >>> evaluate_monster_difficulty({'HP': 15, 'max_damage': 11, 'hit_rate': 60})
     """
     if monster["HP"] > EVALUATE_MONSTER_HARD_HP() and \
             monster["max_damage"] > EVALUATE_MONSTER_HARD_DAMAGE() and \
