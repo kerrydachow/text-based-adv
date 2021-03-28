@@ -1,7 +1,7 @@
 """
 Name: Kerry Chow[A01245034]
 Name: Tomo Kaneko[A01250261]
-Date:
+Date: March 28, 2021
 """
 import itertools
 import random
