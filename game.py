@@ -1050,6 +1050,15 @@ def player_heal(player: dict):
     :postcondition: increment the key-value pair "HP"
     :postcondition: "HP" will not exceed "max_HP"
     :return: None
+
+    >>> player_heal({'HP': 5, 'max_HP': 10})
+    <BLANKLINE>
+    You have recovered HP 
+    Your new HP is 9
+    >>> test_player = {'HP': 10, 'max_HP': 10}
+    >>> player_heal(test_player)
+    >>> test_player
+    {'HP': 10, 'max_HP': 10}
     """
     if player["HP"] < player["max_HP"]:
         player["HP"] = min(player["HP"] + PLAYER_HP_HEAL(), player["max_HP"])
@@ -1079,7 +1088,7 @@ def player_restart():
             print("Invalid input, please input y or n")
 
 
-def is_player_dead(player: dict):
+def is_player_dead(player: dict):           # function leads to player_restart, which takes input. skipping doctest.
     """Check if player is dead.
 
     :param player: a dictionary
