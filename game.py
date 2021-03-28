@@ -490,20 +490,6 @@ def BOARD_DIMENSION():
     return 25
 
 
-def typing_effect(words):
-    """Print a string character by character with a delay.
-
-    :param words: any string
-    :precondition: words must be a string
-    :postcondition: print a string character by character with a delay between every character
-    :return: none
-    """
-    for char in words:
-        sleep(0.05)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-
-
 def ENDING_MESSAGE():
     """Return ASCII art.
 
@@ -520,6 +506,20 @@ def ENDING_MESSAGE():
            "         |     i-|                 |____________|       |__|   \__|       |______／\n"
 
 
+def typing_effect(words):
+    """Print a string character by character with a delay.
+
+    :param words: any string
+    :precondition: words must be a string
+    :postcondition: print a string character by character with a delay between every character
+    :return: None
+    """
+    for char in words:
+        sleep(0.05)
+        sys.stdout.write(char)
+        sys.stdout.flush()
+
+
 def make_map(dimension):
     """Create a list of coordinates of game board.
 
@@ -530,7 +530,71 @@ def make_map(dimension):
     
     >>> test_board = make_map(5)
     >>> test_board
-    [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+    [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), \
+(2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+    >>> test_board = make_map(2)
+    >>> test_board
+    [(0, 0), (0, 1), (1, 0), (1, 1)]
+    >>> test_board = make_map(25)
+    >>> test_board
+    [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), \
+(0, 11), (0, 12), (0, 13), (0, 14), (0, 15), (0, 16), (0, 17), (0, 18), (0, 19), (0, 20), \
+(0, 21), (0, 22), (0, 23), (0, 24), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), \
+(1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (1, 11), (1, 12), (1, 13), (1, 14), (1, 15), \
+(1, 16), (1, 17), (1, 18), (1, 19), (1, 20), (1, 21), (1, 22), (1, 23), (1, 24), (2, 0), \
+(2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), \
+(2, 12), (2, 13), (2, 14), (2, 15), (2, 16), (2, 17), (2, 18), (2, 19), (2, 20), (2, 21), \
+(2, 22), (2, 23), (2, 24), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), \
+(3, 8), (3, 9), (3, 10), (3, 11), (3, 12), (3, 13), (3, 14), (3, 15), (3, 16), (3, 17), \
+(3, 18), (3, 19), (3, 20), (3, 21), (3, 22), (3, 23), (3, 24), (4, 0), (4, 1), (4, 2), \
+(4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (4, 9), (4, 10), (4, 11), (4, 12), (4, 13), \
+(4, 14), (4, 15), (4, 16), (4, 17), (4, 18), (4, 19), (4, 20), (4, 21), (4, 22), (4, 23), (4, 24), \
+(5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (5, 8), (5, 9), (5, 10), (5, 11), \
+(5, 12), (5, 13), (5, 14), (5, 15), (5, 16), (5, 17), (5, 18), (5, 19), (5, 20), (5, 21), (5, 22), \
+(5, 23), (5, 24), (6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), \
+(6, 10), (6, 11), (6, 12), (6, 13), (6, 14), (6, 15), (6, 16), (6, 17), (6, 18), (6, 19), (6, 20), \
+(6, 21), (6, 22), (6, 23), (6, 24), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7), \
+(7, 8), (7, 9), (7, 10), (7, 11), (7, 12), (7, 13), (7, 14), (7, 15), (7, 16), (7, 17), (7, 18), (7, 19), \
+(7, 20), (7, 21), (7, 22), (7, 23), (7, 24), (8, 0), (8, 1), (8, 2), (8, 3), (8, 4), (8, 5), (8, 6), (8, 7), \
+(8, 8), (8, 9), (8, 10), (8, 11), (8, 12), (8, 13), (8, 14), (8, 15), (8, 16), (8, 17), (8, 18), (8, 19), \
+(8, 20), (8, 21), (8, 22), (8, 23), (8, 24), (9, 0), (9, 1), (9, 2), (9, 3), (9, 4), (9, 5), (9, 6), (9, 7), \
+(9, 8), (9, 9), (9, 10), (9, 11), (9, 12), (9, 13), (9, 14), (9, 15), (9, 16), (9, 17), (9, 18), (9, 19), \
+(9, 20), (9, 21), (9, 22), (9, 23), (9, 24), (10, 0), (10, 1), (10, 2), (10, 3), (10, 4), (10, 5), (10, 6), \
+(10, 7), (10, 8), (10, 9), (10, 10), (10, 11), (10, 12), (10, 13), (10, 14), (10, 15), (10, 16), (10, 17), \
+(10, 18), (10, 19), (10, 20), (10, 21), (10, 22), (10, 23), (10, 24), (11, 0), (11, 1), (11, 2), (11, 3), \
+(11, 4), (11, 5), (11, 6), (11, 7), (11, 8), (11, 9), (11, 10), (11, 11), (11, 12), (11, 13), (11, 14), \
+(11, 15), (11, 16), (11, 17), (11, 18), (11, 19), (11, 20), (11, 21), (11, 22), (11, 23), (11, 24), (12, 0), \
+(12, 1), (12, 2), (12, 3), (12, 4), (12, 5), (12, 6), (12, 7), (12, 8), (12, 9), (12, 10), (12, 11), (12, 12), \
+(12, 13), (12, 14), (12, 15), (12, 16), (12, 17), (12, 18), (12, 19), (12, 20), (12, 21), (12, 22), (12, 23), \
+(12, 24), (13, 0), (13, 1), (13, 2), (13, 3), (13, 4), (13, 5), (13, 6), (13, 7), (13, 8), (13, 9), (13, 10), \
+(13, 11), (13, 12), (13, 13), (13, 14), (13, 15), (13, 16), (13, 17), (13, 18), (13, 19), (13, 20), (13, 21), \
+(13, 22), (13, 23), (13, 24), (14, 0), (14, 1), (14, 2), (14, 3), (14, 4), (14, 5), (14, 6), (14, 7), \
+(14, 8), (14, 9), (14, 10), (14, 11), (14, 12), (14, 13), (14, 14), (14, 15), (14, 16), (14, 17), (14, 18), \
+(14, 19), (14, 20), (14, 21), (14, 22), (14, 23), (14, 24), (15, 0), (15, 1), (15, 2), (15, 3), (15, 4), \
+(15, 5), (15, 6), (15, 7), (15, 8), (15, 9), (15, 10), (15, 11), (15, 12), (15, 13), (15, 14), (15, 15), \
+(15, 16), (15, 17), (15, 18), (15, 19), (15, 20), (15, 21), (15, 22), (15, 23), (15, 24), (16, 0), (16, 1), \
+(16, 2), (16, 3), (16, 4), (16, 5), (16, 6), (16, 7), (16, 8), (16, 9), (16, 10), (16, 11), (16, 12), (16, 13), \
+(16, 14), (16, 15), (16, 16), (16, 17), (16, 18), (16, 19), (16, 20), (16, 21), (16, 22), (16, 23), \
+(16, 24), (17, 0), (17, 1), (17, 2), (17, 3), (17, 4), (17, 5), (17, 6), (17, 7), (17, 8), (17, 9), \
+(17, 10), (17, 11), (17, 12), (17, 13), (17, 14), (17, 15), (17, 16), (17, 17), (17, 18), (17, 19), \
+(17, 20), (17, 21), (17, 22), (17, 23), (17, 24), (18, 0), (18, 1), (18, 2), (18, 3), (18, 4), (18, 5), \
+(18, 6), (18, 7), (18, 8), (18, 9), (18, 10), (18, 11), (18, 12), (18, 13), (18, 14), (18, 15), (18, 16), \
+(18, 17), (18, 18), (18, 19), (18, 20), (18, 21), (18, 22), (18, 23), (18, 24), (19, 0), (19, 1), (19, 2), \
+(19, 3), (19, 4), (19, 5), (19, 6), (19, 7), (19, 8), (19, 9), (19, 10), (19, 11), (19, 12), (19, 13), \
+(19, 14), (19, 15), (19, 16), (19, 17), (19, 18), (19, 19), (19, 20), (19, 21), (19, 22), (19, 23), \
+(19, 24), (20, 0), (20, 1), (20, 2), (20, 3), (20, 4), (20, 5), (20, 6), (20, 7), (20, 8), (20, 9), \
+(20, 10), (20, 11), (20, 12), (20, 13), (20, 14), (20, 15), (20, 16), (20, 17), (20, 18), (20, 19), \
+(20, 20), (20, 21), (20, 22), (20, 23), (20, 24), (21, 0), (21, 1), (21, 2), (21, 3), (21, 4), \
+(21, 5), (21, 6), (21, 7), (21, 8), (21, 9), (21, 10), (21, 11), (21, 12), (21, 13), (21, 14), \
+(21, 15), (21, 16), (21, 17), (21, 18), (21, 19), (21, 20), (21, 21), (21, 22), (21, 23), \
+(21, 24), (22, 0), (22, 1), (22, 2), (22, 3), (22, 4), (22, 5), (22, 6), (22, 7), (22, 8), \
+(22, 9), (22, 10), (22, 11), (22, 12), (22, 13), (22, 14), (22, 15), (22, 16), (22, 17), \
+(22, 18), (22, 19), (22, 20), (22, 21), (22, 22), (22, 23), (22, 24), (23, 0), (23, 1), \
+(23, 2), (23, 3), (23, 4), (23, 5), (23, 6), (23, 7), (23, 8), (23, 9), (23, 10), (23, 11), \
+(23, 12), (23, 13), (23, 14), (23, 15), (23, 16), (23, 17), (23, 18), (23, 19), (23, 20), \
+(23, 21), (23, 22), (23, 23), (23, 24), (24, 0), (24, 1), (24, 2), (24, 3), (24, 4), (24, 5), \
+(24, 6), (24, 7), (24, 8), (24, 9), (24, 10), (24, 11), (24, 12), (24, 13), (24, 14), (24, 15), \
+(24, 16), (24, 17), (24, 18), (24, 19), (24, 20), (24, 21), (24, 22), (24, 23), (24, 24)]
     """
     return [(x_axis, y_axis) for x_axis in range(dimension) for y_axis in range(dimension)]
 
@@ -550,8 +614,8 @@ def print_map(dimension, board, player):
     :postcondition: print a game board
     :postcondition: print player icon on board corresponding to player location
     :postcondition: print boss icon on board corresponding to boss location
-    :return: none
-    
+    :return: None
+
     >>> test_board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), \
     (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
     >>> test_player = {"location": [0, 0]}
@@ -600,16 +664,7 @@ def print_map(dimension, board, player):
 def introduction_dialogue():
     """Print the dialogue explaining the game.
 
-    :return: none
-    
-    >>> introduction_dialogue()
-    Welcome to the World of the Medium | \033[35mEpisode 1\033[0m
-    <BLANKLINE>
-    Your soul has drifted from your body and now you are here to prove your worthiness.
-    In order to proceed to heaven, you must defeat the mighty dragon, Kindred, who's guarding the Gates of Heaven.
-    Kindred has been sending adventurers like you into the depths of hell. You must defeat Kindred to prove your worthiness, and then push through the Gates of Heaven.
-    <BLANKLINE>
-    You will choose a class with certain stats and abilities to aid your task of defeating Kindred.
+    :return: None
     """
     typing_effect("Welcome to the World of the Medium | %sEpisode 1%s\n\n"
                   "Your soul has drifted from your body and now you are here to prove your worthiness.\n"
@@ -624,32 +679,7 @@ def introduction_dialogue():
 def class_description():
     """Print the description of the classes.
 
-    :return: none
-
-    >>> class_description()
-    <BLANKLINE>
-    Classes
-    <BLANKLINE>
-    \033[31m0\033[0m \033[04mSorcerer\033[0m:
-    Sorcerers uses magic to attack.
-    Their damage is amplified, but not the most accurate!
-    Sorcerers begin as a Magician, advance into a Wizard, and finally transcend into a High Wizard.
-    <BLANKLINE>
-    \033[31m1\033[0m \033[04mThief\033[0m:
-    Thieves lurk through the shadows with striking with deadly accuracy.
-    Their accuracy is near-perfect, but lack the strength to damage!
-    Thieves begin as a Thief, advance into a Bandit, and finally transcend into a Night Lord.
-    <BLANKLINE>
-    \033[31m2\033[0m \033[04mAmazon\033[0m:
-    Amazons specialize in archery, swordplay, and a bit of magic.
-    Amazon's are the most well-balanced class!
-    Amazons begin as a Novice, advance into an Amazon, and transcend into a Pathfinder.
-    <BLANKLINE>
-    \033[31m3\033[0m \033[04mFighter\033[0m:
-    Fighters have incredible yet, uncontrollable strength.
-    Their uncontrollable strength can easily dissipate weak monsters!
-    Fighters begin as a Brawler, advance into a Buccaneer, and transcend into a Sensei.
-    <BLANKLINE>
+    :return: None
     """
     print("\nClasses\n\n"
           "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
@@ -676,7 +706,7 @@ def class_stats(player: dict):  # amazon no stat changes
     :precondition: player dictionary keys: "min_damage", "max_damage", "hit_rate" must be integers
     :precondition: player dictionary key "master_class" must be a string
     :postcondition: increment or decrement key values for depending on player class
-    :return: none
+    :return: None
 
     >>> test_player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
     >>> class_stats(test_player)
@@ -690,6 +720,10 @@ def class_stats(player: dict):  # amazon no stat changes
     >>> class_stats(test_player)
     >>> test_player
     {'master_class': 'Amazon', 'max_damage': 20, 'min_damage': 5, 'hit_rate': 75}
+    >>> test_player = {"master_class": "Fighter", "max_damage": 20, "min_damage": 5, "hit_rate": 75}
+    >>> class_stats(test_player)
+    >>> test_player
+    {'master_class': 'Fighter', 'max_damage': 30, 'min_damage': 1, 'hit_rate': 75}
     """
     if player["master_class"] == "Sorcerer":
         player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
@@ -754,9 +788,15 @@ def player_sub_class(player: dict) -> str:
     >>> test_player = {'master_class': 'Sorcerer', 'level': 1}
     >>> player_sub_class(test_player)
     'Magician'
-    >>> test_player = {'master_class': 'Sorcerer', 'level': 2}
+    >>> test_player = {'master_class': 'Fighter', 'level': 2}
     >>> player_sub_class(test_player)
-    'Wizard'
+    'Buccaneer'
+    >>> test_player = {'master_class': 'Amazon', 'level': 3}
+    >>> player_sub_class(test_player)
+    'Pathfinder'
+    >>> test_player = {'master_class': 'Thief', 'level': 3}
+    >>> player_sub_class(test_player)
+    'Night Lord'
     """
     list_increment = player["level"]
     player["sub_class"] = determine_sub_class(player)[
@@ -767,7 +807,7 @@ def player_sub_class(player: dict) -> str:
 def class_choice():
     """ Prompt user input to select a class.
 
-    :return: none
+    :return: None
     """
     class_list = enumerate(("Sorcerer", "Thief", "Amazon", "Fighter"))
     valid_class_num = ["0", "1", "2", "3", "1337"]
@@ -812,7 +852,7 @@ def make_player():
 def instruction_dialogue(player):
     """Print the dialogue explaining the game.
 
-    :return: none
+    :return: None
     
     >>> test_player = {'name': 'Im crying', 'master_class': 'Sorcerer'}
     >>> instruction_dialogue(test_player)
@@ -893,12 +933,16 @@ def validate_move(new_location: tuple, board: list) -> bool:
     :precondition: new_location must be a tuple of coordinates
     :precondition: board must be a list of tuples representing game board
     :postcondition: check if new_location is within board
-    :return: true if new_location is in board else False
+    :return: True if new_location is in board else False
     
     >>> test_board = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
-    >>> validate_move((1, 1), test_board)
+    >>> validate_move((0, 1), test_board)
+    True
+    >>> validate_move((2, 2), test_board)
     True
     >>> validate_move((4, 4), test_board)
+    False
+    >>> validate_move((2, 3), test_board)
     False
     """
     if new_location in board:
@@ -1020,7 +1064,7 @@ def evaluate_monster_difficulty(monster: dict):
     :precondition:: monster keys must have values that are integers
     :postcondition: evaluate the values and print a message to user
     :postcondition: message will display the difficulty of the monster
-    :return: none
+    :return: None
 
     >>> evaluate_monster_difficulty({'HP': 15, 'max_damage': 11, 'hit_rate': 60})
     Difficulty : \033[33mMEDIUM\033[0m | HP: 15
@@ -1050,7 +1094,7 @@ def player_flee(player: dict):
     :precondition: player "HP" must have a value that is an integer > 0
     :postcondition: 20% chance of taking a random amount of damage upon fleeing
     :postcondition: print a message displaying what happened
-    :return: none
+    :return: None
     """
     if random.randint(1, MAX_FLEE_RATE()) <= PLAYER_UNSUCCESSFUL_FLEE_RATE():
         flee_damage = random.randint(1, MAX_FLEE_DAMAGE())
@@ -1106,7 +1150,7 @@ def player_restart():
     :precondition: user input must be "y" or "n"
     :postcondition: "y" will restart game for user
     :postcondition: "n" will exit out of program for user
-    :return: none
+    :return: None
     """
     while True:
         restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
