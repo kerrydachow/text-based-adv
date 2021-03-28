@@ -23,4 +23,8 @@ class TestMakeMap(TestCase):
         for items in actual:
             self.assertTrue(len(items) == 2)
 
-
+    def test_make_map_tuple_integer(self):
+        actual = make_map(5)
+        for items in actual:
+            for integers in items:
+                self.assertTrue(type(integers) is int)
