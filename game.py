@@ -720,6 +720,10 @@ def class_stats(player: dict):  # amazon no stat changes
     >>> class_stats(test_player)
     >>> test_player
     {'master_class': 'Amazon', 'max_damage': 20, 'min_damage': 5, 'hit_rate': 75}
+    >>> test_player = {"master_class": "Fighter", "max_damage": 20, "min_damage": 5, "hit_rate": 75}
+    >>> class_stats(test_player)
+    >>> test_player
+    {'master_class': 'Fighter', 'max_damage': 30, 'min_damage': 1, 'hit_rate': 75}
     """
     if player["master_class"] == "Sorcerer":
         player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
