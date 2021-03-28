@@ -989,6 +989,11 @@ def evaluate_monster_difficulty(monster: dict):
     :return: none
 
     >>> evaluate_monster_difficulty({'HP': 15, 'max_damage': 11, 'hit_rate': 60})
+    Difficulty : \033[33mMEDIUM\033[0m | HP: 15
+    >>> evaluate_monster_difficulty({'HP': 20, 'max_damage': 20, 'hit_rate': 80})
+    Difficulty : \033[31mHARD\033[0m | HP: 20
+    >>> evaluate_monster_difficulty({'HP': 5, 'max_damage': 5, 'hit_rate': 5})
+    Difficulty : \033[32mEASY\033[0m | HP: 5
     """
     if monster["HP"] > EVALUATE_MONSTER_HARD_HP() and \
             monster["max_damage"] > EVALUATE_MONSTER_HARD_DAMAGE() and \
