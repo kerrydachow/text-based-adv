@@ -3,6 +3,10 @@ from game import make_map
 
 
 class TestMakeMap(TestCase):
+    def test_make_map_dimensions(self):
+        actual = make_map(5)
+        self.assertTrue(len(actual) == 25)
+
     def test_make_map_lower_bound(self):
         expected = [(0, 0), (0, 1), (1, 0), (1, 1)]
         actual = make_map(2)
