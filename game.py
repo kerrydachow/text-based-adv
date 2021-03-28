@@ -93,19 +93,19 @@ def PLAYER_START_HIT_RATE():
     return 75  # this means 75% chance of hit
 
 
-def PLAYER_HIT_RATE_INCREASE():
+def LEVEL_UP_HIT_RATE_INCREASE():
     return 5
 
 
-def PLAYER_MIN_DAMAGE_INCREASE():
+def LEVEL_UP_MIN_DAMAGE_INCREASE():
     return 2
 
 
-def PLAYER_MAX_DAMAGE_INCREASE():
+def LEVEL_UP_MAX_DAMAGE_INCREASE():
     return 5
 
 
-def PLAYER_HP_INCREASE():
+def LEVEL_UP_HP_INCREASE():
     return 10
 
 
@@ -390,7 +390,7 @@ def class_level(player: dict) -> list:
 
 def player_sub_class(player: dict) -> str:
     list_increment = player["level"]
-    player["sub_class"] = class_level(player)[-1 + list_increment]
+    player["sub_class"] = class_level(player)[-1 + list_increment]  # must start at -1 because player level starts at 1
     return player["sub_class"]
 
 
@@ -748,19 +748,19 @@ def character_levelup(player):
     player["level"] += PLAYER_LEVEL()
     player_sub_class(player)
     if player["hit_rate"] < MAX_HIT_RATE():
-        player["hit_rate"] += PLAYER_HIT_RATE_INCREASE()
-    player["min_damage"] += PLAYER_MIN_DAMAGE_INCREASE()
-    player["max_damage"] += PLAYER_MAX_DAMAGE_INCREASE()
-    player["max_HP"] += PLAYER_HP_INCREASE()
+        player["hit_rate"] += LEVEL_UP_HIT_RATE_INCREASE()
+    player["min_damage"] += LEVEL_UP_MIN_DAMAGE_INCREASE()
+    player["max_damage"] += LEVEL_UP_MAX_DAMAGE_INCREASE()
+    player["max_HP"] += LEVEL_UP_HP_INCREASE()
     player["HP"] = player["max_HP"]  # When player levels up, HP will be fully restored
     typing_effect(f"\nYou have leveled up!\n"
                   f"\nYou are now Level {player['level']}\n"
                   f"\nYou have job advanced to %s{player['sub_class']}!%s\n" % (RED(), END()))
     sleep(1)
-    typing_effect(f"\n Your HP increased by {PLAYER_HIT_RATE_INCREASE()}"
-                  f"\n Your accuracy increased by {PLAYER_HIT_RATE_INCREASE()}"
-                  f"\n Your minimum damage increased by {PLAYER_MIN_DAMAGE_INCREASE()}"
-                  f"\n Your maximum damage increased by {PLAYER_MAX_DAMAGE_INCREASE()}"
+    typing_effect(f"\n Your HP increased by {LEVEL_UP_HIT_RATE_INCREASE()}"
+                  f"\n Your accuracy increased by {LEVEL_UP_HIT_RATE_INCREASE()}"
+                  f"\n Your minimum damage increased by {LEVEL_UP_MIN_DAMAGE_INCREASE()}"
+                  f"\n Your maximum damage increased by {LEVEL_UP_MAX_DAMAGE_INCREASE()}"
                   f"\n And you have fully recovered your HP!\n")
     print(f"\nMaster Class: {player['master_class']}"
           f"\nDamage Range: {player['min_damage']} - {player['max_damage']}"
@@ -845,7 +845,8 @@ def game():
 
 
 def main():
-    """Execute game
+    """
+    Drive the program
     """
     game()
 
