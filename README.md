@@ -5,7 +5,7 @@
 ### Your student numbers: A01245034, A01250261
 
 #### ** Add any comments for me below this line **
-***Invoke 1337 when selecting class to Speed Run!***
+***Invoke 1337 when selecting class to Speed Run! Game is also best played in Terminal***
 
 | Requirement| Location | 
 | :---        |    :---:   |
