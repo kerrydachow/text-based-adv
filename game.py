@@ -883,17 +883,17 @@ def move_player(direction: str, player: dict):
     :postcondition: modify character['location'] value according to direction
     :return: None
 
-    >>> player = {'location': [0, 0]}
-    >>> move_player("0", player)
+    >>> test_player = {'location': [0, 0]}
+    >>> move_player("0", test_player)
     >>> player
     {'location': [0, 1]}
-    >>> move_player("1", player)
+    >>> move_player("1", test_player)
     >>> player
     {'location': [0, 0]}
-    >>> move_player("3", player)
+    >>> move_player("3", test_player)
     >>> player
     {'location': [1, 0]}
-    >>> move_player("2", player)
+    >>> move_player("2", test_player)
     >>> player
     {'location': [0, 0]}
     """
@@ -1261,7 +1261,7 @@ def combat_options(player):
 
 
 def validate_combat_option(player, foe, move, who_strike_first):
-    """Validate player combat option
+    """Validate player combat option.
 
     :param player: a dictionary
     :param foe: a dictionary
@@ -1283,7 +1283,7 @@ def validate_combat_option(player, foe, move, who_strike_first):
 
 
 def check_experience(player):
-    """Check is player can level up.
+    """Check if player can level up.
 
     :param player: a dictionary
     :precondition: player must be a dictionary with key "name”, "master_class", "level",
