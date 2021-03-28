@@ -659,6 +659,10 @@ def player_sub_class(player: dict) -> str:
 
 
 def class_choice():
+    """ Prompt user input to select a class.
+
+    :return: none
+    """
     class_list = enumerate(("Sorcerer", "Thief", "Amazon", "Fighter"))
     valid_class_num = ["0", "1", "2", "3", "1337"]
     while True:
@@ -674,7 +678,7 @@ def class_choice():
 
 
 def make_player():
-    """Create player
+    """Prompt user for information and store information into a dictionary.
 
     :postcondition: create a dictionary representing game player
     :return: a dictionary representing player
