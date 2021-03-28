@@ -674,7 +674,7 @@ def class_stats(player: dict):  # amazon no stat changes
     elif player["master_class"] == "Fighter":
         player["max_damage"] += FIGHTER_MAX_DAMAGE_INCREASE()  # high damage low chance of deadly hit
         player["min_damage"] -= FIGHTER_MIN_DAMAGE_DECREASE()
-    else:
+    elif player["master_class"] == "Hidden Lord":
         player["max_damage"] += HIDDEN_LORD_MAX_DAMAGE_INCREASE()
         player["HP"] += HIDDEN_LORD_HP_INCREASE()
         player["max_HP"] += HIDDEN_LORD_HP_INCREASE()
