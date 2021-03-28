@@ -512,7 +512,7 @@ def typing_effect(words):
     :param words: any string
     :precondition: words must be a string
     :postcondition: print a string character by character with a delay between every character
-    :return: none
+    :return: None
     """
     for char in words:
         sleep(0.05)
@@ -614,7 +614,7 @@ def print_map(dimension, board, player):
     :postcondition: print a game board
     :postcondition: print player icon on board corresponding to player location
     :postcondition: print boss icon on board corresponding to boss location
-    :return: none
+    :return: None
 
     >>> test_board = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (2, 0), (2, 1), \
     (2, 2), (2, 3), (2, 4), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
@@ -664,7 +664,7 @@ def print_map(dimension, board, player):
 def introduction_dialogue():
     """Print the dialogue explaining the game.
 
-    :return: none
+    :return: None
     """
     typing_effect("Welcome to the World of the Medium | %sEpisode 1%s\n\n"
                   "Your soul has drifted from your body and now you are here to prove your worthiness.\n"
@@ -679,7 +679,7 @@ def introduction_dialogue():
 def class_description():
     """Print the description of the classes.
 
-    :return: none
+    :return: None
     """
     print("\nClasses\n\n"
           "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
@@ -706,7 +706,7 @@ def class_stats(player: dict):  # amazon no stat changes
     :precondition: player dictionary keys: "min_damage", "max_damage", "hit_rate" must be integers
     :precondition: player dictionary key "master_class" must be a string
     :postcondition: increment or decrement key values for depending on player class
-    :return: none
+    :return: None
 
     >>> test_player = {"master_class": "Sorcerer", "max_damage": 10, "min_damage": 5, "hit_rate": 60}
     >>> class_stats(test_player)
@@ -797,7 +797,7 @@ def player_sub_class(player: dict) -> str:
 def class_choice():
     """ Prompt user input to select a class.
 
-    :return: none
+    :return: None
     """
     class_list = enumerate(("Sorcerer", "Thief", "Amazon", "Fighter"))
     valid_class_num = ["0", "1", "2", "3", "1337"]
@@ -842,7 +842,7 @@ def make_player():
 def instruction_dialogue(player):
     """Print the dialogue explaining the game.
 
-    :return: none
+    :return: None
     
     >>> test_player = {'name': 'Im crying', 'master_class': 'Sorcerer'}
     >>> instruction_dialogue(test_player)
@@ -1050,7 +1050,7 @@ def evaluate_monster_difficulty(monster: dict):
     :precondition:: monster keys must have values that are integers
     :postcondition: evaluate the values and print a message to user
     :postcondition: message will display the difficulty of the monster
-    :return: none
+    :return: None
 
     >>> evaluate_monster_difficulty({'HP': 15, 'max_damage': 11, 'hit_rate': 60})
     Difficulty : \033[33mMEDIUM\033[0m | HP: 15
@@ -1080,7 +1080,7 @@ def player_flee(player: dict):
     :precondition: player "HP" must have a value that is an integer > 0
     :postcondition: 20% chance of taking a random amount of damage upon fleeing
     :postcondition: print a message displaying what happened
-    :return: none
+    :return: None
     """
     if random.randint(1, MAX_FLEE_RATE()) <= PLAYER_UNSUCCESSFUL_FLEE_RATE():
         flee_damage = random.randint(1, MAX_FLEE_DAMAGE())
@@ -1136,7 +1136,7 @@ def player_restart():
     :precondition: user input must be "y" or "n"
     :postcondition: "y" will restart game for user
     :postcondition: "n" will exit out of program for user
-    :return: none
+    :return: None
     """
     while True:
         restart = input("\nWould you like to restart?\n%sY%s for Yes\n%sN%s for No\n\n"
