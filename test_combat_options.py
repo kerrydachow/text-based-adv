@@ -54,3 +54,16 @@ class TestCombatOptions(TestCase):
                        "master_class": "Amazon"}
         actual = combat_options(test_player)
         self.assertTrue(type(actual) == str)
+
+    @patch('builtins.input', side_effect=["1"])
+    def test_combat_options_return_is_correct(self, mock_input):
+        test_player = {"min_damage": 5,
+                       "max_damage": 15,
+                       "hit_rate": 1,
+                       "HP": 15,
+                       "location": [0, 0],
+                       "name": "attacker",
+                       "master_class": "Fighter"}
+        actual = combat_options(test_player)
+        expected = "Power Punch"
+        self.assertEqual(expected, actual)
