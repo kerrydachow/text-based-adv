@@ -1361,7 +1361,7 @@ def after_combat(player):
     """Increase player XP.
 
     :param player: a dictionary
-    :precondition: palyer must be a dictionary with key "name”, "master_class", "level",
+    :precondition: player must be a dictionary with key "name”, "master_class", "level",
                    "HP", "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
     :postcondition: increase player XP if player location is not BOSS_LOCATION() 
     :postcondition: invoke character_levelup()
