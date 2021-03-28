@@ -698,14 +698,14 @@ def hit_or_miss(game_chara: dict):  # True if hits false if miss
 def combat_moves_list(player):
     if player["master_class"] == "Sorcerer":
         return list(enumerate(
-            ["Fire Ball", "Icicle Attack", "Magic Missile", "Flee"],
+            ["Fire Ball", "Icicle Attack", "Lightning Strike", "Flee"],
             1))  # I used list in order to use it in combat options.
     elif player["master_class"] == "Thief":
         return list(enumerate(["Throw Ninja Star", "Dagger Stab", "Punch", "Flee"], 1))
     elif player["master_class"] == "Amazon":
         return list(enumerate(["Arrow Shot", "Sword Slash", "Fire Ball", "Flee"], 1))
     elif player["master_class"] == "Fighter":
-        return list(enumerate(["Power Punch", "Side Pick", "Body Slam", "Flee"], 1))
+        return list(enumerate(["Power Punch", "Roundhouse Kick", "Body Slam", "Flee"], 1))
     elif player["master_class"] == "Hidden Lord":
         return list(enumerate(["Lightning Punch", "Fire Storm", "Darkness Beam", "Flee"], 1))
 
@@ -783,14 +783,14 @@ def character_levelup(player):
     player["max_HP"] += LEVEL_UP_HP_INCREASE()
     player["HP"] = player["max_HP"]  # When player levels up, HP will be fully restored
     typing_effect(f"\nYou have leveled up!\n"
-                  f"\nYou are now Level {player['level']}\n"
+                  f"You are now Level {player['level']}\n"
                   f"\nYou have job advanced to %s{player['sub_class']}!%s\n" % (RED(), END()))
     sleep(1)
-    typing_effect(f"\n Your HP increased by {LEVEL_UP_HIT_RATE_INCREASE()}"
-                  f"\n Your accuracy increased by {LEVEL_UP_HIT_RATE_INCREASE()}"
-                  f"\n Your minimum damage increased by {LEVEL_UP_MIN_DAMAGE_INCREASE()}"
-                  f"\n Your maximum damage increased by {LEVEL_UP_MAX_DAMAGE_INCREASE()}"
-                  f"\n And you have fully recovered your HP!\n")
+    typing_effect(f"\nYour HP increased by {LEVEL_UP_HIT_RATE_INCREASE()}"
+                  f"\nYour accuracy increased by {LEVEL_UP_HIT_RATE_INCREASE()}"
+                  f"\nYour minimum damage increased by {LEVEL_UP_MIN_DAMAGE_INCREASE()}"
+                  f"\nYour maximum damage increased by {LEVEL_UP_MAX_DAMAGE_INCREASE()}"
+                  f"\nAnd you have fully recovered your HP!\n")
     print(f"\nMaster Class: {player['master_class']}"
           f"\nDamage Range: {player['min_damage']} - {player['max_damage']}"
           f"\nAccuracy: {player['hit_rate']}%")
@@ -828,6 +828,7 @@ def player_reach_boss(player):
         combat(player, boss, who_strike_first)
         if boss["HP"] <= 0:
             typing_effect("Congratulations! You have defeated Kindred!\n Next episode coming soon!\n")
+            sleep(1)
             print(ENDING_MESSAGE())
             player_restart()
 
@@ -867,7 +868,6 @@ def game():
                 player_reach_boss(character)
         else:
             print("\nYou can't move in that direction.")
-            sleep(1)
 
 
 def main():
