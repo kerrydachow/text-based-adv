@@ -602,7 +602,7 @@ def class_stats(player: dict):  # amazon no stat changes
     :param player: a dictionary
     :precondition: player must be a dictionary with keys: "master_class", "min_damage", "max_damage", "hit_rate"
     :precondition: player dictionary keys: "min_damage", "max_damage", "hit_rate" must be integers
-    :precondition: player dictionary key master_class must be a string
+    :precondition: player dictionary key "master_class" must be a string
     :postcondition: increment key values for depending on player class
     :return: none
     """
@@ -623,7 +623,15 @@ def class_stats(player: dict):  # amazon no stat changes
         player["max_HP"] += HIDDEN_LORD_HP_INCREASE()
 
 
-def class_level(player: dict) -> list:
+def determine_sub_class(player: dict) -> list:
+    """Return a list of sub classes for master class.
+
+    :param player: a dictionary
+    :precondition: player must be a dictionary containing a key-value pair of "master_class"
+    :precondition: player key "master_class" must have a value of a string
+    :postcondition: return a list of sub classes of the master class
+    :return: a list of sub classes
+    """
     if player['master_class'] == "Sorcerer":
         return ["Magician", "Wizard", "High Wizard"]
     elif player['master_class'] == "Thief":
@@ -638,7 +646,7 @@ def class_level(player: dict) -> list:
 
 def player_sub_class(player: dict) -> str:
     list_increment = player["level"]
-    player["sub_class"] = class_level(player)[-1 + list_increment]  # must start at -1 because player level starts at 1
+    player["sub_class"] = determine_sub_class(player)[-1 + list_increment]  # must start at -1 because player level starts at 1
     return player["sub_class"]
 
 
