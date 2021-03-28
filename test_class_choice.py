@@ -1,4 +1,5 @@
 from unittest import TestCase
+from unittest import main
 from unittest.mock import patch
 import io
 
@@ -19,3 +20,7 @@ class TestClassChoice(TestCase):
         actual = class_choice()
         expected = "Sorcerer"
         self.assertEqual(actual, expected)
+
+
+if __name__ == "__main__":
+    main()
