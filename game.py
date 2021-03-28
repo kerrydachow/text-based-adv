@@ -1260,11 +1260,14 @@ def attack(attacker, receiver):
 
     :param attacker: a dictionary
     :param receiver: a dictionary
-    :precondition: player and receiver must be a dictionary with key value pair 'attack_move' with string
-    :precondition: player and receiver must be a dictionary with key value pair 'min_damage' and 'max_damage' with integer
-    :precondition: player and receiver must be a dictionary with key value pair 'HP' and integer
-    :postcondition: subtract receiver HP if hit_or_miss(attacker) is True else display that user missed
-    :postcondition: display message death message is receiver HP is smaller than or equal to 0
+    :precondition: attacker and receiver must be a dictionary with key value pair 'attack_move' with a string
+    :precondition: attacker and receiver must be a dictionary with key value pair
+                   'min_damage', 'HP', and 'max_damage' with an integer
+    :precondition: attacker and receiver must be a dictionary with key value pair 'HP' and integer
+    :postcondition: invoke hit_or_miss() to check for True or False
+    :postcondition: randomly determine damage depending on 'min_damage' and 'max_damage'
+    :postcondition: subtract receiver HP if hit_or_miss(attacker) if True, else display that user missed
+    :postcondition: display death message if receiver HP is less than or equal to 0
     :return: None
     """
     typing_effect(f"{attacker['name']} used %s{attacker['attack_move']}%s!\n" % (RED(), END()))
