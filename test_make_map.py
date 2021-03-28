@@ -33,3 +33,8 @@ class TestMakeMap(TestCase):
         actual = make_map(5)
         self.assertTrue(actual[-1][0] < 5)
         self.assertTrue(actual[-1][1] < 5)
+
+    def test_make_map_tuple_integer_greater_equal_zero(self):
+        actual = make_map(5)
+        self.assertTrue(actual[0][0] >= 0)
+        self.assertTrue(actual[0][1] >= 0)
