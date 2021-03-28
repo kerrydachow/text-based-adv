@@ -712,12 +712,18 @@ def determine_sub_class(player: dict) -> list:
     :postcondition: return a list of sub classes of the master class
     :return: a list of sub classes
 
-    >>> player = {'master_class': "Sorcerer"}
-    >>> determine_sub_class(player)
+    >>> test_player = {'master_class': "Sorcerer"}
+    >>> determine_sub_class(test_player)
     ['Magician', 'Wizard', 'High Wizard']
-    >>> player = {'master_class': 'Hidden Lord'}
-    >>> determine_sub_class(player)
+    >>> test_player = {'master_class': 'Hidden Lord'}
+    >>> determine_sub_class(test_player)
     ['Master', 'Lord', 'God']
+    >>> test_player = {'master_class': "Fighter"}
+    >>> determine_sub_class(test_player)
+    ['Brawler', 'Buccaneer', 'Sensei']
+    >>> test_player = {'master_class': "Amazon"}
+    >>> determine_sub_class(test_player)
+    ['Novice', 'Amazon', 'Pathfinder']
     """
     if player['master_class'] == "Sorcerer":
         return ["Magician", "Wizard", "High Wizard"]
