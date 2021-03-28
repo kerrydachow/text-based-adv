@@ -545,7 +545,7 @@ def print_map(dimension, board, player):
     :postcondition: print a game board
     :postcondition: print player icon on board corresponding to player location
     :postcondition: print boss icon on board corresponding to boss location
-    :return: None
+    :return: none
     """
     for y_coord in reversed(range(dimension)):  # reverse y_coord so that (0, 0) is at bottom left corner
         for x_coord in range(dimension):
@@ -560,6 +560,10 @@ def print_map(dimension, board, player):
 
 
 def introduction_dialogue():
+    """Print the dialogue explaining the game.
+
+    :return: none
+    """
     typing_effect("Welcome to the World of the Medium | %sEpisode 1%s\n\n"
                   "Your soul has drifted from your body and now you are here to prove your worthiness.\n"
                   "In order to proceed to heaven, you must defeat the mighty dragon, Kindred, who's "
@@ -571,6 +575,10 @@ def introduction_dialogue():
 
 
 def class_description():
+    """Print the description of the classes.
+
+    :return: none
+    """
     print("\nClasses\n\n"
           "%s0%s %sSorcerer%s:\nSorcerers uses magic to attack."
           "\nTheir damage is amplified, but not the most accurate!\n"
@@ -594,7 +602,7 @@ def class_stats(player: dict):  # amazon no stat changes
     :param player: a dictionary
     :precondition: player must be a dictionary with key "master_class", "min_damage", "max_damage", "hit_rate"
     :postcondition: increment key values for each unique class
-    :return: None
+    :return: none
     """
     if player["master_class"] == "Sorcerer":
         player["max_damage"] += SORCERER_MAX_DAMAGE_INCREASE()  # low chance of hit high damage
