@@ -1088,7 +1088,7 @@ def player_restart():
             print("Invalid input, please input y or n")
 
 
-def is_player_dead(player: dict):           # function leads to player_restart, which takes input. skipping doctest.
+def is_player_dead(player: dict):           # function leads to player_restart, which takes input. partial doctest.
     """Check if player is dead.
 
     :param player: a dictionary
@@ -1096,6 +1096,8 @@ def is_player_dead(player: dict):           # function leads to player_restart, 
     :postcondition: print message to user is player HP is smaller or equal to 0
     :postcondition: invoke player_restart if player HP is smaller or equal to 0 
     :return: None
+
+    >>> is_player_dead({'HP': 1})
     """
     if player["HP"] <= 0:
         print("\nYou have failed your mission.\n")
@@ -1146,6 +1148,17 @@ def combat_moves_list(player):
     :precondition: player must be a dictionary with key value pair 'master_class' and string for class
     :postcondition: return combat moves for each player class
     :return: a list with combat moves items
+
+    >>> combat_moves_list({'master_class': 'Sorcerer'})
+    [(1, 'Fire Ball'), (2, 'Icicle Attack'), (3, 'Lightning Strike'), (4, 'Flee')]
+    >>> combat_moves_list({'master_class': 'Thief'})
+    [(1, 'Throw Ninja Star'), (2, 'Dagger Stab'), (3, 'Punch'), (4, 'Flee')]
+    >>> combat_moves_list({'master_class': 'Amazon'})
+    [(1, 'Arrow Shot'), (2, 'Sword Slash'), (3, 'Fire Ball'), (4, 'Flee')]
+    >>> combat_moves_list({'master_class': 'Fighter'})
+    [(1, 'Power Punch'), (2, 'Roundhouse Kick'), (3, 'Body Slam'), (4, 'Flee')]
+    >>> combat_moves_list({'master_class': 'Hidden Lord'})
+    [(1, 'Lightning Punch'), (2, 'Fire Storm'), (3, 'Darkness Beam'), (4, 'Flee')]
     """
     if player["master_class"] == "Sorcerer":
         return list(enumerate(
@@ -1253,8 +1266,8 @@ def validate_combat_option(player, foe, move, who_strike_first):
     :param player: a dictionary
     :param foe: a dictionary
     :param move: a string
-    :parma who_strike_first: a boolean
-    :precondition: player must be a dictioanry with key "name”, "master_class", "level", "HP",
+    :param who_strike_first: a boolean
+    :precondition: player must be a dictionary with key "name”, "master_class", "level", "HP",
                    "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
     :precondition: foe must be a dictionary with key "name”, "master_class", "level", "HP",
                    "max_HP", "hit_rate", "XP", "min_damage", "max_damage"
