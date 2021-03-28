@@ -495,7 +495,7 @@ def typing_effect(words):
     :param words: any string
     :precondition: words must be a string
     :postcondition: print a string character by character with a delay between every character
-    :return: a string with a typing effect
+    :return: none
     """
     for char in words:
         sleep(0.05)
@@ -520,25 +520,29 @@ def ENDING_MESSAGE():
 
 
 def make_map(dimension):
-    """Make board for game
+    """Create a list of coordinates of game board.
 
-    :param:
-    :precondition:
-    :postcondition: create list of tuple to represent board
-    :return: a dictionary to represent game board
+    :param dimension: a positive integer
+    :precondition: dimension must be a positive integer greater than 1
+    :postcondition: a list with tuples corresponding coordinates
+    :return: a list of coordinates
     """
     return [(x_axis, y_axis) for x_axis in range(dimension) for y_axis in range(dimension)]
 
 
 def print_map(dimension, board, player):
-    """Print game board to user
+    """Output a square game board allocating each tuple into a square bracket or icon.
 
-    :param board: a list with tuple item
+    :param dimension: a positive integer
+    :param board: a list containing tuples with correlation to dimension
     :param player: a dictionary
-    :param dimension: a integer
-    :precondition: board must be a dictionary representing game board
-    :precondition: player must be a dictionary representing player
-    :postcondition: print game board to the user
+    :precondition: dimension must be an integer greater than 2
+    :precondition: board must be a list containing tuples with correlation to dimension
+    :precondition: board list must contain a squared amount of tuples of dimensions
+                   # dimension 5, board must have 5**2 = 25 tuples
+    :precondition: player must be a dictionary
+    :precondition: player dictionary must contain a key of location with a value of two integers in a list
+    :postcondition: print a game board
     :postcondition: print player icon on board corresponding to player location
     :postcondition: print boss icon on board corresponding to boss location
     :return: None
