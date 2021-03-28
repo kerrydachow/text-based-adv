@@ -78,7 +78,7 @@ def PLAYER_START_DAMAGE():
 
 
 def PLAYER_START_HP():
-    return 20
+    return 30
 
 
 def PLAYER_START_EXPERIENCE():
