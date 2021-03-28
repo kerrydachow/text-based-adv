@@ -1289,7 +1289,7 @@ def check_experience(player):
     :precondition: player must be a dictionary with key "name”, "master_class", "level",
                    "HP", "max_HP", "hit_rate", "XP", "min_damage", "max_damage", "location"
     :postcondition: return True if player XP is equal to PLAYER_EXPERIENCE_LEVEL2() or
-                    PLAYER_EXPERIECNE_LEVEL3() else False
+                    PLAYER_EXPERIENCE_LEVEL3() else False
     :return: a boolean
     """
     if player["XP"] == PLAYER_EXPERIENCE_LEVEL2() or player["XP"] == PLAYER_EXPERIENCE_LEVEL3():
