@@ -1,26 +1,38 @@
-# 1510-A4-Text-based-adventure-game
+# text-based-adventure-game
 
-### Your names: Kerry Chow, Tomo Kaneko
+## Game Preview
 
-### Your student numbers: A01245034, A01250261
+![](https://s11.gifyu.com/images/SgVRt.gif)
 
-#### ** Add any comments for me below this line **
+## Created by Kerry Chow & Tomo Kaneko
 
-***Invoke 1337 when selecting class to Speed Run! Game is also best played in Terminal***
+### Description
+- A text-based adventure game developed purely in Python.
 
-***Doctests run slow due to our typing_effect function, but they work!***
 
-| Requirement| Location | 
-| :---        |    :---:   |
-| Tuple       | line 925|
-| List        | line  768|
-| List comprehension| line  599|
-| Remarkable Use of If-Statement | line 999, 1079, 1144|
-| Clever use of repetition with the for or while loop | line 652 |
-| Membership Operator (in) | line  1032| 
-| Range function| line  652, 653, 599|
-| itertools function(s)| line 1019|
-| Enumerate| line 1245, 812|
-| The filter or map function| line  1047|
-| Random module| line  1016, 1045-1056|
-#### ** Add any comments for me above this line **
+- A 25x25 grid where the player must reach the top right corner and defeat
+  the final boss Kindred.
+
+
+- Along the way the player will have to fight against monsters and level up
+  in order to gain the level & job advancements to take down Kindred.
+
+
+- Combat statistics include:
+    - Random damage depending on the class.
+    - Different attack ranges depending on class.
+    - Ability for foe or player to dodge attacks.
+    - First move randomizer.
+
+
+- Player heals as he walks through the map
+
+### Requirements
+| Requirements             |         Done         |
+|:-------------------------|:--------------------:|
+| Unit Tested and Doctests |  :white_check_mark:  | 
+| Flowchart                |  :white_check_mark:  |
+| No Magic Numbers         |  :white_check_mark:  | 
+
+### Special Notes
+- Class `1337` to speedrun the game.
